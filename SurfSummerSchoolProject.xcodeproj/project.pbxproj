@@ -81,8 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				8F5FE2B4289A72790005C3E0 /* TabBar */,
-				8F5FE2A7289A72090005C3E0 /* FavoriteModule */,
 				8F5FE2A6289A71FA0005C3E0 /* MainModule */,
+				8F5FE2A7289A72090005C3E0 /* FavoriteModule */,
 				8F5FE2A5289A71EC0005C3E0 /* ProfileModule */,
 			);
 			path = MainFlow;
