@@ -9,6 +9,17 @@ import UIKit
 
 class MainViewController: UIViewController, ModuleTransitionable {
     
+    //MARK: - Constants
+    
+    private enum Constants {
+        static let itemsPerRow: CGFloat = 2
+        static let horizontalInset: CGFloat = 16
+        static let verticalInset: CGFloat = 8
+        static let minimumLineSpacing: CGFloat = 16
+        static let minimumInteritemSpacing: CGFloat = 7
+        static let heightToWidthRatio: CGFloat = 1.4642
+    }
+    
     //MARK: - Views
     
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -32,7 +43,7 @@ class MainViewController: UIViewController, ModuleTransitionable {
     //MARK: - Private methods
     
     @objc private func tappedSearchButton() {
-        print("Search in MainVC")
+        presenter?.router?.showSearchModule()
     }
 }
 
@@ -42,7 +53,12 @@ private extension MainViewController {
     func configureAppearance() {
         navigationItem.setRightBarButton(searchButton, animated: true)
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.registerCell(MainItemCell.self)
+        collectionView.contentInset = .init(top: Constants.verticalInset,
+                                            left: Constants.horizontalInset,
+                                            bottom: Constants.verticalInset,
+                                            right: Constants.horizontalInset)
     }
     
     func configureModel() {
@@ -64,7 +80,11 @@ extension MainViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainItemCell", for: indexPath) as? MainItemCell else {
             fatalError()
         }
-        cell.backgroundColor = .red
+        cell.configure(item: presenter?.model.items[indexPath.item]) { [weak self] isFavorite in
+            print(isFavorite, indexPath.item)
+            self?.presenter?.model.items[indexPath.item].isFavorite = isFavorite
+        }
+        
         return cell
     }
 }
@@ -76,7 +96,19 @@ extension MainViewController: UICollectionViewDelegate {
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let paddingWidth = Constants.itemsPerRow * Constants.horizontalInset + Constants.minimumInteritemSpacing
+        let widthPerItem = (collectionView.bounds.width - paddingWidth) / Constants.itemsPerRow
+        return .init(width: widthPerItem, height: widthPerItem * Constants.heightToWidthRatio)
+    }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return Constants.minimumInteritemSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return Constants.minimumLineSpacing
+    }
 }
 
 //MARK: - MainViewInput

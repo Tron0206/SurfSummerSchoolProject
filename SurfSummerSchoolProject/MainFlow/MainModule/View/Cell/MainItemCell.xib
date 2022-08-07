@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="203" height="290"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bgx-3w-SOT">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bgx-3w-SOT">
                         <rect key="frame" x="0.0" y="0.0" width="203" height="261.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Bgx-3w-SOT" secondAttribute="height" multiplier="166:222" priority="750" id="Oeo-WM-KHw"/>

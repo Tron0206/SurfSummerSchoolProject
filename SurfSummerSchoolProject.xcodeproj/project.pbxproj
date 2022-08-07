@@ -31,6 +31,9 @@
 		8FB6DC37289FFA6F00CB5219 /* ModuleTransitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC36289FFA6F00CB5219 /* ModuleTransitionable.swift */; };
 		8FB6DC3A28A006EB00CB5219 /* MainModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC3928A006EB00CB5219 /* MainModuleConfigurator.swift */; };
 		8FB6DC3D28A014B000CB5219 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC3C28A014B000CB5219 /* UICollectionView+Extension.swift */; };
+		8FB6DC4128A02F5100CB5219 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC3F28A02F5100CB5219 /* SearchViewController.swift */; };
+		8FB6DC4228A02F5100CB5219 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FB6DC4028A02F5100CB5219 /* SearchViewController.xib */; };
+		8FB6DC4428A038E000CB5219 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC4328A038E000CB5219 /* UINavigationController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,9 @@
 		8FB6DC36289FFA6F00CB5219 /* ModuleTransitionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTransitionable.swift; sourceTree = "<group>"; };
 		8FB6DC3928A006EB00CB5219 /* MainModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModuleConfigurator.swift; sourceTree = "<group>"; };
 		8FB6DC3C28A014B000CB5219 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		8FB6DC3F28A02F5100CB5219 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8FB6DC4028A02F5100CB5219 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		8FB6DC4328A038E000CB5219 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,7 @@
 		8F5FE2A4289A71CF0005C3E0 /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
+				8FB6DC3E28A02F3000CB5219 /* SearchModule */,
 				8F5FE2B4289A72790005C3E0 /* TabBar */,
 				8F5FE2A6289A71FA0005C3E0 /* MainModule */,
 				8F5FE2A7289A72090005C3E0 /* FavoriteModule */,
@@ -229,8 +236,18 @@
 			isa = PBXGroup;
 			children = (
 				8FB6DC3C28A014B000CB5219 /* UICollectionView+Extension.swift */,
+				8FB6DC4328A038E000CB5219 /* UINavigationController+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8FB6DC3E28A02F3000CB5219 /* SearchModule */ = {
+			isa = PBXGroup;
+			children = (
+				8FB6DC3F28A02F5100CB5219 /* SearchViewController.swift */,
+				8FB6DC4028A02F5100CB5219 /* SearchViewController.xib */,
+			);
+			path = SearchModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +314,7 @@
 				8F5FE2AF289A725C0005C3E0 /* MainViewController.xib in Resources */,
 				8F5FE2AB289A723B0005C3E0 /* FavoriteViewController.xib in Resources */,
 				8FB6DC20289C76C200CB5219 /* MainItemCell.xib in Resources */,
+				8FB6DC4228A02F5100CB5219 /* SearchViewController.xib in Resources */,
 				8F5FE29828995CF10005C3E0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,6 +330,7 @@
 				8FB6DC1F289C76C200CB5219 /* MainItemCell.swift in Sources */,
 				8FB6DC2D289FF6AE00CB5219 /* MainViewInput.swift in Sources */,
 				8F5FE2B2289A72690005C3E0 /* ProfileViewController.swift in Sources */,
+				8FB6DC4428A038E000CB5219 /* UINavigationController+Extension.swift in Sources */,
 				8F5FE2B8289A748E0005C3E0 /* TabBarConfigurator.swift in Sources */,
 				8FB6DC3A28A006EB00CB5219 /* MainModuleConfigurator.swift in Sources */,
 				8FB6DC37289FFA6F00CB5219 /* ModuleTransitionable.swift in Sources */,
@@ -320,6 +339,7 @@
 				8F5FE2AA289A723B0005C3E0 /* FavoriteViewController.swift in Sources */,
 				8F5FE29128995CF00005C3E0 /* SceneDelegate.swift in Sources */,
 				8FB6DC33289FF73C00CB5219 /* MainRouterInput.swift in Sources */,
+				8FB6DC4128A02F5100CB5219 /* SearchViewController.swift in Sources */,
 				8F5FE2B6289A72D50005C3E0 /* TabBarModel.swift in Sources */,
 				8FB6DC29289FF51C00CB5219 /* MainRouter.swift in Sources */,
 				8FB6DC2F289FF6B700CB5219 /* MainViewOutput.swift in Sources */,
