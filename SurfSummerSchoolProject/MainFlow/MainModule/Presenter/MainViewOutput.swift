@@ -12,4 +12,5 @@ protocol MainViewOutput: AnyObject {
     var model: MainModel { get }
     var router: MainRouterInput? { get }
     init(model: MainModel)
+    func showDetail(item: ItemModel)
 }

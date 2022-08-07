@@ -34,6 +34,12 @@
 		8FB6DC4128A02F5100CB5219 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC3F28A02F5100CB5219 /* SearchViewController.swift */; };
 		8FB6DC4228A02F5100CB5219 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FB6DC4028A02F5100CB5219 /* SearchViewController.xib */; };
 		8FB6DC4428A038E000CB5219 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC4328A038E000CB5219 /* UINavigationController+Extension.swift */; };
+		8FB6DC4828A04DAA00CB5219 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC4628A04DAA00CB5219 /* DetailViewController.swift */; };
+		8FB6DC4928A04DAA00CB5219 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FB6DC4728A04DAA00CB5219 /* DetailViewController.xib */; };
+		8FB6DC5228A069AE00CB5219 /* DetailModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC5128A069AE00CB5219 /* DetailModuleConfigurator.swift */; };
+		8FB6DC5428A06A1700CB5219 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC5328A06A1700CB5219 /* DetailPresenter.swift */; };
+		8FB6DC5628A06A4600CB5219 /* DetailViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC5528A06A4600CB5219 /* DetailViewInput.swift */; };
+		8FB6DC5828A06A5500CB5219 /* DetailViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC5728A06A5500CB5219 /* DetailViewOutput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +72,12 @@
 		8FB6DC3F28A02F5100CB5219 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8FB6DC4028A02F5100CB5219 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		8FB6DC4328A038E000CB5219 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		8FB6DC4628A04DAA00CB5219 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		8FB6DC4728A04DAA00CB5219 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		8FB6DC5128A069AE00CB5219 /* DetailModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModuleConfigurator.swift; sourceTree = "<group>"; };
+		8FB6DC5328A06A1700CB5219 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
+		8FB6DC5528A06A4600CB5219 /* DetailViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewInput.swift; sourceTree = "<group>"; };
+		8FB6DC5728A06A5500CB5219 /* DetailViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewOutput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,11 +122,12 @@
 		8F5FE2A4289A71CF0005C3E0 /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
-				8FB6DC3E28A02F3000CB5219 /* SearchModule */,
-				8F5FE2B4289A72790005C3E0 /* TabBar */,
 				8F5FE2A6289A71FA0005C3E0 /* MainModule */,
 				8F5FE2A7289A72090005C3E0 /* FavoriteModule */,
 				8F5FE2A5289A71EC0005C3E0 /* ProfileModule */,
+				8FB6DC4528A04D6800CB5219 /* DetailModule */,
+				8FB6DC3E28A02F3000CB5219 /* SearchModule */,
+				8F5FE2B4289A72790005C3E0 /* TabBar */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
@@ -250,6 +263,51 @@
 			path = SearchModule;
 			sourceTree = "<group>";
 		};
+		8FB6DC4528A04D6800CB5219 /* DetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				8FB6DC4C28A0691A00CB5219 /* Configurator */,
+				8FB6DC4B28A0690E00CB5219 /* Presenter */,
+				8FB6DC4A28A068EA00CB5219 /* Views */,
+			);
+			path = DetailModule;
+			sourceTree = "<group>";
+		};
+		8FB6DC4A28A068EA00CB5219 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8FB6DC4F28A0698900CB5219 /* Cells */,
+				8FB6DC4628A04DAA00CB5219 /* DetailViewController.swift */,
+				8FB6DC4728A04DAA00CB5219 /* DetailViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8FB6DC4B28A0690E00CB5219 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8FB6DC5328A06A1700CB5219 /* DetailPresenter.swift */,
+				8FB6DC5528A06A4600CB5219 /* DetailViewInput.swift */,
+				8FB6DC5728A06A5500CB5219 /* DetailViewOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8FB6DC4C28A0691A00CB5219 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				8FB6DC5128A069AE00CB5219 /* DetailModuleConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		8FB6DC4F28A0698900CB5219 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -312,6 +370,7 @@
 				8F5FE29B28995CF10005C3E0 /* LaunchScreen.storyboard in Resources */,
 				8F5FE2A3289978910005C3E0 /* .gitignore in Resources */,
 				8F5FE2AF289A725C0005C3E0 /* MainViewController.xib in Resources */,
+				8FB6DC4928A04DAA00CB5219 /* DetailViewController.xib in Resources */,
 				8F5FE2AB289A723B0005C3E0 /* FavoriteViewController.xib in Resources */,
 				8FB6DC20289C76C200CB5219 /* MainItemCell.xib in Resources */,
 				8FB6DC4228A02F5100CB5219 /* SearchViewController.xib in Resources */,
@@ -333,18 +392,23 @@
 				8FB6DC4428A038E000CB5219 /* UINavigationController+Extension.swift in Sources */,
 				8F5FE2B8289A748E0005C3E0 /* TabBarConfigurator.swift in Sources */,
 				8FB6DC3A28A006EB00CB5219 /* MainModuleConfigurator.swift in Sources */,
+				8FB6DC4828A04DAA00CB5219 /* DetailViewController.swift in Sources */,
+				8FB6DC5828A06A5500CB5219 /* DetailViewOutput.swift in Sources */,
 				8FB6DC37289FFA6F00CB5219 /* ModuleTransitionable.swift in Sources */,
 				8F5FE28F28995CF00005C3E0 /* AppDelegate.swift in Sources */,
 				8FB6DC27289FEC4500CB5219 /* MainPresenter.swift in Sources */,
 				8F5FE2AA289A723B0005C3E0 /* FavoriteViewController.swift in Sources */,
 				8F5FE29128995CF00005C3E0 /* SceneDelegate.swift in Sources */,
+				8FB6DC5628A06A4600CB5219 /* DetailViewInput.swift in Sources */,
 				8FB6DC33289FF73C00CB5219 /* MainRouterInput.swift in Sources */,
 				8FB6DC4128A02F5100CB5219 /* SearchViewController.swift in Sources */,
+				8FB6DC5428A06A1700CB5219 /* DetailPresenter.swift in Sources */,
 				8F5FE2B6289A72D50005C3E0 /* TabBarModel.swift in Sources */,
 				8FB6DC29289FF51C00CB5219 /* MainRouter.swift in Sources */,
 				8FB6DC2F289FF6B700CB5219 /* MainViewOutput.swift in Sources */,
 				8F5FE2AE289A725C0005C3E0 /* MainViewController.swift in Sources */,
 				8FB6DC3D28A014B000CB5219 /* UICollectionView+Extension.swift in Sources */,
+				8FB6DC5228A069AE00CB5219 /* DetailModuleConfigurator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -92,7 +92,11 @@ extension MainViewController: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 
 extension MainViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let item = presenter?.model.items[indexPath.item] {
+            presenter?.showDetail(item: item)
+        }
+    }
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {

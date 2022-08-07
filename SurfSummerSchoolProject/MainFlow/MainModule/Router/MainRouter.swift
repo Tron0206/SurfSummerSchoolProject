@@ -12,11 +12,11 @@ class MainRouter: MainRouterInput {
     
     weak var view: ModuleTransitionable?
     
-    func showDetailModule() {
-        print("showDetailModule")
+    func showDetailModule(item: ItemModel) {
+        view?.push(module: DetailModuleConfigurator().configure(item: item), animated: true, hideTabBar: true)
     }
     
     func showSearchModule() {
-        view?.push(module: SearchViewController(), animated: true, hideTabBar: true)
+        view?.push(module: SearchViewController(), animated: true)
     }
 }
