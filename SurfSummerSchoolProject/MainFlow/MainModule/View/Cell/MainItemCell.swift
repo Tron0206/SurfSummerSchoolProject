@@ -43,6 +43,8 @@ class MainItemCell: UICollectionViewCell {
         }
     }
     
+    var completionHandler: ((Bool) -> Void)?
+    
     //MARK: - UICollectionViewCell
     
     override func awakeFromNib() {
@@ -54,6 +56,20 @@ class MainItemCell: UICollectionViewCell {
     //MARK: - Actions
     
     @IBAction private func tappedFavoriteButton(_ sender: Any) {
+        isFavorite.toggle()
+        completionHandler?(isFavorite)
+    }
+    
+    //MARK: - Internal methods
+    
+    func configure(item: ItemModel?, completionHandler: @escaping (Bool) -> Void) {
+        guard let item = item else {
+            return
+        }
+        title = item.title
+        image = item.image
+        isFavorite = item.isFavorite
+        self.completionHandler = completionHandler
     }
 }
 
@@ -64,6 +80,7 @@ private extension MainItemCell {
         titleLabel.font = .systemFont(ofSize: 12)
         imageView.layer.cornerRadius = 12
         favoriteButton.tintColor = .white
+        imageView.backgroundColor = .red
     }
 }
 
