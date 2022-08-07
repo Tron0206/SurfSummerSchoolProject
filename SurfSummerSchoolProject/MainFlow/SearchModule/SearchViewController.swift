@@ -12,8 +12,9 @@ class SearchViewController: UIViewController {
     //MARK: - Properties
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.searchTextField.layer.cornerRadius = 22
+        searchBar.searchTextField.layer.cornerRadius = 18
         searchBar.searchTextField.clipsToBounds = true
+        searchBar.searchTextField.placeholder = "Поиск"
         searchBar.sizeToFit()
         return searchBar
     }()

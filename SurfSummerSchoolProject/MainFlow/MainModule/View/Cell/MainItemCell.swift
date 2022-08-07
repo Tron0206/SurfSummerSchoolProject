@@ -15,7 +15,11 @@ class MainItemCell: UICollectionViewCell {
         static let heartImage = UIImage(named: "favorite")
         static let filledHeartImage = UIImage(named: "favorite-fill")
     }
+    
+    //MARK: - Events
 
+    var completionHandler: ((Bool) -> Void)?
+    
     //MARK: - Views
     
     @IBOutlet private weak var titleLabel: UILabel!
@@ -42,15 +46,21 @@ class MainItemCell: UICollectionViewCell {
             favoriteButton.setImage(image, for: .normal)
         }
     }
-    
-    var completionHandler: ((Bool) -> Void)?
-    
+        
     //MARK: - UICollectionViewCell
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configureAppearance()
         // Initialization code
+    }
+    
+    override var isHighlighted: Bool {
+        didSet {
+            UIView.animate(withDuration: 0.3) {
+                self.transform = self.isHighlighted ? .init(scaleX: 0.98, y: 0.98) : .identity
+            }
+        }
     }
 
     //MARK: - Actions

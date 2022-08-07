@@ -17,6 +17,10 @@ class MainPresenter: MainViewOutput {
         self.model = model
         fetchData()
     }
+    
+    func showDetail(item: ItemModel) {
+        router?.showDetailModule(item: item)
+    }
 }
 
 //MARK: - Private methods
