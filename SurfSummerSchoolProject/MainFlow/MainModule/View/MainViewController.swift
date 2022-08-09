@@ -81,7 +81,6 @@ extension MainViewController: UICollectionViewDataSource {
             fatalError()
         }
         cell.configure(item: presenter?.model.items[indexPath.item]) { [weak self] isFavorite in
-            print(isFavorite, indexPath.item)
             self?.presenter?.model.items[indexPath.item].isFavorite = isFavorite
         }
         
@@ -98,6 +97,8 @@ extension MainViewController: UICollectionViewDelegate {
         }
     }
 }
+
+//MARK: - UICollectionViewDelegateFlowLayout
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

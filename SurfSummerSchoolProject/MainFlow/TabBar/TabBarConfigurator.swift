@@ -50,7 +50,7 @@ private extension TabBarConfigurator {
         case .main:
             return MainModuleConfigurator().configure(model: model)
         case .favorite:
-            return FavoriteViewController()
+            return FavoriteModuleConfigurator().configure(model: model)
         case .profile:
             return ProfileViewController()
         }
