@@ -39,7 +39,6 @@
 		8FB6DC5628A06A4600CB5219 /* DetailViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC5528A06A4600CB5219 /* DetailViewInput.swift */; };
 		8FB6DC5828A06A5500CB5219 /* DetailViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC5728A06A5500CB5219 /* DetailViewOutput.swift */; };
 		8FB6DC5D28A1030A00CB5219 /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC5C28A1030A00CB5219 /* NetworkTask.swift */; };
-		8FB6DC5F28A1034600CB5219 /* NetworkMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC5E28A1034600CB5219 /* NetworkMethod.swift */; };
 		8FB6DC6128A1061200CB5219 /* BaseNetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC6028A1061200CB5219 /* BaseNetworkTask.swift */; };
 		8FB6DC6728A15D3900CB5219 /* DetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC6528A15D3900CB5219 /* DetailImageCell.swift */; };
 		8FB6DC6828A15D3900CB5219 /* DetailImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FB6DC6628A15D3900CB5219 /* DetailImageCell.xib */; };
@@ -56,6 +55,8 @@
 		8FB6DC8C28A28FBE00CB5219 /* FavoriteViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC8B28A28FBE00CB5219 /* FavoriteViewInput.swift */; };
 		8FB6DC8E28A28FCB00CB5219 /* FavoriteViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC8D28A28FCB00CB5219 /* FavoriteViewOutput.swift */; };
 		8FB6DC9128A2966C00CB5219 /* FavoriteModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC9028A2966C00CB5219 /* FavoriteModuleConfigurator.swift */; };
+		8FB6DC9528A2BFC000CB5219 /* HTTPNetworkMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC9428A2BFC000CB5219 /* HTTPNetworkMethod.swift */; };
+		8FB6DC9728A2C4E900CB5219 /* NetworkMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC9628A2C4E900CB5219 /* NetworkMethod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,7 +94,6 @@
 		8FB6DC5528A06A4600CB5219 /* DetailViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewInput.swift; sourceTree = "<group>"; };
 		8FB6DC5728A06A5500CB5219 /* DetailViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewOutput.swift; sourceTree = "<group>"; };
 		8FB6DC5C28A1030A00CB5219 /* NetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTask.swift; sourceTree = "<group>"; };
-		8FB6DC5E28A1034600CB5219 /* NetworkMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMethod.swift; sourceTree = "<group>"; };
 		8FB6DC6028A1061200CB5219 /* BaseNetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetworkTask.swift; sourceTree = "<group>"; };
 		8FB6DC6528A15D3900CB5219 /* DetailImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageCell.swift; sourceTree = "<group>"; };
 		8FB6DC6628A15D3900CB5219 /* DetailImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailImageCell.xib; sourceTree = "<group>"; };
@@ -110,6 +110,8 @@
 		8FB6DC8B28A28FBE00CB5219 /* FavoriteViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewInput.swift; sourceTree = "<group>"; };
 		8FB6DC8D28A28FCB00CB5219 /* FavoriteViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewOutput.swift; sourceTree = "<group>"; };
 		8FB6DC9028A2966C00CB5219 /* FavoriteModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModuleConfigurator.swift; sourceTree = "<group>"; };
+		8FB6DC9428A2BFC000CB5219 /* HTTPNetworkMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPNetworkMethod.swift; sourceTree = "<group>"; };
+		8FB6DC9628A2C4E900CB5219 /* NetworkMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +359,7 @@
 		8FB6DC5A28A102EF00CB5219 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				8FB6DC9828A2D50D00CB5219 /* AuthService */,
 				8FB6DC5B28A102F900CB5219 /* Core */,
 			);
 			path = Networking;
@@ -365,9 +368,10 @@
 		8FB6DC5B28A102F900CB5219 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				8FB6DC5C28A1030A00CB5219 /* NetworkTask.swift */,
-				8FB6DC5E28A1034600CB5219 /* NetworkMethod.swift */,
 				8FB6DC6028A1061200CB5219 /* BaseNetworkTask.swift */,
+				8FB6DC5C28A1030A00CB5219 /* NetworkTask.swift */,
+				8FB6DC9628A2C4E900CB5219 /* NetworkMethod.swift */,
+				8FB6DC9428A2BFC000CB5219 /* HTTPNetworkMethod.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -434,6 +438,13 @@
 				8FB6DC9028A2966C00CB5219 /* FavoriteModuleConfigurator.swift */,
 			);
 			path = Configurator;
+			sourceTree = "<group>";
+		};
+		8FB6DC9828A2D50D00CB5219 /* AuthService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AuthService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -522,6 +533,7 @@
 				8FB6DC1F289C76C200CB5219 /* MainItemCell.swift in Sources */,
 				8FB6DC6728A15D3900CB5219 /* DetailImageCell.swift in Sources */,
 				8FB6DC2D289FF6AE00CB5219 /* MainViewInput.swift in Sources */,
+				8FB6DC9728A2C4E900CB5219 /* NetworkMethod.swift in Sources */,
 				8FB6DC6128A1061200CB5219 /* BaseNetworkTask.swift in Sources */,
 				8FB6DC8C28A28FBE00CB5219 /* FavoriteViewInput.swift in Sources */,
 				8FB6DC8E28A28FCB00CB5219 /* FavoriteViewOutput.swift in Sources */,
@@ -533,12 +545,12 @@
 				8FB6DC4828A04DAA00CB5219 /* DetailViewController.swift in Sources */,
 				8FB6DC6C28A15F4A00CB5219 /* DetailTitleCell.swift in Sources */,
 				8FB6DC5828A06A5500CB5219 /* DetailViewOutput.swift in Sources */,
-				8FB6DC5F28A1034600CB5219 /* NetworkMethod.swift in Sources */,
 				8FB6DC8528A2426A00CB5219 /* FavoriteCell.swift in Sources */,
 				8FB6DC37289FFA6F00CB5219 /* ModuleTransitionable.swift in Sources */,
 				8F5FE28F28995CF00005C3E0 /* AppDelegate.swift in Sources */,
 				8FB6DC5D28A1030A00CB5219 /* NetworkTask.swift in Sources */,
 				8FB6DC27289FEC4500CB5219 /* MainPresenter.swift in Sources */,
+				8FB6DC9528A2BFC000CB5219 /* HTTPNetworkMethod.swift in Sources */,
 				8F5FE29128995CF00005C3E0 /* SceneDelegate.swift in Sources */,
 				8FB6DC5628A06A4600CB5219 /* DetailViewInput.swift in Sources */,
 				8FB6DC33289FF73C00CB5219 /* MainRouterInput.swift in Sources */,
