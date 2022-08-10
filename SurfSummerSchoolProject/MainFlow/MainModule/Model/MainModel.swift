@@ -18,13 +18,15 @@ final class MainModel {
     
     var items: [ItemModel] = [] {
         didSet {
-            didItemsUpdated?()
+            DispatchQueue.main.async {
+                self.didItemsUpdated?()
+            }
         }
     }
     
     //MARK: - Methods
     
-    func getPictures(_ completion: @escaping () -> Void) {
+    func getPictures() {
         pictureService.loadPictures { result in
             switch result {
             case .success(let pictures):
@@ -35,14 +37,10 @@ final class MainModel {
                                      dataCreation: "15.05.2022",
                                      description: picture.content)
                 })
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    completion()
-                }
+
             case .failure(let error):
                 self.errorDescription = error.localizedDescription
-                DispatchQueue.main.async {
-                    completion()
-                }
+                print(error)
             }
         }
     }

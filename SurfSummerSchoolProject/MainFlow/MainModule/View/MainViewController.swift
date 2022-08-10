@@ -44,7 +44,7 @@ class MainViewController: UIViewController, ModuleTransitionable {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAppearance()
-//        configureModel()
+        configureModel()
         getPosts()
     }
     
@@ -72,19 +72,15 @@ private extension MainViewController {
     func configureModel() {
         self.presenter?.model.didItemsUpdated = { [weak self] in
             guard let self = self else { return }
+            if self.spinnerView.isAnimating {
+                self.spinnerView.stopAnimating()
+            }
             self.collectionView.reloadData()
         }
     }
     
     func getPosts() {
-        spinnerView.startAnimating()
-        presenter?.loadPosts({ [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.collectionView.reloadData()
-            self.spinnerView.stopAnimating()
-        })
+        presenter?.loadPosts()
     }
 }
 

@@ -21,8 +21,8 @@ class MainPresenter: MainViewOutput {
         router?.showDetailModule(item: item)
     }
     
-    func loadPosts(_ completion: @escaping () -> Void) {
-        model.getPictures(completion)
+    func loadPosts() {
+        model.getPictures()
     }
 }
 

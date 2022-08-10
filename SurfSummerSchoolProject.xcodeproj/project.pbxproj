@@ -18,6 +18,7 @@
 		8F5FE2B6289A72D50005C3E0 /* TabBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FE2B5289A72D50005C3E0 /* TabBarModel.swift */; };
 		8F5FE2B8289A748E0005C3E0 /* TabBarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FE2B7289A748E0005C3E0 /* TabBarConfigurator.swift */; };
 		8F6C2D13289BC1C600642238 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C2D12289BC1C600642238 /* MainModel.swift */; };
+		8FA51B4C28A433E600768EA3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA51B4B28A433E600768EA3 /* NetworkError.swift */; };
 		8FB6DC1F289C76C200CB5219 /* MainItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC1D289C76C200CB5219 /* MainItemCell.swift */; };
 		8FB6DC20289C76C200CB5219 /* MainItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FB6DC1E289C76C200CB5219 /* MainItemCell.xib */; };
 		8FB6DC27289FEC4500CB5219 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC26289FEC4500CB5219 /* MainPresenter.swift */; };
@@ -84,6 +85,7 @@
 		8F5FE2B5289A72D50005C3E0 /* TabBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModel.swift; sourceTree = "<group>"; };
 		8F5FE2B7289A748E0005C3E0 /* TabBarConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConfigurator.swift; sourceTree = "<group>"; };
 		8F6C2D12289BC1C600642238 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		8FA51B4B28A433E600768EA3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		8FB6DC1D289C76C200CB5219 /* MainItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainItemCell.swift; sourceTree = "<group>"; };
 		8FB6DC1E289C76C200CB5219 /* MainItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainItemCell.xib; sourceTree = "<group>"; };
 		8FB6DC26289FEC4500CB5219 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
@@ -249,6 +251,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		8FA51B4A28A433D800768EA3 /* NetworkError */ = {
+			isa = PBXGroup;
+			children = (
+				8FA51B4B28A433E600768EA3 /* NetworkError.swift */,
+			);
+			path = NetworkError;
+			sourceTree = "<group>";
+		};
 		8FB6DC2A289FF5FB00CB5219 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +392,7 @@
 		8FB6DC5A28A102EF00CB5219 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				8FA51B4A28A433D800768EA3 /* NetworkError */,
 				8FB6DC9F28A2E39C00CB5219 /* PicturesService */,
 				8FB6DC9828A2D50D00CB5219 /* AuthService */,
 				8FB6DC5B28A102F900CB5219 /* Core */,
@@ -615,6 +626,7 @@
 				8FB6DC6C28A15F4A00CB5219 /* DetailTitleCell.swift in Sources */,
 				8FB6DC5828A06A5500CB5219 /* DetailViewOutput.swift in Sources */,
 				8FB6DC8528A2426A00CB5219 /* FavoriteCell.swift in Sources */,
+				8FA51B4C28A433E600768EA3 /* NetworkError.swift in Sources */,
 				8FB6DC37289FFA6F00CB5219 /* ModuleTransitionable.swift in Sources */,
 				8F5FE28F28995CF00005C3E0 /* AppDelegate.swift in Sources */,
 				8FB6DCAA28A2E6D700CB5219 /* TokenStorage.swift in Sources */,

@@ -53,7 +53,10 @@ struct BaseTokenStorage: TokenStorage {
     }
     
     func set(newToken: TokenContainer) throws {
+        
         try removeTokeenFromContainer()
+        
+        
         let tokenInData = try JSONEncoder().encode(newToken.token)
         
         let queryDictionaryForSavingToken: [CFString: AnyObject] = [
@@ -112,7 +115,7 @@ private extension BaseTokenStorage {
     }
     
     func throwErrorFromStatusIfNeeded(_ status: OSStatus) throws {
-        guard status == errSecSuccess else {
+        guard status == errSecSuccess || status == -25300 else {
             throw Error.unkownError(status: status)
         }
         
