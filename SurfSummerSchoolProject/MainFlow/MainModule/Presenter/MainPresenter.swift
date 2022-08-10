@@ -15,18 +15,19 @@ class MainPresenter: MainViewOutput {
     
     required init(model: MainModel) {
         self.model = model
-        fetchData()
     }
     
     func showDetail(item: ItemModel) {
         router?.showDetailModule(item: item)
+    }
+    
+    func loadPosts(_ completion: @escaping () -> Void) {
+        model.getPictures(completion)
     }
 }
 
 //MARK: - Private methods
 
 private extension MainPresenter {
-    func fetchData() {
-        model.getPost()
-    }
+
 }

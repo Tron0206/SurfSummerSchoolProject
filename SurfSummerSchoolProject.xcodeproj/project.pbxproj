@@ -57,6 +57,18 @@
 		8FB6DC9128A2966C00CB5219 /* FavoriteModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC9028A2966C00CB5219 /* FavoriteModuleConfigurator.swift */; };
 		8FB6DC9528A2BFC000CB5219 /* HTTPNetworkMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC9428A2BFC000CB5219 /* HTTPNetworkMethod.swift */; };
 		8FB6DC9728A2C4E900CB5219 /* NetworkMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC9628A2C4E900CB5219 /* NetworkMethod.swift */; };
+		8FB6DC9A28A2D5DD00CB5219 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC9928A2D5DD00CB5219 /* AuthService.swift */; };
+		8FB6DC9C28A2D62200CB5219 /* AuthRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC9B28A2D62200CB5219 /* AuthRequestModel.swift */; };
+		8FB6DC9E28A2D62E00CB5219 /* AuthResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC9D28A2D62E00CB5219 /* AuthResponseModel.swift */; };
+		8FB6DCA328A2E3DC00CB5219 /* EmptyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DCA228A2E3DC00CB5219 /* EmptyModel.swift */; };
+		8FB6DCA528A2E4E400CB5219 /* PictureResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DCA428A2E4E400CB5219 /* PictureResponseModel.swift */; };
+		8FB6DCA728A2E56300CB5219 /* PicturesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DCA628A2E56300CB5219 /* PicturesService.swift */; };
+		8FB6DCAA28A2E6D700CB5219 /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DCA928A2E6D700CB5219 /* TokenStorage.swift */; };
+		8FB6DCAC28A2E6FC00CB5219 /* TokenContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DCAB28A2E6FC00CB5219 /* TokenContainer.swift */; };
+		8FB6DCAE28A2E74200CB5219 /* BaseTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DCAD28A2E74200CB5219 /* BaseTokenStorage.swift */; };
+		8FB6DCB028A2EF1600CB5219 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DCAF28A2EF1600CB5219 /* ImageLoader.swift */; };
+		8FB6DCB328A2F02E00CB5219 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DCB228A2F02E00CB5219 /* UIImageView+Extension.swift */; };
+		8FB6DCB628A38E5200CB5219 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DCB528A38E5200CB5219 /* ItemModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +124,18 @@
 		8FB6DC9028A2966C00CB5219 /* FavoriteModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModuleConfigurator.swift; sourceTree = "<group>"; };
 		8FB6DC9428A2BFC000CB5219 /* HTTPNetworkMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPNetworkMethod.swift; sourceTree = "<group>"; };
 		8FB6DC9628A2C4E900CB5219 /* NetworkMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMethod.swift; sourceTree = "<group>"; };
+		8FB6DC9928A2D5DD00CB5219 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		8FB6DC9B28A2D62200CB5219 /* AuthRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestModel.swift; sourceTree = "<group>"; };
+		8FB6DC9D28A2D62E00CB5219 /* AuthResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseModel.swift; sourceTree = "<group>"; };
+		8FB6DCA228A2E3DC00CB5219 /* EmptyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyModel.swift; sourceTree = "<group>"; };
+		8FB6DCA428A2E4E400CB5219 /* PictureResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureResponseModel.swift; sourceTree = "<group>"; };
+		8FB6DCA628A2E56300CB5219 /* PicturesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturesService.swift; sourceTree = "<group>"; };
+		8FB6DCA928A2E6D700CB5219 /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
+		8FB6DCAB28A2E6FC00CB5219 /* TokenContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenContainer.swift; sourceTree = "<group>"; };
+		8FB6DCAD28A2E74200CB5219 /* BaseTokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTokenStorage.swift; sourceTree = "<group>"; };
+		8FB6DCAF28A2EF1600CB5219 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		8FB6DCB228A2F02E00CB5219 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		8FB6DCB528A38E5200CB5219 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +284,7 @@
 		8FB6DC31289FF70A00CB5219 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8FB6DCB428A38DAE00CB5219 /* DTO */,
 				8F6C2D12289BC1C600642238 /* MainModel.swift */,
 			);
 			path = Model;
@@ -351,6 +376,7 @@
 		8FB6DC5928A102E000CB5219 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8FB6DCA828A2E6C500CB5219 /* Storage */,
 				8FB6DC5A28A102EF00CB5219 /* Networking */,
 			);
 			path = Services;
@@ -359,8 +385,10 @@
 		8FB6DC5A28A102EF00CB5219 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				8FB6DC9F28A2E39C00CB5219 /* PicturesService */,
 				8FB6DC9828A2D50D00CB5219 /* AuthService */,
 				8FB6DC5B28A102F900CB5219 /* Core */,
+				8FB6DCB128A2EFF600CB5219 /* ImageLoader */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -372,6 +400,7 @@
 				8FB6DC5C28A1030A00CB5219 /* NetworkTask.swift */,
 				8FB6DC9628A2C4E900CB5219 /* NetworkMethod.swift */,
 				8FB6DC9428A2BFC000CB5219 /* HTTPNetworkMethod.swift */,
+				8FB6DCA228A2E3DC00CB5219 /* EmptyModel.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -443,8 +472,47 @@
 		8FB6DC9828A2D50D00CB5219 /* AuthService */ = {
 			isa = PBXGroup;
 			children = (
+				8FB6DC9928A2D5DD00CB5219 /* AuthService.swift */,
+				8FB6DC9B28A2D62200CB5219 /* AuthRequestModel.swift */,
+				8FB6DC9D28A2D62E00CB5219 /* AuthResponseModel.swift */,
 			);
 			path = AuthService;
+			sourceTree = "<group>";
+		};
+		8FB6DC9F28A2E39C00CB5219 /* PicturesService */ = {
+			isa = PBXGroup;
+			children = (
+				8FB6DCA628A2E56300CB5219 /* PicturesService.swift */,
+				8FB6DCA428A2E4E400CB5219 /* PictureResponseModel.swift */,
+			);
+			path = PicturesService;
+			sourceTree = "<group>";
+		};
+		8FB6DCA828A2E6C500CB5219 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				8FB6DCAD28A2E74200CB5219 /* BaseTokenStorage.swift */,
+				8FB6DCA928A2E6D700CB5219 /* TokenStorage.swift */,
+				8FB6DCAB28A2E6FC00CB5219 /* TokenContainer.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		8FB6DCB128A2EFF600CB5219 /* ImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				8FB6DCAF28A2EF1600CB5219 /* ImageLoader.swift */,
+				8FB6DCB228A2F02E00CB5219 /* UIImageView+Extension.swift */,
+			);
+			path = ImageLoader;
+			sourceTree = "<group>";
+		};
+		8FB6DCB428A38DAE00CB5219 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				8FB6DCB528A38E5200CB5219 /* ItemModel.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -529,10 +597,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FB6DC9128A2966C00CB5219 /* FavoriteModuleConfigurator.swift in Sources */,
+				8FB6DCB028A2EF1600CB5219 /* ImageLoader.swift in Sources */,
 				8F6C2D13289BC1C600642238 /* MainModel.swift in Sources */,
 				8FB6DC1F289C76C200CB5219 /* MainItemCell.swift in Sources */,
 				8FB6DC6728A15D3900CB5219 /* DetailImageCell.swift in Sources */,
+				8FB6DC9E28A2D62E00CB5219 /* AuthResponseModel.swift in Sources */,
 				8FB6DC2D289FF6AE00CB5219 /* MainViewInput.swift in Sources */,
+				8FB6DCA728A2E56300CB5219 /* PicturesService.swift in Sources */,
 				8FB6DC9728A2C4E900CB5219 /* NetworkMethod.swift in Sources */,
 				8FB6DC6128A1061200CB5219 /* BaseNetworkTask.swift in Sources */,
 				8FB6DC8C28A28FBE00CB5219 /* FavoriteViewInput.swift in Sources */,
@@ -540,6 +611,7 @@
 				8F5FE2B2289A72690005C3E0 /* ProfileViewController.swift in Sources */,
 				8FB6DC4428A038E000CB5219 /* UINavigationController+Extension.swift in Sources */,
 				8F5FE2B8289A748E0005C3E0 /* TabBarConfigurator.swift in Sources */,
+				8FB6DCA528A2E4E400CB5219 /* PictureResponseModel.swift in Sources */,
 				8FB6DC3A28A006EB00CB5219 /* MainModuleConfigurator.swift in Sources */,
 				8FB6DC8A28A28FA100CB5219 /* FavoritePresenter.swift in Sources */,
 				8FB6DC4828A04DAA00CB5219 /* DetailViewController.swift in Sources */,
@@ -548,20 +620,28 @@
 				8FB6DC8528A2426A00CB5219 /* FavoriteCell.swift in Sources */,
 				8FB6DC37289FFA6F00CB5219 /* ModuleTransitionable.swift in Sources */,
 				8F5FE28F28995CF00005C3E0 /* AppDelegate.swift in Sources */,
+				8FB6DCAA28A2E6D700CB5219 /* TokenStorage.swift in Sources */,
+				8FB6DCAE28A2E74200CB5219 /* BaseTokenStorage.swift in Sources */,
 				8FB6DC5D28A1030A00CB5219 /* NetworkTask.swift in Sources */,
 				8FB6DC27289FEC4500CB5219 /* MainPresenter.swift in Sources */,
 				8FB6DC9528A2BFC000CB5219 /* HTTPNetworkMethod.swift in Sources */,
 				8F5FE29128995CF00005C3E0 /* SceneDelegate.swift in Sources */,
 				8FB6DC5628A06A4600CB5219 /* DetailViewInput.swift in Sources */,
+				8FB6DC9A28A2D5DD00CB5219 /* AuthService.swift in Sources */,
 				8FB6DC33289FF73C00CB5219 /* MainRouterInput.swift in Sources */,
+				8FB6DC9C28A2D62200CB5219 /* AuthRequestModel.swift in Sources */,
 				8FB6DC4128A02F5100CB5219 /* SearchViewController.swift in Sources */,
 				8FB6DC5428A06A1700CB5219 /* DetailPresenter.swift in Sources */,
 				8F5FE2B6289A72D50005C3E0 /* TabBarModel.swift in Sources */,
 				8FB6DC7E28A2413500CB5219 /* FavoriteViewController.swift in Sources */,
 				8FB6DC7428A165B100CB5219 /* UITableView+Extension.swift in Sources */,
+				8FB6DCA328A2E3DC00CB5219 /* EmptyModel.swift in Sources */,
+				8FB6DCB628A38E5200CB5219 /* ItemModel.swift in Sources */,
 				8FB6DC29289FF51C00CB5219 /* MainRouter.swift in Sources */,
 				8FB6DC2F289FF6B700CB5219 /* MainViewOutput.swift in Sources */,
+				8FB6DCB328A2F02E00CB5219 /* UIImageView+Extension.swift in Sources */,
 				8F5FE2AE289A725C0005C3E0 /* MainViewController.swift in Sources */,
+				8FB6DCAC28A2E6FC00CB5219 /* TokenContainer.swift in Sources */,
 				8FB6DC3D28A014B000CB5219 /* UICollectionView+Extension.swift in Sources */,
 				8FB6DC5228A069AE00CB5219 /* DetailModuleConfigurator.swift in Sources */,
 				8FB6DC7128A162E900CB5219 /* DetailDescriptionCell.swift in Sources */,

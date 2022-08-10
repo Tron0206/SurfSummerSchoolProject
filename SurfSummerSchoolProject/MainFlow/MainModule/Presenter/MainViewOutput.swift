@@ -13,4 +13,5 @@ protocol MainViewOutput: AnyObject {
     var router: MainRouterInput? { get }
     init(model: MainModel)
     func showDetail(item: ItemModel)
+    func loadPosts(_ completion: @escaping () -> Void)
 }

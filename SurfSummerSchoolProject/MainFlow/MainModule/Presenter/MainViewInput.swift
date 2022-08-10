@@ -9,5 +9,5 @@ import Foundation
 
 
 protocol MainViewInput: AnyObject {
-    
+    func reload()
 }

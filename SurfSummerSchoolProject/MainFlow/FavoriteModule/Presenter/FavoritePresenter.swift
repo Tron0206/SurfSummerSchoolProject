@@ -14,6 +14,5 @@ class FavoritePresenter: FavoriteViewOutput {
     
     required init(model: MainModel) {
         self.model = model
-        model.getPost()
     }
 }

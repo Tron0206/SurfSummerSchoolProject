@@ -21,10 +21,15 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
     let path: String
     let method: NetworkMethod
     let session = URLSession(configuration: .default)
+    let isNeedInjectToken: Bool
+    var tokenStorage: TokenStorage {
+        return BaseTokenStorage()
+    }
     
     //MARK: - Initialization
     
-    init(method: HTTPNetworkMethod, path: String) {
+    init(isNeedInjectToken: Bool, method: HTTPNetworkMethod, path: String) {
+        self.isNeedInjectToken = isNeedInjectToken
         self.path = path
         self.method = method
     }
@@ -58,6 +63,12 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
     }
 }
 
+extension BaseNetworkTask where Input == EmptyModel {
+    func performRequest(_ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, Error>) -> Void) {
+        performRequest(input: EmptyModel(), onResponseWasReceived)
+    }
+}
+
 //MARK: - Private methods
 
 private extension BaseNetworkTask {
@@ -83,8 +94,14 @@ private extension BaseNetworkTask {
             request = URLRequest(url: newUrl)
         }
         
-        request.httpMethod = method.method
         
+        //TODO: - Rename method
+        request.httpMethod = method.method
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "accept")
+        if isNeedInjectToken {
+            request.addValue("Token \(try tokenStorage.getToken().token)", forHTTPHeaderField: "Authorization")
+        }
         return request
     }
     

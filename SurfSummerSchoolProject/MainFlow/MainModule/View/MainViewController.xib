@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="SurfSummerSchoolProject" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="8xx-1Y-vDy" id="JS0-AI-WOa"/>
+                <outlet property="spinnerView" destination="vKv-Z9-vop" id="CAj-V0-dMy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,11 +30,16 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="vKv-Z9-vop">
+                    <rect key="frame" x="195.66666666666666" y="444.66666666666669" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="vKv-Z9-vop" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Bhq-nk-AZH"/>
                 <constraint firstItem="8xx-1Y-vDy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="TBx-3M-KkQ"/>
+                <constraint firstItem="vKv-Z9-vop" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="XFY-A6-LhF"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8xx-1Y-vDy" secondAttribute="bottom" id="btb-Jw-4fg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8xx-1Y-vDy" secondAttribute="trailing" id="l2u-sc-iYz"/>
                 <constraint firstItem="8xx-1Y-vDy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="uHT-nR-I97"/>
