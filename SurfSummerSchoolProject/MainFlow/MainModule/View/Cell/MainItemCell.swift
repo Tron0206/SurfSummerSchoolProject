@@ -34,9 +34,9 @@ class MainItemCell: UICollectionViewCell {
         }
     }
     
-    var image: UIImage? {
+    var imageUrlString: String = "" {
         didSet {
-            imageView.image = image
+            imageView.loadImage(from: imageUrlString)
         }
     }
     
@@ -77,7 +77,7 @@ class MainItemCell: UICollectionViewCell {
             return
         }
         title = item.title
-        image = item.image
+        imageUrlString = item.imageUrlString
         isFavorite = item.isFavorite
         self.completionHandler = completionHandler
     }
@@ -90,7 +90,6 @@ private extension MainItemCell {
         titleLabel.font = .systemFont(ofSize: 12)
         imageView.layer.cornerRadius = 12
         favoriteButton.tintColor = .white
-        imageView.backgroundColor = .red
     }
 }
 

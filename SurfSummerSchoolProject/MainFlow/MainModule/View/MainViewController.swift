@@ -23,7 +23,9 @@ class MainViewController: UIViewController, ModuleTransitionable {
     //MARK: - Views
     
     @IBOutlet private weak var collectionView: UICollectionView!
-    var presenter: MainViewOutput?
+    
+    @IBOutlet weak var spinnerView: UIActivityIndicatorView!
+    
     private lazy var searchButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(named: "SearchIcon"),
                                      style: .done,
@@ -33,11 +35,17 @@ class MainViewController: UIViewController, ModuleTransitionable {
         return button
     }()
     
+    //MARK: - Properties
+    
+    var presenter: MainViewOutput?
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAppearance()
+//        configureModel()
+        getPosts()
     }
     
     //MARK: - Private methods
@@ -66,6 +74,17 @@ private extension MainViewController {
             guard let self = self else { return }
             self.collectionView.reloadData()
         }
+    }
+    
+    func getPosts() {
+        spinnerView.startAnimating()
+        presenter?.loadPosts({ [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.collectionView.reloadData()
+            self.spinnerView.stopAnimating()
+        })
     }
 }
 
@@ -119,5 +138,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 //MARK: - MainViewInput
 
 extension MainViewController: MainViewInput {
-    
+    func reload() {
+        collectionView.reloadData()
+    }
 }

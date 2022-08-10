@@ -28,9 +28,9 @@ class FavoriteCell: UICollectionViewCell {
     
     //MARK: - Properties
     
-    var image: UIImage? {
+    var image: String = "" {
         didSet {
-            imageView.image = image
+            imageView.loadImage(from: image)
         }
     }
     
@@ -70,7 +70,7 @@ class FavoriteCell: UICollectionViewCell {
         guard let item = item else {
             return
         }
-        image = item.image
+        image = item.imageUrlString
         title = item.title
         date = item.dataCreation
         descriptionText = item.description

@@ -11,9 +11,9 @@ class DetailImageCell: UITableViewCell {
 
     @IBOutlet weak var itemImageView: UIImageView!
     
-    var image: UIImage? {
+    var image: String = "" {
         didSet {
-            itemImageView.image = image
+            itemImageView.loadImage(from: image)
         }
     }
     

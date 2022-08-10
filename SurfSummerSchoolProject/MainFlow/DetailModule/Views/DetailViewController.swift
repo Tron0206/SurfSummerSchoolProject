@@ -63,7 +63,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailImageCell.self)", for: indexPath) as? DetailImageCell else {
                 return UITableViewCell()
             }
-            cell.image = presenter?.item.image
+            cell.image = presenter?.item.imageUrlString ?? ""
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailTitleCell.self)", for: indexPath) as? DetailTitleCell else {
