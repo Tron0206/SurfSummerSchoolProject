@@ -16,31 +16,30 @@ final class MainModel {
     let pictureService = PicturesService()
     var errorDescription: String?
     
-    var items: [ItemModel] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.didItemsUpdated?()
-            }
-        }
-    }
+    var items: [ItemModel] = []
     
     //MARK: - Methods
     
-    func getPictures() {
+    func getPictures(_ completinHandler: @escaping () -> Void) {
         pictureService.loadPictures { result in
             switch result {
             case .success(let pictures):
-                self.items = pictures.map({ picture in
-                    return ItemModel(imageUrlString: picture.photoUrl,
-                                     title: picture.title,
-                                     isFavorite: false, //TODO - Create Service
-                                     dataCreation: "15.05.2022",
-                                     description: picture.content)
-                })
-
+                DispatchQueue.main.async {
+                    self.items = pictures.map({ picture in
+                        return ItemModel(imageUrlString: picture.photoUrl,
+                                         title: picture.title,
+                                         isFavorite: false, //TODO - Create Service
+                                         dataCreation: "15.05.2022",
+                                         description: picture.content)
+                    })
+                    completinHandler()
+                }
+                
             case .failure(let error):
                 self.errorDescription = error.localizedDescription
-                print(error)
+                DispatchQueue.main.async {
+                    completinHandler()
+                }
             }
         }
     }
