@@ -17,6 +17,6 @@ class MainRouter: MainRouterInput {
     }
     
     func showSearchModule() {
-        view?.push(module: SearchViewController(), animated: true)
+        view?.push(module: SearchModuleConfigurator().configure(), animated: true)
     }
 }

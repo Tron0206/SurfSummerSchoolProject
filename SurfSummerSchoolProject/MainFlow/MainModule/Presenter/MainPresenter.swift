@@ -17,12 +17,16 @@ class MainPresenter: MainViewOutput {
         self.model = model
     }
     
-    func showDetail(item: ItemModel) {
+    func showDetailViewController(item: ItemModel) {
         router?.showDetailModule(item: item)
     }
     
     func loadPosts(_ completion: @escaping () -> Void) {
         model.getPictures(completion)
+    }
+    
+    func showSearchViewController() {
+        router?.showSearchModule()
     }
 }
 

@@ -19,6 +19,10 @@
 		8F5FE2B8289A748E0005C3E0 /* TabBarConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FE2B7289A748E0005C3E0 /* TabBarConfigurator.swift */; };
 		8F6C2D13289BC1C600642238 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6C2D12289BC1C600642238 /* MainModel.swift */; };
 		8FA51B4C28A433E600768EA3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA51B4B28A433E600768EA3 /* NetworkError.swift */; };
+		8FA51B5028A596E700768EA3 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA51B4F28A596E700768EA3 /* SearchPresenter.swift */; };
+		8FA51B5228A596F200768EA3 /* SearchViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA51B5128A596F200768EA3 /* SearchViewInput.swift */; };
+		8FA51B5428A596FF00768EA3 /* SearchViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA51B5328A596FF00768EA3 /* SearchViewOutput.swift */; };
+		8FA51B5728A59A3900768EA3 /* SearchModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA51B5628A59A3900768EA3 /* SearchModuleConfigurator.swift */; };
 		8FB6DC1F289C76C200CB5219 /* MainItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC1D289C76C200CB5219 /* MainItemCell.swift */; };
 		8FB6DC20289C76C200CB5219 /* MainItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FB6DC1E289C76C200CB5219 /* MainItemCell.xib */; };
 		8FB6DC27289FEC4500CB5219 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC26289FEC4500CB5219 /* MainPresenter.swift */; };
@@ -86,6 +90,10 @@
 		8F5FE2B7289A748E0005C3E0 /* TabBarConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConfigurator.swift; sourceTree = "<group>"; };
 		8F6C2D12289BC1C600642238 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		8FA51B4B28A433E600768EA3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		8FA51B4F28A596E700768EA3 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
+		8FA51B5128A596F200768EA3 /* SearchViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewInput.swift; sourceTree = "<group>"; };
+		8FA51B5328A596FF00768EA3 /* SearchViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewOutput.swift; sourceTree = "<group>"; };
+		8FA51B5628A59A3900768EA3 /* SearchModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModuleConfigurator.swift; sourceTree = "<group>"; };
 		8FB6DC1D289C76C200CB5219 /* MainItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainItemCell.swift; sourceTree = "<group>"; };
 		8FB6DC1E289C76C200CB5219 /* MainItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainItemCell.xib; sourceTree = "<group>"; };
 		8FB6DC26289FEC4500CB5219 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
@@ -182,9 +190,9 @@
 			isa = PBXGroup;
 			children = (
 				8F5FE2A6289A71FA0005C3E0 /* MainModule */,
+				8FB6DC4528A04D6800CB5219 /* DetailModule */,
 				8F5FE2A7289A72090005C3E0 /* FavoriteModule */,
 				8F5FE2A5289A71EC0005C3E0 /* ProfileModule */,
-				8FB6DC4528A04D6800CB5219 /* DetailModule */,
 				8FB6DC3E28A02F3000CB5219 /* SearchModule */,
 				8F5FE2B4289A72790005C3E0 /* TabBar */,
 			);
@@ -259,6 +267,33 @@
 			path = NetworkError;
 			sourceTree = "<group>";
 		};
+		8FA51B4D28A596AE00768EA3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8FB6DC3F28A02F5100CB5219 /* SearchViewController.swift */,
+				8FB6DC4028A02F5100CB5219 /* SearchViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8FA51B4E28A596D400768EA3 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8FA51B4F28A596E700768EA3 /* SearchPresenter.swift */,
+				8FA51B5128A596F200768EA3 /* SearchViewInput.swift */,
+				8FA51B5328A596FF00768EA3 /* SearchViewOutput.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8FA51B5528A59A2300768EA3 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				8FA51B5628A59A3900768EA3 /* SearchModuleConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
 		8FB6DC2A289FF5FB00CB5219 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,8 +361,9 @@
 		8FB6DC3E28A02F3000CB5219 /* SearchModule */ = {
 			isa = PBXGroup;
 			children = (
-				8FB6DC3F28A02F5100CB5219 /* SearchViewController.swift */,
-				8FB6DC4028A02F5100CB5219 /* SearchViewController.xib */,
+				8FA51B5528A59A2300768EA3 /* Configurator */,
+				8FA51B4E28A596D400768EA3 /* Presenter */,
+				8FA51B4D28A596AE00768EA3 /* View */,
 			);
 			path = SearchModule;
 			sourceTree = "<group>";
@@ -623,8 +659,10 @@
 				8FB6DC3A28A006EB00CB5219 /* MainModuleConfigurator.swift in Sources */,
 				8FB6DC8A28A28FA100CB5219 /* FavoritePresenter.swift in Sources */,
 				8FB6DC4828A04DAA00CB5219 /* DetailViewController.swift in Sources */,
+				8FA51B5428A596FF00768EA3 /* SearchViewOutput.swift in Sources */,
 				8FB6DC6C28A15F4A00CB5219 /* DetailTitleCell.swift in Sources */,
 				8FB6DC5828A06A5500CB5219 /* DetailViewOutput.swift in Sources */,
+				8FA51B5228A596F200768EA3 /* SearchViewInput.swift in Sources */,
 				8FB6DC8528A2426A00CB5219 /* FavoriteCell.swift in Sources */,
 				8FA51B4C28A433E600768EA3 /* NetworkError.swift in Sources */,
 				8FB6DC37289FFA6F00CB5219 /* ModuleTransitionable.swift in Sources */,
@@ -633,9 +671,11 @@
 				8FB6DCAE28A2E74200CB5219 /* BaseTokenStorage.swift in Sources */,
 				8FB6DC5D28A1030A00CB5219 /* NetworkTask.swift in Sources */,
 				8FB6DC27289FEC4500CB5219 /* MainPresenter.swift in Sources */,
+				8FA51B5728A59A3900768EA3 /* SearchModuleConfigurator.swift in Sources */,
 				8FB6DC9528A2BFC000CB5219 /* HTTPNetworkMethod.swift in Sources */,
 				8FB6DC5628A06A4600CB5219 /* DetailViewInput.swift in Sources */,
 				8FB6DC9A28A2D5DD00CB5219 /* AuthService.swift in Sources */,
+				8FA51B5028A596E700768EA3 /* SearchPresenter.swift in Sources */,
 				8FB6DC33289FF73C00CB5219 /* MainRouterInput.swift in Sources */,
 				8FB6DC9C28A2D62200CB5219 /* AuthRequestModel.swift in Sources */,
 				8FB6DC4128A02F5100CB5219 /* SearchViewController.swift in Sources */,

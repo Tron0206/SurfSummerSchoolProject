@@ -10,6 +10,11 @@ import UIKit
 class SearchViewController: UIViewController {
     
     //MARK: - Properties
+    
+    var presenter: SearchViewOutput?
+    
+    //MARK: - Views
+    
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.searchTextField.layer.cornerRadius = 18
@@ -32,4 +37,10 @@ private extension SearchViewController {
         navigationItem.titleView = searchBar
         navigationController?.configureBackBarItem(image: UIImage(named: "BackImage"))
     }
+}
+
+//MARK: - SearchViewInput
+
+extension SearchViewController: SearchViewInput {
+    
 }

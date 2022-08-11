@@ -30,7 +30,7 @@ class MainViewController: UIViewController, ModuleTransitionable {
         let button = UIBarButtonItem(image: UIImage(named: "SearchIcon"),
                                      style: .done,
                                      target: self,
-                                     action: #selector(tappedSearchButton))
+                                     action: #selector(showSearchModule))
         button.tintColor = .black
         return button
     }()
@@ -50,8 +50,8 @@ class MainViewController: UIViewController, ModuleTransitionable {
     
     //MARK: - Private methods
     
-    @objc private func tappedSearchButton() {
-        presenter?.router?.showSearchModule()
+    @objc private func showSearchModule() {
+        presenter?.showSearchViewController()
     }
 }
 
@@ -109,7 +109,7 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let item = presenter?.model.items[indexPath.item] {
-            presenter?.showDetail(item: item)
+            presenter?.showDetailViewController(item: item)
         }
     }
 }
