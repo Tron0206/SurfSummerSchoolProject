@@ -45,7 +45,6 @@ class MainViewController: UIViewController, ModuleTransitionable {
         super.viewDidLoad()
         configureAppearance()
         getPosts()
-//        configureModel()
     }
     
     //MARK: - Private methods
@@ -67,14 +66,6 @@ private extension MainViewController {
                                             left: Constants.horizontalInset,
                                             bottom: Constants.verticalInset,
                                             right: Constants.horizontalInset)
-    }
-    
-    func configureModel() {
-        self.presenter?.model.didItemsUpdated = { [weak self] in
-            guard let self = self else { return }
-            self.collectionView.reloadData()
-            
-        }
     }
     
     func getPosts() {

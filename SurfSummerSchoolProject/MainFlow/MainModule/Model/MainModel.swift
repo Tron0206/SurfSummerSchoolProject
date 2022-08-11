@@ -15,8 +15,12 @@ final class MainModel {
     //MARK: - Properties
     let pictureService = PicturesService()
     var errorDescription: String?
-    
+    static let shared = MainModel()
     var items: [ItemModel] = []
+    
+    //MARK: - Initialization
+    
+    private init() {}
     
     //MARK: - Methods
     

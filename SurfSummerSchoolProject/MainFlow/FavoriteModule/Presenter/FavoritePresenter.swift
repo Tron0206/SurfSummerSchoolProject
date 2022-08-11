@@ -10,9 +10,5 @@ import Foundation
 
 class FavoritePresenter: FavoriteViewOutput {
     weak var view: FavoriteViewInput?
-    var model: MainModel
-    
-    required init(model: MainModel) {
-        self.model = model
-    }
+    var model = MainModel.shared
 }

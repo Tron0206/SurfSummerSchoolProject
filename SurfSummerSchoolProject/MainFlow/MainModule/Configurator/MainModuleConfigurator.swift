@@ -11,9 +11,9 @@ import UIKit
 
 final class MainModuleConfigurator {
     
-    func configure(model: MainModel) -> MainViewController {
+    func configure() -> MainViewController {
         let view = MainViewController()
-        let presenter = MainPresenter(model: model)
+        let presenter = MainPresenter()
         let router = MainRouter()
         
         view.presenter = presenter

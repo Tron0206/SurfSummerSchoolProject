@@ -9,13 +9,11 @@ import Foundation
 
 
 class MainPresenter: MainViewOutput {
+    
     weak var view: MainViewInput?
     var router: MainRouterInput?
-    var model: MainModel
+    var model = MainModel.shared
     
-    required init(model: MainModel) {
-        self.model = model
-    }
     
     func showDetailViewController(item: ItemModel) {
         router?.showDetailModule(item: item)

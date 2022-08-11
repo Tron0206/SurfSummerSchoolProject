@@ -10,9 +10,9 @@ import Foundation
 
 class FavoriteModuleConfigurator {
     
-    func configure(model: MainModel) -> FavoriteViewController {
+    func configure() -> FavoriteViewController {
         let view = FavoriteViewController()
-        let presenter = FavoritePresenter(model: model)
+        let presenter = FavoritePresenter()
         
         view.presenter = presenter
         presenter.view = view

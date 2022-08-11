@@ -11,7 +11,6 @@ import Foundation
 protocol MainViewOutput: AnyObject {
     var model: MainModel { get }
     var router: MainRouterInput? { get }
-    init(model: MainModel)
     func showDetailViewController(item: ItemModel)
     func showSearchViewController()
     func loadPosts(_ competion: @escaping () -> Void)
