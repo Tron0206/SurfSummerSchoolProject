@@ -9,9 +9,9 @@ import Foundation
 
 final class SearchModuleConfigurator {
     
-    func configure() -> SearchViewController {
+    func configure(items: [ItemModel]) -> SearchViewController {
         let view = SearchViewController()
-        let presenter = SearchPresenter()
+        let presenter = SearchPresenter(items: items)
         
         view.presenter = presenter
         presenter.view = view

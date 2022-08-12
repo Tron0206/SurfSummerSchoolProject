@@ -84,7 +84,7 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainItemCell", for: indexPath) as? MainItemCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainItemCell.self)", for: indexPath) as? MainItemCell else {
             fatalError()
         }
         cell.configure(item: presenter?.items[indexPath.row]) { [weak self] isFavorite in

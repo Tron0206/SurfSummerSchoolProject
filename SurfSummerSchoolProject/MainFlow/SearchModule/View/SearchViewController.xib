@@ -33,7 +33,7 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bA3-Be-AAj">
-                    <rect key="frame" x="16" y="384" width="382" height="67"/>
+                    <rect key="frame" x="16" y="300" width="382" height="67"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchIcon2" translatesAutoresizingMaskIntoConstraints="NO" id="ltE-mq-V9c">
                             <rect key="frame" x="175" y="0.0" width="32" height="32"/>
@@ -64,7 +64,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="EJS-At-xUs" secondAttribute="trailing" id="4lq-KJ-T57"/>
-                <constraint firstItem="bA3-Be-AAj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="340" id="BTH-4L-Cbr"/>
+                <constraint firstItem="bA3-Be-AAj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="300" id="BTH-4L-Cbr"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="EJS-At-xUs" secondAttribute="bottom" id="NpK-45-KTr"/>
                 <constraint firstItem="EJS-At-xUs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VOm-nj-ftL"/>
                 <constraint firstItem="bA3-Be-AAj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Z8o-8k-atN"/>

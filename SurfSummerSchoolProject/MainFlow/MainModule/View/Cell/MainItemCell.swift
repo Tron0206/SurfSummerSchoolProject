@@ -72,7 +72,7 @@ class MainItemCell: UICollectionViewCell {
     
     //MARK: - Internal methods
     
-    func configure(item: ItemModel?, completionHandler: @escaping (Bool) -> Void) {
+    func configure(item: ItemModel?, completionHandler: ((Bool) -> Void)?) {
         guard let item = item else {
             return
         }

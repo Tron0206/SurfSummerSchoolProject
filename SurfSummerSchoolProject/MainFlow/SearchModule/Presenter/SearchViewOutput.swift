@@ -8,4 +8,5 @@
 import Foundation
 
 protocol SearchViewOutput: AnyObject {
+    var items: [ItemModel] { get }
 }

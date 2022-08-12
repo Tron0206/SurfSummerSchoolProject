@@ -32,7 +32,7 @@ extension MainPresenter: MainViewOutput {
     }
     
     func showSearchViewController() {
-        router?.showSearchModule()
+        router?.showSearchModule(items: items)
     }
 }
 

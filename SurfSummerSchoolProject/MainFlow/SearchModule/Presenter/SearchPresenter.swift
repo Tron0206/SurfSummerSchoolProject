@@ -13,5 +13,9 @@ class SearchPresenter: SearchViewOutput {
     //MARK: - Properties
     
     weak var view: SearchViewInput?
+    var items: [ItemModel]
     
+    init(items: [ItemModel]) {
+        self.items = items
+    }
 }
