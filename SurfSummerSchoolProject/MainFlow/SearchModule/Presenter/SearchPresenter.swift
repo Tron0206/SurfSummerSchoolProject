@@ -13,6 +13,5 @@ class SearchPresenter: SearchViewOutput {
     //MARK: - Properties
     
     weak var view: SearchViewInput?
-    var model = MainModel.shared
     
 }

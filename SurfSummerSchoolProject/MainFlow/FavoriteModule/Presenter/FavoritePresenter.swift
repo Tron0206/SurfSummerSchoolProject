@@ -10,5 +10,5 @@ import Foundation
 
 class FavoritePresenter: FavoriteViewOutput {
     weak var view: FavoriteViewInput?
-    var model = MainModel.shared
+    //TODO: - Add Favorite service
 }

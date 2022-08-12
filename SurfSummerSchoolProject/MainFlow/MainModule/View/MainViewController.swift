@@ -80,15 +80,15 @@ private extension MainViewController {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.model.items.count ?? 0
+        return presenter?.items.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainItemCell", for: indexPath) as? MainItemCell else {
             fatalError()
         }
-        cell.configure(item: presenter?.model.items[indexPath.item]) { [weak self] isFavorite in
-            self?.presenter?.model.items[indexPath.item].isFavorite = isFavorite
+        cell.configure(item: presenter?.items[indexPath.row]) { [weak self] isFavorite in
+            self?.presenter?.items[indexPath.item].isFavorite = isFavorite
         }
         
         return cell
@@ -99,7 +99,7 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let item = presenter?.model.items[indexPath.item] {
+        if let item = presenter?.items[indexPath.item] {
             presenter?.showDetailViewController(item: item)
         }
     }

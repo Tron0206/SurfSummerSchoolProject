@@ -8,5 +8,4 @@
 import Foundation
 
 protocol SearchViewOutput: AnyObject {
-    var model: MainModel { get }
 }

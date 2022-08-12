@@ -9,8 +9,8 @@ import Foundation
 
 
 protocol MainViewOutput: AnyObject {
-    var model: MainModel { get }
     var router: MainRouterInput? { get }
+    var items: [ItemModel] { get set }
     func showDetailViewController(item: ItemModel)
     func showSearchViewController()
     func loadPosts(_ competion: @escaping () -> Void)
