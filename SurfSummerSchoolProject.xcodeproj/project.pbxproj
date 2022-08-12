@@ -23,6 +23,7 @@
 		8FA51B5228A596F200768EA3 /* SearchViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA51B5128A596F200768EA3 /* SearchViewInput.swift */; };
 		8FA51B5428A596FF00768EA3 /* SearchViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA51B5328A596FF00768EA3 /* SearchViewOutput.swift */; };
 		8FA51B5728A59A3900768EA3 /* SearchModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA51B5628A59A3900768EA3 /* SearchModuleConfigurator.swift */; };
+		8FA51B5D28A6CDC700768EA3 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA51B5C28A6CDC700768EA3 /* Icon.swift */; };
 		8FB6DC1F289C76C200CB5219 /* MainItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC1D289C76C200CB5219 /* MainItemCell.swift */; };
 		8FB6DC20289C76C200CB5219 /* MainItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FB6DC1E289C76C200CB5219 /* MainItemCell.xib */; };
 		8FB6DC27289FEC4500CB5219 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB6DC26289FEC4500CB5219 /* MainPresenter.swift */; };
@@ -94,6 +95,7 @@
 		8FA51B5128A596F200768EA3 /* SearchViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewInput.swift; sourceTree = "<group>"; };
 		8FA51B5328A596FF00768EA3 /* SearchViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewOutput.swift; sourceTree = "<group>"; };
 		8FA51B5628A59A3900768EA3 /* SearchModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModuleConfigurator.swift; sourceTree = "<group>"; };
+		8FA51B5C28A6CDC700768EA3 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		8FB6DC1D289C76C200CB5219 /* MainItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainItemCell.swift; sourceTree = "<group>"; };
 		8FB6DC1E289C76C200CB5219 /* MainItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainItemCell.xib; sourceTree = "<group>"; };
 		8FB6DC26289FEC4500CB5219 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				8FB6DC36289FFA6F00CB5219 /* ModuleTransitionable.swift */,
+				8FA51B5C28A6CDC700768EA3 /* Icon.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				8FB6DC8E28A28FCB00CB5219 /* FavoriteViewOutput.swift in Sources */,
 				8F5FE2B2289A72690005C3E0 /* ProfileViewController.swift in Sources */,
 				8FB6DC4428A038E000CB5219 /* UINavigationController+Extension.swift in Sources */,
+				8FA51B5D28A6CDC700768EA3 /* Icon.swift in Sources */,
 				8F5FE2B8289A748E0005C3E0 /* TabBarConfigurator.swift in Sources */,
 				8FB6DCA528A2E4E400CB5219 /* PictureResponseModel.swift in Sources */,
 				8FB6DC3A28A006EB00CB5219 /* MainModuleConfigurator.swift in Sources */,
