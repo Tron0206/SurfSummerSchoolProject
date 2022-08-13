@@ -10,6 +10,7 @@ import Foundation
 
 struct ItemModel {
     let imageUrlString: String
+    let id: String
     let title: String
     var isFavorite: Bool
     let dateCreation: String
@@ -17,6 +18,7 @@ struct ItemModel {
     
     init(pictureResponse: PictureResponseModel, isFavorite: Bool) {
         imageUrlString = pictureResponse.photoUrl
+        id = pictureResponse.id
         title = pictureResponse.title
         self.isFavorite = isFavorite
         let formatter = DateFormatter()

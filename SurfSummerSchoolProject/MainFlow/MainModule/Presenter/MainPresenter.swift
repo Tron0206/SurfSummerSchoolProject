@@ -36,6 +36,11 @@ extension MainPresenter: MainViewOutput {
     func showSearchViewController() {
         router?.showSearchModule(items: items)
     }
+    
+    func changeFavoriteStatus(for indexPath: IndexPath, isFavorite: Bool) {
+        let currentItem = items[indexPath.item]
+        favoriteService.changeStatus(id: currentItem.id, isFavorite: isFavorite)
+    }
 }
 
 //MARK: - Private methods

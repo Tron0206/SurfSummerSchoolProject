@@ -88,7 +88,11 @@ extension MainViewController: UICollectionViewDataSource {
             fatalError()
         }
         cell.configure(item: presenter?.items[indexPath.row]) { [weak self] isFavorite in
-            self?.presenter?.items[indexPath.item].isFavorite = isFavorite
+            guard let self = self else {
+                return
+            }
+            self.presenter?.items[indexPath.item].isFavorite = isFavorite
+            self.presenter?.changeFavoriteStatus(for: indexPath, isFavorite: isFavorite)
         }
         
         return cell

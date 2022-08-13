@@ -199,7 +199,6 @@
 				8F5FE2A5289A71EC0005C3E0 /* ProfileModule */,
 				8FB6DC3E28A02F3000CB5219 /* SearchModule */,
 				8F5FE2B4289A72790005C3E0 /* TabBar */,
-				8F8E323928A7A76600BF771F /* ItemStorage */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
@@ -278,6 +277,16 @@
 				8F8E323A28A7A93A00BF771F /* FavoriteService.swift */,
 			);
 			path = FavoriteService;
+			sourceTree = "<group>";
+		};
+		8F8E323D28A7CDE500BF771F /* TokenStorage */ = {
+			isa = PBXGroup;
+			children = (
+				8FB6DCAD28A2E74200CB5219 /* BaseTokenStorage.swift */,
+				8FB6DCA928A2E6D700CB5219 /* TokenStorage.swift */,
+				8FB6DCAB28A2E6FC00CB5219 /* TokenContainer.swift */,
+			);
+			path = TokenStorage;
 			sourceTree = "<group>";
 		};
 		8FA51B4A28A433D800768EA3 /* NetworkError */ = {
@@ -557,9 +566,8 @@
 		8FB6DCA828A2E6C500CB5219 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				8FB6DCAD28A2E74200CB5219 /* BaseTokenStorage.swift */,
-				8FB6DCA928A2E6D700CB5219 /* TokenStorage.swift */,
-				8FB6DCAB28A2E6FC00CB5219 /* TokenContainer.swift */,
+				8F8E323928A7A76600BF771F /* ItemStorage */,
+				8F8E323D28A7CDE500BF771F /* TokenStorage */,
 			);
 			path = Storage;
 			sourceTree = "<group>";

@@ -18,30 +18,22 @@ class FavoriteService {
     
     private init() {
         getDataFromUserDefaults()
+        print(savedItems)
     }
     
-    private var savedItems: [Int] = []
+    private var savedItems: [String] = []
     
-    func saveFavoriteItem(_ id: String) {
-        guard let id = Int(id) else {
-            return
+    func changeStatus(id: String, isFavorite: Bool) {
+        if isFavorite {
+            saveFavoriteItem(id)
+            print(savedItems)
+        } else {
+            removeFavoriteItem(id)
+            print(savedItems)
         }
-        savedItems.append(id)
-        saveToUserDefaults()
-    }
-    
-    func removeFavoriteItem(_ id: String) {
-        guard let id = Int(id) else {
-            return
-        }
-        savedItems = savedItems.filter({ !($0 == id)})
-        saveToUserDefaults()
     }
     
     func isFavoriteItem(id: String) -> Bool {
-        guard let id = Int(id) else {
-            return false
-        }
         return savedItems.contains(id) ? true : false
     }
     
@@ -50,6 +42,16 @@ class FavoriteService {
 //MARK: - Private methods
 
 private extension FavoriteService {
+    
+    func saveFavoriteItem(_ id: String) {
+        savedItems.append(id)
+        saveToUserDefaults()
+    }
+    
+    func removeFavoriteItem(_ id: String) {
+        savedItems = savedItems.filter({ !($0 == id)})
+        saveToUserDefaults()
+    }
 
     func saveToUserDefaults() {
         let dataForUserDefaults = try? JSONEncoder().encode(savedItems)
@@ -58,7 +60,7 @@ private extension FavoriteService {
     
     func getDataFromUserDefaults() {
         guard let dataFromUserDefaults = storage.value(forKey: KeyForUserDefaults.favorite) as? Data,
-              let items = try? JSONDecoder().decode([Int].self, from: dataFromUserDefaults) else {
+              let items = try? JSONDecoder().decode([String].self, from: dataFromUserDefaults) else {
             return
         }
         savedItems = items
