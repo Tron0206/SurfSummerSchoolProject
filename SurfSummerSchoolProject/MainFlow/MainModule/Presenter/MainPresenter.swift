@@ -15,7 +15,8 @@ class MainPresenter {
     weak var view: MainViewInput?
     var router: MainRouterInput?
     let pictureService: PicturesService = .init()
-    var items: [ItemModel] = []
+    let favoriteService = FavoriteService.shared
+    var items = ItemStorage.shared.items
     var errorDescription: String?
     
 }
@@ -23,6 +24,7 @@ class MainPresenter {
 //MARK: - MainViewOutput
 
 extension MainPresenter: MainViewOutput {
+    
     func showDetailViewController(item: ItemModel) {
         router?.showDetailModule(item: item)
     }
@@ -41,16 +43,16 @@ extension MainPresenter: MainViewOutput {
 private extension MainPresenter {
 
     func getPictures(_ completinHandler: @escaping () -> Void) {
-        pictureService.loadPictures { result in
+        pictureService.loadPictures { [weak self] result in
+            guard let self = self else {
+                return
+            }
             switch result {
             case .success(let pictures):
                 DispatchQueue.main.async {
                     self.items = pictures.map({ picture in
-                        return ItemModel(imageUrlString: picture.photoUrl,
-                                         title: picture.title,
-                                         isFavorite: false, //TODO - Create Service
-                                         dataCreation: "15.05.2022",
-                                         description: picture.content)
+                        print(picture.publicationDate)
+                        return ItemModel(pictureResponse: picture, isFavorite: self.favoriteService.isFavoriteItem(id: picture.id))
                     })
                     completinHandler()
                 }

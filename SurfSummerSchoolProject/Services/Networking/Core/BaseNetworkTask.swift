@@ -61,6 +61,7 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
                 }
                 
                 do {
+                    
                     let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
                     onResponseWasReceived(.success(mappedModel))
                 } catch {

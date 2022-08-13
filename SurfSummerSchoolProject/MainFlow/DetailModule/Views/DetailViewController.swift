@@ -70,7 +70,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.itemTitle = presenter?.item.title
-            cell.itemData = presenter?.item.dataCreation
+            cell.itemData = presenter?.item.dateCreation
             return cell
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(DetailDescriptionCell.self)", for: indexPath) as? DetailDescriptionCell else {

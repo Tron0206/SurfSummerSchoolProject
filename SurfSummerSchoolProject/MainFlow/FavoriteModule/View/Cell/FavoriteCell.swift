@@ -72,7 +72,7 @@ class FavoriteCell: UICollectionViewCell {
         }
         image = item.imageUrlString
         title = item.title
-        date = item.dataCreation
+        date = item.dateCreation
         descriptionText = item.description
         isFavorite = true
         self.completionHandler = completionHandler
