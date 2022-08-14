@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, ModuleTransitionable {
     
     //MARK: - Constants
     
@@ -79,7 +79,7 @@ private extension SearchViewController {
                                             left: Constants.horizontalInset,
                                             bottom: Constants.verticalInset,
                                             right: Constants.horizontalInset)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditing(recognizer:)))
         collectionView.addGestureRecognizer(tapGesture)
     }
     
@@ -103,8 +103,15 @@ private extension SearchViewController {
         helperViewImageView.image = status.icon
     }
     
-    @objc func endEditing() {
-        searchBar.endEditing(true)
+    @objc func endEditing(recognizer: UITapGestureRecognizer) {
+        let tapLocation = recognizer.location(in: view)
+        let indexPath = collectionView.indexPathForItem(at: tapLocation)
+        guard let indexPath = indexPath else {
+            searchBar.endEditing(true)
+            return
+        }
+        presenter?.showDetailViewController(for: indexPath)
+
     }
     
 }
@@ -162,7 +169,15 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-//MARK: - UITextFieldDelegate
+//MARK: - UICollectionViewDelegate
+
+extension SearchViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.showDetailViewController(for: indexPath)
+    }
+}
+
+//MARK: - UISearchBarDelegate
 
 extension SearchViewController: UISearchBarDelegate {
     

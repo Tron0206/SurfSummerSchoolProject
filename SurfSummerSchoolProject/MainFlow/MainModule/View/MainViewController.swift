@@ -103,9 +103,7 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let item = presenter?.items[indexPath.item] {
-            presenter?.showDetailViewController(item: item)
-        }
+        presenter?.showDetailViewController(for: indexPath)
     }
 }
 

@@ -12,7 +12,7 @@ protocol MainViewOutput: AnyObject {
     var router: MainRouterInput? { get }
     var items: [ItemModel] { get set }
     var favoriteService: FavoriteService { get }
-    func showDetailViewController(item: ItemModel)
+    func showDetailViewController(for indexPath: IndexPath)
     func showSearchViewController()
     func loadPosts(_ competion: @escaping () -> Void)
     func changeFavoriteStatus(for indexPath: IndexPath, isFavorite: Bool)

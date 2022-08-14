@@ -25,8 +25,8 @@ class MainPresenter {
 
 extension MainPresenter: MainViewOutput {
     
-    func showDetailViewController(item: ItemModel) {
-        router?.showDetailModule(item: item)
+    func showDetailViewController(for indexPath: IndexPath) {
+        router?.showDetailModule(item: items[indexPath.item])
     }
     
     func loadPosts(_ completion: @escaping () -> Void) {

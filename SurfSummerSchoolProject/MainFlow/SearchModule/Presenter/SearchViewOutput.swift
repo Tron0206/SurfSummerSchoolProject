@@ -14,4 +14,5 @@ protocol SearchViewOutput: AnyObject {
     func resultIsEmpty() -> Bool
     func showHelperView(_ status: HelperStatus)
     func showCollectionView()
+    func showDetailViewController(for indexPath: IndexPath)
 }

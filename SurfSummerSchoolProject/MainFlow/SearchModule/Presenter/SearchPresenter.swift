@@ -13,6 +13,7 @@ class SearchPresenter: SearchViewOutput {
     //MARK: - Properties
     
     weak var view: SearchViewInput?
+    var router: SearchRouterInput?
     var items: [ItemModel]
     var filteredItems = [ItemModel]()
     
@@ -22,7 +23,7 @@ class SearchPresenter: SearchViewOutput {
     
     func searchPictures(_ searchText: String) {
         filteredItems = []
-        filteredItems = items.filter{ $0.title.contains(searchText)}
+        filteredItems = items.filter{ $0.title.lowercased().contains(searchText.lowercased())}
         if !filteredItems.isEmpty {
             view?.reload()
         }        
@@ -38,5 +39,9 @@ class SearchPresenter: SearchViewOutput {
     
     func showCollectionView() {
         view?.showCollection()
+    }
+    
+    func showDetailViewController(for indexPath: IndexPath) {
+        router?.showDetailModule(item: filteredItems[indexPath.item])
     }
 }
