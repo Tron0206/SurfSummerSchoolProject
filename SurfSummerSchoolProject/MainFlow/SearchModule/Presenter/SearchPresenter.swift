@@ -14,6 +14,7 @@ class SearchPresenter: SearchViewOutput {
     
     weak var view: SearchViewInput?
     var router: SearchRouterInput?
+    let favoriteService = FavoriteService.shared
     var items: [ItemModel]
     var filteredItems = [ItemModel]()
     
@@ -43,5 +44,10 @@ class SearchPresenter: SearchViewOutput {
     
     func showDetailViewController(for indexPath: IndexPath) {
         router?.showDetailModule(item: filteredItems[indexPath.item])
+    }
+    
+    func changeFavoriteStatus(for indexPath: IndexPath, isFavorite: Bool) {
+        let currentItem = filteredItems[indexPath.item]
+        favoriteService.changeStatus(id: currentItem.id, isFavorite: isFavorite)
     }
 }
