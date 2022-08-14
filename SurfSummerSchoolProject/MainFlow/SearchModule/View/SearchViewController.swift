@@ -61,6 +61,8 @@ private extension SearchViewController {
         configureCollectionView()
         configureHelperViewImageView()
         configureHelperViewTitleView()
+        configureSearchTextField()
+        configureHelperView(.writeRequest)
     }
     
     func configureNavitionBar() {
@@ -77,18 +79,32 @@ private extension SearchViewController {
                                             left: Constants.horizontalInset,
                                             bottom: Constants.verticalInset,
                                             right: Constants.horizontalInset)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        collectionView.addGestureRecognizer(tapGesture)
     }
     
     func configureHelperViewImageView() {
-        helperViewImageView.image = Icon.search
         helperViewImageView.tintColor = .gray
     }
     
     func configureHelperViewTitleView() {
-        helperViewTitleLabel.text = "Введите ваш запрос"
         helperViewTitleLabel.font = .systemFont(ofSize: 14)
         helperViewTitleLabel.textAlignment = .center
         helperViewTitleLabel.textColor = .gray
+        helperViewTitleLabel.numberOfLines = 2
+    }
+    
+    func configureSearchTextField() {
+        searchBar.delegate = self
+    }
+    
+    func configureHelperView(_ status: HelperStatus) {
+        helperViewTitleLabel.text = status.title
+        helperViewImageView.image = status.icon
+    }
+    
+    @objc func endEditing() {
+        searchBar.endEditing(true)
     }
     
 }
@@ -96,21 +112,34 @@ private extension SearchViewController {
 //MARK: - SearchViewInput
 
 extension SearchViewController: SearchViewInput {
+    func reload() {
+        collectionView.reloadData()
+    }
     
+    func showHelper(_ status: HelperStatus) {
+        configureHelperView(status)
+        helperView.isHidden = false
+        collectionView.isHidden = true
+    }
+    
+    func showCollection() {
+        helperView.isHidden = true
+        collectionView.isHidden = false
+    }
 }
 
 //MARK: - UICollectionViewDataSource
 
 extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.items.count ?? 0
+        return presenter?.filteredItems.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainItemCell.self)", for: indexPath) as? MainItemCell else {
             fatalError("Cell not found")
         }
-        cell.configure(item: presenter?.items[indexPath.row], completionHandler: nil)
+        cell.configure(item: presenter?.filteredItems[indexPath.item], completionHandler: nil)
         return cell
     }
 }
@@ -132,3 +161,45 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
         return Constants.minimumLineSpacing
     }
 }
+
+//MARK: - UITextFieldDelegate
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        guard let presenter = presenter else {
+            return true
+        }
+        if presenter.resultIsEmpty() {
+            helperView.isHidden = false
+            collectionView.isHidden = true
+            return true
+        }
+        return true
+    }
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let presenter = presenter else {
+             return
+        }
+        if searchText.isEmpty {
+            presenter.showHelperView(.writeRequest)
+        } else {
+            presenter.searchPictures(searchText)
+            if presenter.resultIsEmpty() {
+                presenter.showHelperView(.noResult)
+            } else {
+                presenter.showCollectionView()
+            }
+            
+        }
+    }
+    
+    
+}
+
