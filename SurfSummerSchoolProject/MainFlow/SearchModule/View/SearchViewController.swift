@@ -61,7 +61,7 @@ private extension SearchViewController {
         configureCollectionView()
         configureHelperViewImageView()
         configureHelperViewTitleView()
-        configureSearchTextField()
+        configureSearchBar()
         configureHelperView(.writeRequest)
     }
     
@@ -94,8 +94,9 @@ private extension SearchViewController {
         helperViewTitleLabel.numberOfLines = 2
     }
     
-    func configureSearchTextField() {
+    func configureSearchBar() {
         searchBar.delegate = self
+        searchBar.searchTextField.delegate = self
     }
     
     func configureHelperView(_ status: HelperStatus) {
@@ -175,14 +176,6 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-//MARK: - UICollectionViewDelegate
-
-extension SearchViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.showDetailViewController(for: indexPath)
-    }
-}
-
 //MARK: - UISearchBarDelegate
 
 extension SearchViewController: UISearchBarDelegate {
@@ -190,19 +183,6 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         return true
     }
-    
-    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        guard let presenter = presenter else {
-            return true
-        }
-        if presenter.resultIsEmpty() {
-            helperView.isHidden = false
-            collectionView.isHidden = true
-            return true
-        }
-        return true
-    }
-    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let presenter = presenter else {
@@ -220,7 +200,13 @@ extension SearchViewController: UISearchBarDelegate {
             
         }
     }
-    
-    
 }
 
+//MARK: - UITextFieldDelegate
+
+extension SearchViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchBar.endEditing(true)
+        return true
+    }
+}
