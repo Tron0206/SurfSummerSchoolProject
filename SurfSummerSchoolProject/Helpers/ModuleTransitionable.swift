@@ -10,6 +10,7 @@ import UIKit
 
 
 protocol ModuleTransitionable: AnyObject {
+    func presentModule(_ module: UIViewController, animated: Bool, completion: (() -> Void)?)
     func push(module: UIViewController, animated: Bool)
     func push(module: UIViewController, animated: Bool, hideTabBar: Bool)
     
@@ -17,6 +18,7 @@ protocol ModuleTransitionable: AnyObject {
 
 
 extension ModuleTransitionable where Self: UIViewController {
+    
     func push(module: UIViewController, animated: Bool) {
         self.navigationController?.pushViewController(module, animated: animated)
     }
@@ -24,6 +26,10 @@ extension ModuleTransitionable where Self: UIViewController {
     func push(module: UIViewController, animated: Bool, hideTabBar: Bool = false) {
         module.hidesBottomBarWhenPushed = hideTabBar
         self.push(module: module, animated: animated)
+    }
+    
+    func presentModule(_ module: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        self.present(module, animated: animated, completion: completion)
     }
     
 }

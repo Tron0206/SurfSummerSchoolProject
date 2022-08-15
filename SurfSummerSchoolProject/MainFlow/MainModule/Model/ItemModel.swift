@@ -22,7 +22,7 @@ struct ItemModel {
         title = pictureResponse.title
         self.isFavorite = isFavorite
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd.mm.yyyy"
+        formatter.dateFormat = "dd.MM.yyyy"
         dateCreation = formatter.string(from: pictureResponse.date)
         description = pictureResponse.content
     }

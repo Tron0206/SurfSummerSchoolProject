@@ -50,4 +50,5 @@ class SearchPresenter: SearchViewOutput {
         let currentItem = filteredItems[indexPath.item]
         favoriteService.changeStatus(id: currentItem.id, isFavorite: isFavorite)
     }
+
 }

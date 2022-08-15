@@ -7,8 +7,9 @@
 
 import UIKit
 
-class FavoriteViewController: UIViewController {
-    //TODO: - Rafactor code
+class FavoriteViewController: UIViewController, ModuleTransitionable {
+    
+    //MARK: - Properties
     var presenter: FavoriteViewOutput?
     
     private enum Constants {
@@ -17,7 +18,10 @@ class FavoriteViewController: UIViewController {
         static let hightToWidthRatio: CGFloat = 1.1603
     }
     
+    //MARK: - Views
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
     private lazy var searchButton: UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(named: "SearchIcon"),
                                      style: .done,
@@ -27,11 +31,20 @@ class FavoriteViewController: UIViewController {
         return button
     }()
 
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAppearance()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.fetchFavoritePictures()
+    }
 
+    //MARK: - Actions
+    
     @objc private func tappedSearchButton() {
         print("Search in FavoriteVC")
     }
@@ -60,14 +73,19 @@ private extension FavoriteViewController {
 
 extension FavoriteViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return presenter?.favoriteItems.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FavoriteCell.self)", for: indexPath) as? FavoriteCell else {
             fatalError()
         }
-        cell.backgroundColor = .red
+        cell.configure(item: presenter?.favoriteItems[indexPath.item]) { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.presenter?.showAlerController(for: indexPath)
+        }
         return cell
     }
 }
@@ -84,6 +102,8 @@ extension FavoriteViewController: UICollectionViewDelegateFlowLayout {
 //MARK: - FavoriteViewInput
 
 extension FavoriteViewController: FavoriteViewInput {
-    
+    func reload() {
+        collectionView.reloadData()
+    }
 }
 

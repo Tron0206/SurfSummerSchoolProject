@@ -42,6 +42,12 @@ class MainItemCell: UICollectionViewCell {
         configureAppearance()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        imageView.image = nil
+    }
+    
     override var isHighlighted: Bool {
         didSet {
             UIView.animate(withDuration: 0.3) {

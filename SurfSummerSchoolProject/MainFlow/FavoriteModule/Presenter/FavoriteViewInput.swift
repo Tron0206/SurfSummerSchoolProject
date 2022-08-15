@@ -9,5 +9,5 @@ import Foundation
 
 
 protocol FavoriteViewInput: AnyObject {
-    
+    func reload()
 }
