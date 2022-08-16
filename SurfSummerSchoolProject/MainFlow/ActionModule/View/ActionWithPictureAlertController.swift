@@ -20,16 +20,18 @@ class ActionWithPictureAlertController: UIAlertController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let cancelAction = UIAlertAction(title: "Нет", style: .default)
-        let removeAction = UIAlertAction(title: "Да, точно", style: .cancel) { [weak self] _ in
+        let cancelAction = UIAlertAction(title: "Нет", style: .default) { [weak self] _ in
+            self?.dismiss(animated: true)
+        }
+        let removeAction = UIAlertAction(title: "Да, точно", style: .default) { [weak self] _ in
             guard let self = self else {
                 return
             }
             self.output?.remove(item: self.item)
         }
-        
         addAction(cancelAction)
         addAction(removeAction)
+        preferredAction = removeAction
     }
     
     //MARK: - Internal methods
