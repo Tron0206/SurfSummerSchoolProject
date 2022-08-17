@@ -17,8 +17,7 @@ class MainPresenter {
     let pictureService: PicturesService = .init()
     let favoriteService = FavoriteService.shared
     var itemStorage = ItemStorage.shared
-    var errorDescription: String?
-    
+    var errorDescription: String?    
 }
 
 //MARK: - MainViewOutput
@@ -38,7 +37,7 @@ extension MainPresenter: MainViewOutput {
     }
     
     func showSearchViewController() {
-        router?.showSearchModule(items: itemStorage.items)
+        router?.showSearchModule()
     }
     
     func changeFavoriteStatus(for indexPath: IndexPath, isFavorite: Bool) {

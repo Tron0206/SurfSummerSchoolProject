@@ -18,4 +18,8 @@ class FavoriteRouter: FavoriteRouterInput {
         alertController.configure(output: output, item: item)
         view?.presentModule(alertController, animated: true, completion: nil)
     }
+    
+    func showSearchModule() {
+        view?.push(module: SearchModuleConfigurator().configure(), animated: true)
+    }
 }

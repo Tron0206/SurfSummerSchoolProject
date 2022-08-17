@@ -30,7 +30,7 @@ class MainViewController: UIViewController, ModuleTransitionable {
         let button = UIBarButtonItem(image: UIImage(named: "SearchIcon"),
                                      style: .done,
                                      target: self,
-                                     action: #selector(showSearchModule))
+                                     action: #selector(showSearchViewController))
         button.tintColor = .black
         return button
     }()
@@ -53,7 +53,7 @@ class MainViewController: UIViewController, ModuleTransitionable {
     
     //MARK: - Private methods
     
-    @objc private func showSearchModule() {
+    @objc private func showSearchViewController() {
         presenter?.showSearchViewController()
     }
 }

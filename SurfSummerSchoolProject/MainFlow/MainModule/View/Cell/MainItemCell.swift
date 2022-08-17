@@ -81,6 +81,8 @@ private extension MainItemCell {
     func configureAppearance() {
         titleLabel.textColor = .black
         titleLabel.font = .systemFont(ofSize: 12)
+        titleLabel.backgroundColor = .white
+        imageView.backgroundColor = .white
         imageView.layer.cornerRadius = 12
         favoriteButton.tintColor = .white
     }

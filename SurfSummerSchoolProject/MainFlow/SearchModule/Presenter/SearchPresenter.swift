@@ -15,16 +15,12 @@ class SearchPresenter: SearchViewOutput {
     weak var view: SearchViewInput?
     var router: SearchRouterInput?
     let favoriteService = FavoriteService.shared
-    var items: [ItemModel]
+    var itemStorage = ItemStorage.shared
     var filteredItems = [ItemModel]()
-    
-    init(items: [ItemModel]) {
-        self.items = items
-    }
     
     func searchPictures(_ searchText: String) {
         filteredItems = []
-        filteredItems = items.filter{ $0.title.lowercased().contains(searchText.lowercased())}
+        filteredItems = itemStorage.items.filter{ $0.title.lowercased().contains(searchText.lowercased())}
         if !filteredItems.isEmpty {
             view?.reload()
         }        

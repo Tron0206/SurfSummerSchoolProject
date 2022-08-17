@@ -30,6 +30,12 @@ class FavoriteViewController: UIViewController, ModuleTransitionable {
         button.tintColor = .black
         return button
     }()
+    
+    private lazy var helperView: HelperView = {
+        let helperView = HelperView()
+        helperView.configureStatus(.noFavorites)
+        return helperView
+    }()
 
     //MARK: - Lifecycle
     
@@ -46,7 +52,7 @@ class FavoriteViewController: UIViewController, ModuleTransitionable {
     //MARK: - Actions
     
     @objc private func tappedSearchButton() {
-        print("Search in FavoriteVC")
+        presenter?.showSearchViewController()
     }
 }
 
@@ -56,6 +62,7 @@ private extension FavoriteViewController {
     func configureAppearance() {
         navigationItem.setRightBarButton(searchButton, animated: true)
         configureCollectionView()
+        configureHelperView()
     }
     
     func configureCollectionView() {
@@ -67,6 +74,15 @@ private extension FavoriteViewController {
         collectionView.dataSource = self
         collectionView.registerCell(FavoriteCell.self)
     }
+    
+    func configureHelperView() {
+        view.addSubview(helperView)
+        NSLayoutConstraint.activate([helperView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                     helperView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+                                     helperView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+                                     helperView.topAnchor.constraint(equalTo: view.topAnchor, constant: 250)])
+    }
+
 }
 
 //MARK: - UICollectionViewDataSource
@@ -84,7 +100,7 @@ extension FavoriteViewController: UICollectionViewDataSource {
             guard let self = self else {
                 return
             }
-            self.presenter?.showAlerController(for: indexPath)
+            self.presenter?.showAlertController(for: indexPath)
         }
         return cell
     }
@@ -104,6 +120,14 @@ extension FavoriteViewController: UICollectionViewDelegateFlowLayout {
 extension FavoriteViewController: FavoriteViewInput {
     func reload() {
         collectionView.reloadData()
+    }
+    
+    func showHelperView() {
+        helperView.isHidden = false
+    }
+    
+    func hideHelperView() {
+        helperView.isHidden = true
     }
 }
 

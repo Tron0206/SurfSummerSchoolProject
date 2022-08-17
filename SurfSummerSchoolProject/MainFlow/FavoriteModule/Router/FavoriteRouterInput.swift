@@ -10,4 +10,5 @@ import Foundation
 
 protocol FavoriteRouterInput {
     func showAlerModule(output: ActionWithPictureModuleOutput, item: ItemModel)
+    func showSearchModule()
 }
