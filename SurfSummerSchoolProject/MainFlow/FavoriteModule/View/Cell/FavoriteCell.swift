@@ -8,7 +8,9 @@
 import UIKit
 
 class FavoriteCell: UICollectionViewCell {
+    
     //TODO: - Rafactor code
+    
     private enum Constants {
         static let heartImage = UIImage(named: "favorite")
         static let filledHeartImage = UIImage(named: "favorite-fill")
@@ -24,33 +26,9 @@ class FavoriteCell: UICollectionViewCell {
     
     //MARK: - Events
     
-    var completionHandler: ((Bool) -> Void)?
+    var completionHandler: (() -> Void)?
     
     //MARK: - Properties
-    
-    var image: String = "" {
-        didSet {
-            imageView.loadImage(from: image)
-        }
-    }
-    
-    var title: String? {
-        didSet {
-            titleLabel.text = title
-        }
-    }
-    
-    var date: String? {
-        didSet {
-            dateLabel.text = date
-        }
-    }
-    
-    var descriptionText: String? {
-        didSet {
-            descriptionLabel.text = descriptionText
-        }
-    }
     
     var isFavorite: Bool = true {
         didSet {
@@ -64,16 +42,24 @@ class FavoriteCell: UICollectionViewCell {
         configureAppearance()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+        titleLabel.text = ""
+        dateLabel.text = ""
+        descriptionLabel.text = ""
+    }
+    
     //MARK: - Internal methods
     
-    func configure(item: ItemModel?, completionHandler: @escaping (Bool) -> Void) {
+    func configure(item: ItemModel?, completionHandler: @escaping () -> Void) {
         guard let item = item else {
             return
         }
-        image = item.imageUrlString
-        title = item.title
-        date = item.dateCreation
-        descriptionText = item.description
+        imageView.loadImage(from: item.imageUrlString)
+        titleLabel.text = item.title
+        dateLabel.text = item.dateCreation
+        descriptionLabel.text = item.description
         isFavorite = true
         self.completionHandler = completionHandler
 
@@ -82,7 +68,7 @@ class FavoriteCell: UICollectionViewCell {
     //MARK: - Actions
     
     @IBAction func favoriteButtonTapped(_ sender: Any) {
-        completionHandler?(isFavorite)
+        completionHandler?()
     }
 }
 

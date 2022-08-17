@@ -16,17 +16,20 @@ class MainPresenter {
     var router: MainRouterInput?
     let pictureService: PicturesService = .init()
     let favoriteService = FavoriteService.shared
-    var items = ItemStorage.shared.items
-    var errorDescription: String?
-    
+    var itemStorage = ItemStorage.shared
+    var errorDescription: String?    
 }
 
 //MARK: - MainViewOutput
 
 extension MainPresenter: MainViewOutput {
     
+    func reloadCollectionView() {
+        view?.reload()
+    }
+    
     func showDetailViewController(for indexPath: IndexPath) {
-        router?.showDetailModule(item: items[indexPath.item])
+        router?.showDetailModule(item: itemStorage.items[indexPath.item])
     }
     
     func loadPosts(_ completion: @escaping () -> Void) {
@@ -34,11 +37,12 @@ extension MainPresenter: MainViewOutput {
     }
     
     func showSearchViewController() {
-        router?.showSearchModule(items: items)
+        router?.showSearchModule()
     }
     
     func changeFavoriteStatus(for indexPath: IndexPath, isFavorite: Bool) {
-        let currentItem = items[indexPath.item]
+        let currentItem = itemStorage.items[indexPath.item]
+        itemStorage.items[indexPath.item].isFavorite = isFavorite
         favoriteService.changeStatus(id: currentItem.id, isFavorite: isFavorite)
     }
 }
@@ -47,7 +51,7 @@ extension MainPresenter: MainViewOutput {
 
 private extension MainPresenter {
 
-    func getPictures(_ completinHandler: @escaping () -> Void) {
+    func getPictures(_ completionHandler: @escaping () -> Void) {
         pictureService.loadPictures { [weak self] result in
             guard let self = self else {
                 return
@@ -55,17 +59,16 @@ private extension MainPresenter {
             switch result {
             case .success(let pictures):
                 DispatchQueue.main.async {
-                    self.items = pictures.map({ picture in
-                        print(picture.publicationDate)
+                    self.itemStorage.items = pictures.map({ picture in
                         return ItemModel(pictureResponse: picture, isFavorite: self.favoriteService.isFavoriteItem(id: picture.id))
                     })
-                    completinHandler()
+                    completionHandler()
                 }
                 
             case .failure(let error):
                 self.errorDescription = error.localizedDescription
                 DispatchQueue.main.async {
-                    completinHandler()
+                    completionHandler()
                 }
             }
         }

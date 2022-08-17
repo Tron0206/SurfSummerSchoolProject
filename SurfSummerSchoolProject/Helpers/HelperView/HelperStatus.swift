@@ -12,6 +12,7 @@ import UIKit
 enum HelperStatus {
     case noResult
     case writeRequest
+    case noFavorites
     
     var title: String {
         switch self {
@@ -19,6 +20,8 @@ enum HelperStatus {
             return "По этому запросу не результатов,\nпопробуйте другой запрос"
         case .writeRequest:
             return "Введите ваш запрос"
+        case .noFavorites:
+            return "Нет избранных"
         }
     }
     
@@ -28,6 +31,8 @@ enum HelperStatus {
             return Icon.noResult
         case .writeRequest:
             return Icon.search
+        case .noFavorites:
+            return Icon.noResult
         }
     }
 }

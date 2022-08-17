@@ -10,5 +10,5 @@ import Foundation
 
 protocol MainRouterInput: AnyObject {
     func showDetailModule(item: ItemModel)
-    func showSearchModule(items: [ItemModel])
+    func showSearchModule()
 }

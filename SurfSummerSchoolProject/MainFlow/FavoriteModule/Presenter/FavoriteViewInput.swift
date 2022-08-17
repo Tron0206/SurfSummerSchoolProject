@@ -9,5 +9,7 @@ import Foundation
 
 
 protocol FavoriteViewInput: AnyObject {
-    
+    func reload()
+    func showHelperView()
+    func hideHelperView()
 }

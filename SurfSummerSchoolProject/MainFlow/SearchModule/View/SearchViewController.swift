@@ -37,9 +37,11 @@ class SearchViewController: UIViewController, ModuleTransitionable {
         return searchBar
     }()
     
-    @IBOutlet weak private var helperView: UIView!
-    @IBOutlet weak private var helperViewImageView: UIImageView!
-    @IBOutlet weak private var helperViewTitleLabel: UILabel!
+    private lazy var helperView: HelperView = {
+        let helperView = HelperView()
+        helperView.configureStatus(.writeRequest)
+        return helperView
+    }()
     
     //MARK: - Lifecycle
     
@@ -59,10 +61,8 @@ private extension SearchViewController {
     func configureAppearance() {
         configureNavitionBar()
         configureCollectionView()
-        configureHelperViewImageView()
-        configureHelperViewTitleView()
         configureSearchBar()
-        configureHelperView(.writeRequest)
+        configureHelperView()
     }
     
     func configureNavitionBar() {
@@ -83,25 +83,21 @@ private extension SearchViewController {
         collectionView.addGestureRecognizer(tapGesture)
     }
     
-    func configureHelperViewImageView() {
-        helperViewImageView.tintColor = .gray
-    }
-    
-    func configureHelperViewTitleView() {
-        helperViewTitleLabel.font = .systemFont(ofSize: 14)
-        helperViewTitleLabel.textAlignment = .center
-        helperViewTitleLabel.textColor = .gray
-        helperViewTitleLabel.numberOfLines = 2
-    }
-    
     func configureSearchBar() {
         searchBar.delegate = self
         searchBar.searchTextField.delegate = self
     }
     
+    func configureHelperView() {
+        view.addSubview(helperView)
+        NSLayoutConstraint.activate([helperView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                     helperView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+                                     helperView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+                                     helperView.topAnchor.constraint(equalTo: view.topAnchor, constant: 250)])
+    }
+    
     func configureHelperView(_ status: HelperStatus) {
-        helperViewTitleLabel.text = status.title
-        helperViewImageView.image = status.icon
+        helperView.configureStatus(status)
     }
     
     @objc func endEditing(recognizer: UITapGestureRecognizer) {

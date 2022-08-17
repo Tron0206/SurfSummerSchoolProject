@@ -9,4 +9,8 @@ import Foundation
 
 
 protocol FavoriteViewOutput: AnyObject {
+    var favoriteItems: [ItemModel] { get set }
+    func fetchFavoritePictures()
+    func showAlertController(for indexPath: IndexPath)
+    func showSearchViewController()
 }

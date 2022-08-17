@@ -30,7 +30,7 @@ class MainViewController: UIViewController, ModuleTransitionable {
         let button = UIBarButtonItem(image: UIImage(named: "SearchIcon"),
                                      style: .done,
                                      target: self,
-                                     action: #selector(showSearchModule))
+                                     action: #selector(showSearchViewController))
         button.tintColor = .black
         return button
     }()
@@ -53,7 +53,7 @@ class MainViewController: UIViewController, ModuleTransitionable {
     
     //MARK: - Private methods
     
-    @objc private func showSearchModule() {
+    @objc private func showSearchViewController() {
         presenter?.showSearchViewController()
     }
 }
@@ -73,8 +73,13 @@ private extension MainViewController {
     }
     
     func getPosts() {
-        presenter?.loadPosts({
-            self.spinnerView.stopAnimating()
+        presenter?.loadPosts({ [weak self] in
+            guard let self = self else {
+                return
+            }
+            if self.spinnerView.isAnimating {
+                self.spinnerView.stopAnimating()
+            }
             self.collectionView.reloadData()
         })
     }
@@ -84,18 +89,18 @@ private extension MainViewController {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.items.count ?? 0
+        return presenter?.itemStorage.items.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainItemCell.self)", for: indexPath) as? MainItemCell else {
             fatalError()
         }
-        cell.configure(item: presenter?.items[indexPath.row]) { [weak self] isFavorite in
+        cell.configure(item: presenter?.itemStorage.items[indexPath.row]) { [weak self] isFavorite in
             guard let self = self else {
                 return
             }
-            self.presenter?.items[indexPath.item].isFavorite = isFavorite
+            self.presenter?.itemStorage.items[indexPath.item].isFavorite = isFavorite
             self.presenter?.changeFavoriteStatus(for: indexPath, isFavorite: isFavorite)
         }
         
