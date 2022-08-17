@@ -8,21 +8,38 @@
 import Foundation
 
 
-class MainPresenter: MainViewOutput {
+class MainPresenter {
+    
+    //MARK: - Properties
+    
     weak var view: MainViewInput?
     var router: MainRouterInput?
-    var model: MainModel
+    let pictureService: PicturesService = .init()
+    let favoriteService = FavoriteService.shared
+    var items = ItemStorage.shared.items
+    var errorDescription: String?
     
-    required init(model: MainModel) {
-        self.model = model
-    }
+}
+
+//MARK: - MainViewOutput
+
+extension MainPresenter: MainViewOutput {
     
-    func showDetail(item: ItemModel) {
-        router?.showDetailModule(item: item)
+    func showDetailViewController(for indexPath: IndexPath) {
+        router?.showDetailModule(item: items[indexPath.item])
     }
     
     func loadPosts(_ completion: @escaping () -> Void) {
-        model.getPictures(completion)
+        getPictures(completion)
+    }
+    
+    func showSearchViewController() {
+        router?.showSearchModule(items: items)
+    }
+    
+    func changeFavoriteStatus(for indexPath: IndexPath, isFavorite: Bool) {
+        let currentItem = items[indexPath.item]
+        favoriteService.changeStatus(id: currentItem.id, isFavorite: isFavorite)
     }
 }
 
@@ -30,4 +47,27 @@ class MainPresenter: MainViewOutput {
 
 private extension MainPresenter {
 
+    func getPictures(_ completinHandler: @escaping () -> Void) {
+        pictureService.loadPictures { [weak self] result in
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case .success(let pictures):
+                DispatchQueue.main.async {
+                    self.items = pictures.map({ picture in
+                        print(picture.publicationDate)
+                        return ItemModel(pictureResponse: picture, isFavorite: self.favoriteService.isFavoriteItem(id: picture.id))
+                    })
+                    completinHandler()
+                }
+                
+            case .failure(let error):
+                self.errorDescription = error.localizedDescription
+                DispatchQueue.main.async {
+                    completinHandler()
+                }
+            }
+        }
+    }
 }

@@ -13,5 +13,9 @@ struct PictureResponseModel: Decodable {
     let title: String
     let content: String
     let photoUrl: String
-    let publicationDate: Int
+    let publicationDate: Double
+    
+    var date: Date {
+        return Date(timeIntervalSince1970: publicationDate / 1000)
+    }
 }

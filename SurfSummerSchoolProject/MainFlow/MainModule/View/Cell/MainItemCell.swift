@@ -28,18 +28,6 @@ class MainItemCell: UICollectionViewCell {
     
     //MARK: - Properties
     
-    var title: String = "" {
-        didSet {
-            titleLabel.text = title
-        }
-    }
-    
-    var imageUrlString: String = "" {
-        didSet {
-            imageView.loadImage(from: imageUrlString)
-        }
-    }
-    
     var isFavorite: Bool = false {
         didSet {
             let image = isFavorite ? Constants.filledHeartImage : Constants.heartImage
@@ -52,7 +40,6 @@ class MainItemCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         configureAppearance()
-        // Initialization code
     }
     
     override var isHighlighted: Bool {
@@ -72,12 +59,12 @@ class MainItemCell: UICollectionViewCell {
     
     //MARK: - Internal methods
     
-    func configure(item: ItemModel?, completionHandler: @escaping (Bool) -> Void) {
+    func configure(item: ItemModel?, completionHandler: ((Bool) -> Void)?) {
         guard let item = item else {
             return
         }
-        title = item.title
-        imageUrlString = item.imageUrlString
+        titleLabel.text = item.title
+        imageView.loadImage(from: item.imageUrlString)
         isFavorite = item.isFavorite
         self.completionHandler = completionHandler
     }

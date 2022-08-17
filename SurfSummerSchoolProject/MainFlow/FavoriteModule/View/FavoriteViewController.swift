@@ -60,16 +60,14 @@ private extension FavoriteViewController {
 
 extension FavoriteViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.model.items.count ?? 0
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FavoriteCell.self)", for: indexPath) as? FavoriteCell else {
             fatalError()
         }
-        cell.configure(item: presenter?.model.items[indexPath.row]) { isFavorite in
-            print("Tapped")
-        }
+        cell.backgroundColor = .red
         return cell
     }
 }

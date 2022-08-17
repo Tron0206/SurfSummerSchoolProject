@@ -9,9 +9,11 @@ import Foundation
 
 
 protocol MainViewOutput: AnyObject {
-    var model: MainModel { get }
     var router: MainRouterInput? { get }
-    init(model: MainModel)
-    func showDetail(item: ItemModel)
-    func loadPosts(_ completion: @escaping () -> Void)
+    var items: [ItemModel] { get set }
+    var favoriteService: FavoriteService { get }
+    func showDetailViewController(for indexPath: IndexPath)
+    func showSearchViewController()
+    func loadPosts(_ competion: @escaping () -> Void)
+    func changeFavoriteStatus(for indexPath: IndexPath, isFavorite: Bool)
 }

@@ -9,6 +9,4 @@ import Foundation
 
 
 protocol FavoriteViewOutput: AnyObject {
-    var model: MainModel { get }
-    init(model: MainModel)
 }

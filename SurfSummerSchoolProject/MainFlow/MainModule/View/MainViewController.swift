@@ -30,7 +30,7 @@ class MainViewController: UIViewController, ModuleTransitionable {
         let button = UIBarButtonItem(image: UIImage(named: "SearchIcon"),
                                      style: .done,
                                      target: self,
-                                     action: #selector(tappedSearchButton))
+                                     action: #selector(showSearchModule))
         button.tintColor = .black
         return button
     }()
@@ -44,14 +44,17 @@ class MainViewController: UIViewController, ModuleTransitionable {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAppearance()
-//        configureModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getPosts()
     }
     
     //MARK: - Private methods
     
-    @objc private func tappedSearchButton() {
-        presenter?.router?.showSearchModule()
+    @objc private func showSearchModule() {
+        presenter?.showSearchViewController()
     }
 }
 
@@ -69,21 +72,10 @@ private extension MainViewController {
                                             right: Constants.horizontalInset)
     }
     
-    func configureModel() {
-        self.presenter?.model.didItemsUpdated = { [weak self] in
-            guard let self = self else { return }
-            self.collectionView.reloadData()
-        }
-    }
-    
     func getPosts() {
-        spinnerView.startAnimating()
-        presenter?.loadPosts({ [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.collectionView.reloadData()
+        presenter?.loadPosts({
             self.spinnerView.stopAnimating()
+            self.collectionView.reloadData()
         })
     }
 }
@@ -92,15 +84,19 @@ private extension MainViewController {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.model.items.count ?? 0
+        return presenter?.items.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainItemCell", for: indexPath) as? MainItemCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainItemCell.self)", for: indexPath) as? MainItemCell else {
             fatalError()
         }
-        cell.configure(item: presenter?.model.items[indexPath.item]) { [weak self] isFavorite in
-            self?.presenter?.model.items[indexPath.item].isFavorite = isFavorite
+        cell.configure(item: presenter?.items[indexPath.row]) { [weak self] isFavorite in
+            guard let self = self else {
+                return
+            }
+            self.presenter?.items[indexPath.item].isFavorite = isFavorite
+            self.presenter?.changeFavoriteStatus(for: indexPath, isFavorite: isFavorite)
         }
         
         return cell
@@ -111,9 +107,7 @@ extension MainViewController: UICollectionViewDataSource {
 
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let item = presenter?.model.items[indexPath.item] {
-            presenter?.showDetail(item: item)
-        }
+        presenter?.showDetailViewController(for: indexPath)
     }
 }
 

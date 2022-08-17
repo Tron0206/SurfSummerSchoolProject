@@ -16,7 +16,7 @@ class MainRouter: MainRouterInput {
         view?.push(module: DetailModuleConfigurator().configure(item: item), animated: true, hideTabBar: true)
     }
     
-    func showSearchModule() {
-        view?.push(module: SearchViewController(), animated: true)
+    func showSearchModule(items: [ItemModel]) {
+        view?.push(module: SearchModuleConfigurator().configure(items: items), animated: true)
     }
 }
