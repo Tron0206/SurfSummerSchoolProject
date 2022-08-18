@@ -20,18 +20,7 @@ class ActionWithPictureAlertController: UIAlertController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let cancelAction = UIAlertAction(title: "Нет", style: .default) { [weak self] _ in
-            self?.dismiss(animated: true)
-        }
-        let removeAction = UIAlertAction(title: "Да, точно", style: .default) { [weak self] _ in
-            guard let self = self else {
-                return
-            }
-            self.output?.remove(item: self.item)
-        }
-        addAction(cancelAction)
-        addAction(removeAction)
-        preferredAction = removeAction
+        configureAppearance()
     }
     
     //MARK: - Internal methods
@@ -39,5 +28,23 @@ class ActionWithPictureAlertController: UIAlertController {
     func configure(output: ActionWithPictureModuleOutput, item: ItemModel) {
         self.output = output
         self.item = item
+    }
+}
+
+//MARK: - Private methods
+
+private extension ActionWithPictureAlertController {
+    
+    func configureAppearance() {
+        let cancelAction = UIAlertAction(title: "Нет", style: .default)
+        let removeAction = UIAlertAction(title: "Да, точно", style: .default) { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            self.output.remove(item: self.item)
+        }
+        addAction(cancelAction)
+        addAction(removeAction)
+        preferredAction = removeAction
     }
 }

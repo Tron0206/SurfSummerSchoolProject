@@ -8,7 +8,7 @@
 import Foundation
 
 
-class FavoritePresenter: FavoriteViewOutput {
+final class FavoritePresenter: FavoriteViewOutput {
     
     //MARK: - Properties
     

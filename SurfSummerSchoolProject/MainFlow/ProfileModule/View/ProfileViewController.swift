@@ -7,7 +7,11 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController, ModuleTransitionable {
+    
+    //MARK: - Properties
+    
+    var presenter: ProfileViewOutput?
     
     //MARK: - Views
     
@@ -25,7 +29,7 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func tappedLogoutButton(_ sender: Any) {
-        print("tappedLogoutButton")
+        presenter?.showAlertController()
     }
 }
 
@@ -39,7 +43,6 @@ private extension ProfileViewController {
     
     func configureTableView() {
         tableView.dataSource = self
-        tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "\(UITableViewCell.self)")
         tableView.registerCell(HeaderTableViewCell.self)
         tableView.separatorInset = .zero
@@ -86,10 +89,8 @@ extension ProfileViewController: UITableViewDataSource {
     }
 }
 
-//MARK: - UITableViewDelegate
+//MARK: - ProfileViewInput
 
-extension ProfileViewController: UITableViewDelegate {
-
+extension ProfileViewController: ProfileViewInput {
+    
 }
-
-

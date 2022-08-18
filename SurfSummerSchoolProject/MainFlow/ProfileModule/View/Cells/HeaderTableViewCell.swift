@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HeaderTableViewCell: UITableViewCell {
+final class HeaderTableViewCell: UITableViewCell {
 
     //MARK: - Views
     

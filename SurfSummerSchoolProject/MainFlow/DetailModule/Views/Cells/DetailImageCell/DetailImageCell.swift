@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailImageCell: UITableViewCell {
+final class DetailImageCell: UITableViewCell {
 
     @IBOutlet weak var itemImageView: UIImageView!
     

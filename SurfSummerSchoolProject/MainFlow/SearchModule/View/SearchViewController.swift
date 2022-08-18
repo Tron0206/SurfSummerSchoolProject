@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, ModuleTransitionable {
+final class SearchViewController: UIViewController, ModuleTransitionable {
     
     //MARK: - Constants
     

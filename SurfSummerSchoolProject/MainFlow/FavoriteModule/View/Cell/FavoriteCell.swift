@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteCell: UICollectionViewCell {
+final class FavoriteCell: UICollectionViewCell {
     
     //TODO: - Rafactor code
     

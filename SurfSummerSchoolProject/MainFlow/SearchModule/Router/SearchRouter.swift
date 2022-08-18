@@ -8,7 +8,7 @@
 import Foundation
 
 
-class SearchRouter: SearchRouterInput {
+final class SearchRouter: SearchRouterInput {
     
     weak var view: ModuleTransitionable?
     

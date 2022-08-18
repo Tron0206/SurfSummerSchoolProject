@@ -8,7 +8,7 @@
 import Foundation
 
 
-class MainPresenter {
+final class MainPresenter {
     
     //MARK: - Properties
     

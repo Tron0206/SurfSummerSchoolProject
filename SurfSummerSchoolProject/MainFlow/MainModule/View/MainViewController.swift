@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, ModuleTransitionable {
+final class MainViewController: UIViewController, ModuleTransitionable {
     
     //MARK: - Constants
     

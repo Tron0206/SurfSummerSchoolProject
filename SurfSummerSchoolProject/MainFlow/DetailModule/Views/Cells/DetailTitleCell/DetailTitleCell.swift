@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailTitleCell: UITableViewCell {
+final class DetailTitleCell: UITableViewCell {
 
     @IBOutlet weak private var itemTitleLabel: UILabel!
     @IBOutlet weak private var itemDateLabel: UILabel!
