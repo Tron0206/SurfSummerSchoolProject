@@ -27,8 +27,13 @@ final class DetailImageCell: UITableViewCell {
 
 private extension DetailImageCell {
     func configureAppearance() {
-        itemImageView.layer.cornerRadius = 12
-        itemImageView.contentMode = .scaleToFill
+        configureImageView()
         selectionStyle = .none
+    }
+    
+    
+    func configureImageView() {
+        itemImageView.layer.cornerRadius = 12
+        itemImageView.contentMode = .scaleAspectFill
     }
 }

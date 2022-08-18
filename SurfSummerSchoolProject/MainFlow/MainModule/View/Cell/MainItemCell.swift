@@ -79,11 +79,23 @@ final class MainItemCell: UICollectionViewCell {
 //MARK: - Private methods
 private extension MainItemCell {
     func configureAppearance() {
+        configureTitleLabel()
+        configureImageView()
+        configureFavoriteButton()
+    }
+    
+    func configureTitleLabel() {
         titleLabel.textColor = .black
-        titleLabel.font = .systemFont(ofSize: 12)
+        titleLabel.font = .systemFont(ofSize: 12, weight: .semibold)
         titleLabel.backgroundColor = .white
+    }
+    
+    func configureImageView() {
         imageView.backgroundColor = .white
         imageView.layer.cornerRadius = 12
+    }
+    
+    func configureFavoriteButton() {
         favoriteButton.tintColor = .white
     }
 }

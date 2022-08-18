@@ -9,7 +9,12 @@ import UIKit
 
 final class DetailDescriptionCell: UITableViewCell {
 
+    //MARK: - Views
+    
     @IBOutlet weak var descriptionLabel: UILabel!
+    
+    //MARK: - Lifecycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configureAppearance()
@@ -26,8 +31,12 @@ final class DetailDescriptionCell: UITableViewCell {
 
 private extension DetailDescriptionCell {
     func configureAppearance() {
-        descriptionLabel.font = .systemFont(ofSize: 12)
-        descriptionLabel.numberOfLines = 0
+        configureDescriptionLabel()
         selectionStyle = .none
+    }
+    
+    func configureDescriptionLabel() {
+        descriptionLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        descriptionLabel.numberOfLines = 0
     }
 }
