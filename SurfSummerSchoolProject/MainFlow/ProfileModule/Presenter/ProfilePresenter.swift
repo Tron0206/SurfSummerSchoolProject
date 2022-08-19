@@ -26,6 +26,11 @@ final class ProfilePresenter: ProfileViewOutput {
 
 extension ProfilePresenter: ActionLogoutAcceptModuleOutput {
     func logout() {
-        print("logout")
+        view?.startLoading()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            print("Logout")
+            self?.view?.stopLoading()
+        }
+        
     }
 }

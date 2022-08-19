@@ -13,4 +13,5 @@ enum Icon {
     static let search = UIImage(named: "SearchIcon2")?.withRenderingMode(.alwaysTemplate)
     static let noResult = UIImage(named: "noResult")?.withRenderingMode(.alwaysTemplate)
     static let backArrow = UIImage(named: "BackImage")
+    static let loader = UIImage(named: "loader")
 }

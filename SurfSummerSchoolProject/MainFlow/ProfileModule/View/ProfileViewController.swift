@@ -17,6 +17,12 @@ final class ProfileViewController: UIViewController, ModuleTransitionable {
     
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak var logoutButton: UIButton!
+    private lazy var spinnerView: SpinnerView = {
+        let spinnerView = SpinnerView()
+        spinnerView.translatesAutoresizingMaskIntoConstraints = false
+        spinnerView.isHidden = true
+        return spinnerView
+    }()
     
     //MARK: - Lifecycle
     
@@ -39,6 +45,7 @@ private extension ProfileViewController {
     func configureAppearance() {
         configureTableView()
         configureLogoutButton()
+        configureSpinnerView()
     }
     
     func configureTableView() {
@@ -54,6 +61,14 @@ private extension ProfileViewController {
         logoutButton.configuration = .none
         logoutButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         logoutButton.setTitle("Выйти", for: .normal)
+    }
+    
+    func configureSpinnerView() {
+        logoutButton.addSubview(spinnerView)
+        NSLayoutConstraint.activate([spinnerView.centerXAnchor.constraint(equalTo: logoutButton.centerXAnchor),
+                                     spinnerView.centerYAnchor.constraint(equalTo: logoutButton.centerYAnchor),
+                                     spinnerView.heightAnchor.constraint(equalToConstant: 24),
+                                     spinnerView.widthAnchor.constraint(equalToConstant: 24)])
     }
 }
 
@@ -92,5 +107,15 @@ extension ProfileViewController: UITableViewDataSource {
 //MARK: - ProfileViewInput
 
 extension ProfileViewController: ProfileViewInput {
+
     
+    func startLoading() {
+        spinnerView.startLoading()
+        logoutButton.titleLabel?.isHidden = true
+    }
+    
+    func stopLoading() {
+        spinnerView.hideLoading()
+        logoutButton.titleLabel?.isHidden = false
+    }
 }

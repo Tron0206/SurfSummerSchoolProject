@@ -9,5 +9,6 @@ import Foundation
 
 
 protocol ProfileViewInput: AnyObject {
-    
+    func startLoading()
+    func stopLoading()
 }
