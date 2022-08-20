@@ -44,7 +44,7 @@ class FavoriteService {
 private extension FavoriteService {
     
     func saveFavoriteItem(_ id: String) {
-        savedItems.append(id)
+        savedItems.insert(id, at: 0)
         saveToUserDefaults()
     }
     

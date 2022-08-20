@@ -23,7 +23,7 @@ class HelperView: UIView {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14)
+        label.font = .systemFont(ofSize: 14, weight: .regular)
         label.textAlignment = .center
         label.textColor = .gray
         label.numberOfLines = 2

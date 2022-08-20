@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailImageCell: UITableViewCell {
+final class DetailImageCell: UITableViewCell {
 
     @IBOutlet weak var itemImageView: UIImageView!
     
@@ -27,8 +27,13 @@ class DetailImageCell: UITableViewCell {
 
 private extension DetailImageCell {
     func configureAppearance() {
-        itemImageView.layer.cornerRadius = 12
-        itemImageView.contentMode = .scaleToFill
+        configureImageView()
         selectionStyle = .none
+    }
+    
+    
+    func configureImageView() {
+        itemImageView.layer.cornerRadius = 12
+        itemImageView.contentMode = .scaleAspectFill
     }
 }

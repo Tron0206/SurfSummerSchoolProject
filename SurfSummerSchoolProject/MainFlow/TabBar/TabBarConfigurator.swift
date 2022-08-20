@@ -9,17 +9,23 @@ import Foundation
 import UIKit
 
 
-class TabBarConfigurator {
+struct TabBarConfigurator {
+    
     //MARK: - Private property
+    
     private var allTab: [TabBarModel] = [.main, .favorite, .profile]
     
     //MARK: - Internal func
+    
     func configure() -> UITabBarController {
         return getTabBarController()
     }
 }
 
+//MARK: - Private methods
+
 private extension TabBarConfigurator {
+    
     func getTabBarController() -> UITabBarController {
         let tabBarController = UITabBarController()
         tabBarController.tabBar.tintColor = .black
@@ -51,7 +57,7 @@ private extension TabBarConfigurator {
         case .favorite:
             return FavoriteModuleConfigurator().configure()
         case .profile:
-            return ProfileViewController()
+            return ProfileModuleConfigurator().configure()
         }
     }
 }

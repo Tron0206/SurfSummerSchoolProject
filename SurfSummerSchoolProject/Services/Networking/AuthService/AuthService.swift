@@ -13,8 +13,8 @@ struct AuthService {
     
     func performLoginRequestAndSaveToken(
         credentials: AuthRequestModel,
-        _ onResponseWasReceived: @escaping (_ result: Result<AuthResponseModel, Error>) -> Void) {
-            dataTask.performRequest(input: credentials) { result in
+        _ onResponseWasReceived: @escaping (_ result: Result<AuthResponseModel, AuthError>) -> Void) {
+            dataTask.performAuth(input: credentials) { result in
                 if case let .success(responseModel) = result {
                     try? dataTask.tokenStorage.set(newToken: TokenContainer(token: responseModel.token, receivingDate: .now))
                 }

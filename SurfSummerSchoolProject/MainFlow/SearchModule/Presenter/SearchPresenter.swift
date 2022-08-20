@@ -8,7 +8,7 @@
 import Foundation
 
 
-class SearchPresenter: SearchViewOutput {
+final class SearchPresenter: SearchViewOutput {
     
     //MARK: - Properties
     

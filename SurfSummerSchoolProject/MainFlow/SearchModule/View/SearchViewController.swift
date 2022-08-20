@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, ModuleTransitionable {
+final class SearchViewController: UIViewController, ModuleTransitionable {
     
     //MARK: - Constants
     
@@ -101,7 +101,7 @@ private extension SearchViewController {
     }
     
     @objc func endEditing(recognizer: UITapGestureRecognizer) {
-        let tapLocation = recognizer.location(in: view)
+        let tapLocation = recognizer.location(in: collectionView)
         let indexPath = collectionView.indexPathForItem(at: tapLocation)
         guard let indexPath = indexPath else {
             searchBar.endEditing(true)

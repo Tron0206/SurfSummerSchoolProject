@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-final class MainModuleConfigurator {
+struct MainModuleConfigurator {
     
     func configure() -> MainViewController {
         let view = MainViewController()

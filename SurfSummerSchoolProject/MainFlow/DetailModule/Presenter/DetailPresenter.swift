@@ -8,7 +8,7 @@
 import Foundation
 
 
-class DetailPresenter: DetailViewOutput {
+final class DetailPresenter: DetailViewOutput {
     weak var view: DetailViewInput?
     var item: ItemModel
     

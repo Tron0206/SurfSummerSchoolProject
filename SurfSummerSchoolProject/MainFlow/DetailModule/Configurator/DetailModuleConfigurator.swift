@@ -8,7 +8,7 @@
 import Foundation
 
 
-class DetailModuleConfigurator {
+struct DetailModuleConfigurator {
     
     func configure(item: ItemModel) -> DetailViewController {
         let view = DetailViewController()

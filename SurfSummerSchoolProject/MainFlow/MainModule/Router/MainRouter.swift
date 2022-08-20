@@ -8,7 +8,7 @@
 import Foundation
 
 
-class MainRouter: MainRouterInput {
+final class MainRouter: MainRouterInput {
     
     weak var view: ModuleTransitionable?
     

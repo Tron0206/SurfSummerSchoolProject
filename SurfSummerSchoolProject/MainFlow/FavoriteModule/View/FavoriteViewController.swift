@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteViewController: UIViewController, ModuleTransitionable {
+final class FavoriteViewController: UIViewController, ModuleTransitionable {
     
     //MARK: - Properties
     var presenter: FavoriteViewOutput?

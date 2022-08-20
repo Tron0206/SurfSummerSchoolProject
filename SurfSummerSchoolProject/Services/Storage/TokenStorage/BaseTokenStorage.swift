@@ -54,7 +54,7 @@ struct BaseTokenStorage: TokenStorage {
     
     func set(newToken: TokenContainer) throws {
         
-        try removeTokeenFromContainer()
+        try removeTokenFromContainer()
         
         
         let tokenInData = try JSONEncoder().encode(newToken.token)
@@ -74,7 +74,7 @@ struct BaseTokenStorage: TokenStorage {
         
     }
     
-    func removeTokeenFromContainer() throws {
+    func removeTokenFromContainer() throws {
         
         let queryDictionaryForDeleteToken: [CFString: AnyObject] = [
             kSecAttrService: Constants.applicationNameInKeyChain as AnyObject,

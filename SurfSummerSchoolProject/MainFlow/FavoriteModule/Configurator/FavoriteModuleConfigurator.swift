@@ -8,7 +8,7 @@
 import Foundation
 
 
-class FavoriteModuleConfigurator {
+struct FavoriteModuleConfigurator {
     
     func configure() -> FavoriteViewController {
         let view = FavoriteViewController()

@@ -8,7 +8,7 @@
 import Foundation
 
 
-class FavoriteRouter: FavoriteRouterInput {
+final class FavoriteRouter: FavoriteRouterInput {
     weak var view: ModuleTransitionable?
     
     func showAlerModule(output: ActionWithPictureModuleOutput, item: ItemModel) {

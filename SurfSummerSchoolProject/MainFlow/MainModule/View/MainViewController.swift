@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, ModuleTransitionable {
+final class MainViewController: UIViewController, ModuleTransitionable {
     
     //MARK: - Constants
     
@@ -70,6 +70,7 @@ private extension MainViewController {
                                             left: Constants.horizontalInset,
                                             bottom: Constants.verticalInset,
                                             right: Constants.horizontalInset)
+        collectionView.showsVerticalScrollIndicator = false
     }
     
     func getPosts() {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class SearchModuleConfigurator {
+struct SearchModuleConfigurator {
     
     func configure() -> SearchViewController {
         let view = SearchViewController()
