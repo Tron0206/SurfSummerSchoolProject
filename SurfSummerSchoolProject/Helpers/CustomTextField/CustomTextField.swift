@@ -11,6 +11,10 @@ import UIKit
 
 final class CustomTextField: UIView {
     
+    var text: String? {
+        return textField.text
+    }
+    
     //MARK: - Views
     
     let textField: UITextField = {
@@ -26,7 +30,7 @@ final class CustomTextField: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 12, weight: .regular)
-        label.textColor = .gray
+        label.textColor = Color.titleForTextField
         label.isHidden = true
         
         return label
@@ -35,7 +39,7 @@ final class CustomTextField: UIView {
     private let bottomLine: UIView = {
         let line = UIView()
         line.translatesAutoresizingMaskIntoConstraints = false
-        line.backgroundColor = .red
+        line.backgroundColor = Color.bottomLine
         
         return line
     }()
@@ -43,7 +47,7 @@ final class CustomTextField: UIView {
     private let firstResponderButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(UIColor.gray, for: .normal)
+        button.setTitleColor(Color.titleForTextField, for: .normal)
         button.configuration = .none
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
         button.contentHorizontalAlignment = .left
@@ -58,7 +62,7 @@ final class CustomTextField: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(Icon.noSecurityMode, for: .normal)
         button.setImage(Icon.securityMode, for: .selected)
-        button.tintColor = .lightGray
+        button.tintColor = Color.eye
         button.addTarget(self, action: #selector(tappedSecurityButton), for: .touchUpInside)
         return button
     }()
@@ -87,6 +91,22 @@ final class CustomTextField: UIView {
         if isPassword {
             configureSecurityButton()
         }
+    }
+    
+    func endEditingWithEmptyTextField() {
+        configureOriginalView()
+    }
+    
+    func incorrectFillingTextField() {
+        bottomLine.backgroundColor = Color.warningBottomLineRed
+    }
+    
+    func correctFillingTextField() {
+        bottomLine.backgroundColor = Color.bottomLine
+    }
+    
+    func isTextFieldEmpty() -> Bool {
+        return textField.text?.isEmpty ?? false
     }
 }
 
@@ -159,5 +179,11 @@ private extension CustomTextField {
                                      securityButton.centerYAnchor.constraint(equalTo: textField.centerYAnchor),
                                      securityButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)])
         
+    }
+    
+    func configureOriginalView() {
+        firstResponderButton.isHidden = false
+        textField.isHidden = true
+        titleLabel.isHidden = true
     }
 }

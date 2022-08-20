@@ -9,6 +9,10 @@ import UIKit
 
 final class LoginViewController: UIViewController {
     
+    //MARK: - Properties
+    
+    var presenter: LoginViewOutput?
+    
     //MARK: - Views
     
     private let loginTextField: CustomTextField = {
@@ -25,7 +29,8 @@ final class LoginViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Поле не может быть пустым"
         label.font = .systemFont(ofSize: 12, weight: .regular)
-        label.textColor = Color.warningRed
+        label.textColor = Color.warningBottomLineRed
+        label.isHidden = true
         
         return label
     }()
@@ -45,13 +50,14 @@ final class LoginViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Поле не может быть пустым"
         label.font = .systemFont(ofSize: 12, weight: .regular)
-        label.textColor = Color.warningRed
+        label.textColor = Color.warningBottomLineRed
+        label.isHidden = true
         
         return label
     }()
     
     private let loginButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .black
         button.tintColor = .white
@@ -62,12 +68,27 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
+    private lazy var warningView: WarningView = {
+        let view = WarningView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.alpha = 0
+        return view
+    }()
+    
+    private lazy var spinnerView: SpinnerView = {
+        let spinnerView = SpinnerView()
+        spinnerView.isHidden = true
+        return spinnerView
+    }()
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Вход"
         configureAppearance()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditingTextField))
+        view.addGestureRecognizer(tapGesture)
     }
 }
 
@@ -75,30 +96,76 @@ final class LoginViewController: UIViewController {
 
 private extension LoginViewController {
     func configureAppearance() {
-        configureLoginTextField()
-        configureLoginWarningLabel()
-        configurePasswordTextField()
-        configurePasswordWarningLabel()
-        configureLoginButton()
+        configureLoginTextFieldConstraint()
+        configureLoginWarningLabelConstraint()
+        configurePasswordTextFieldConstraint()
+        configurePasswordWarningLabelConstraint()
+        configureLoginButtonConstraint()
+        configureWarningViewConstraint()
+        configureSpinnerViewConstraint()
     }
     
-    func configureLoginTextField() {
+    func showWarningView(errorDescription: String? = nil) {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn) {
+            self.warningView.alpha = 1
+        }
+        warningView.configure(errorDescription: errorDescription)
+        title = ""
+    }
+    
+    @objc func tappedLoginButton() {
+        validateTextField()
+        guard let phone = loginTextField.text,
+              let password = passwordTextField.text else {
+            return
+        }
+        if loginWarningLabel.isHidden && passwordWarningLabel.isHidden {
+            let clearPhoneNumber = clearPhoneNumber(phoneNumber: phone)
+            startLoading()
+            presenter?.performLogin(phone: clearPhoneNumber, password: password) { [weak self] error in
+                guard let self = self else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    if error != nil {
+                        self.showWarningView(errorDescription: error?.errorDescription)
+                    } else {
+                        print("Login")
+                    }
+                    self.stopLoading()
+                }
+            }
+        }
+        
+        
+    }
+    
+    @objc func endEditingTextField() {
+        view.endEditing(true)
+    }
+    
+    func configureView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditingTextField))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    func configureLoginTextFieldConstraint() {
         view.addSubview(loginTextField)
         loginTextField.setDelegate(self, tag: 1)
         NSLayoutConstraint.activate([loginTextField.heightAnchor.constraint(equalToConstant: 55),
                                      loginTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                     loginTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+                                     loginTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
                                      loginTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
                                      loginTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)])
     }
     
-    func configureLoginWarningLabel() {
+    func configureLoginWarningLabelConstraint() {
         view.addSubview(loginWarningLabel)
         NSLayoutConstraint.activate([loginWarningLabel.leadingAnchor.constraint(equalTo: loginTextField.leadingAnchor),
                                      loginWarningLabel.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 8)])
     }
     
-    func configurePasswordTextField() {
+    func configurePasswordTextFieldConstraint() {
         view.addSubview(passwordTextField)
         passwordTextField.setDelegate(self, tag: 2)
         NSLayoutConstraint.activate([passwordTextField.heightAnchor.constraint(equalToConstant: 55),
@@ -108,18 +175,35 @@ private extension LoginViewController {
                                      passwordTextField.trailingAnchor.constraint(equalTo: loginTextField.trailingAnchor)])
     }
     
-    func configurePasswordWarningLabel() {
+    func configurePasswordWarningLabelConstraint() {
         view.addSubview(passwordWarningLabel)
         NSLayoutConstraint.activate([passwordWarningLabel.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
                                      passwordWarningLabel.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 8)])
     }
     
-    func configureLoginButton() {
+    func configureLoginButtonConstraint() {
         view.addSubview(loginButton)
+        loginButton.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
         NSLayoutConstraint.activate([loginButton.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
                                      loginButton.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
                                      loginButton.topAnchor.constraint(equalTo: passwordWarningLabel.bottomAnchor, constant: 32),
                                      loginButton.heightAnchor.constraint(equalToConstant: 48)])
+    }
+    
+    func configureWarningViewConstraint() {
+        view.addSubview(warningView)
+        NSLayoutConstraint.activate([warningView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                                     warningView.topAnchor.constraint(equalTo: view.topAnchor),
+                                     warningView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                                     warningView.heightAnchor.constraint(equalToConstant: 93)])
+    }
+    
+    func configureSpinnerViewConstraint() {
+        loginButton.addSubview(spinnerView)
+        NSLayoutConstraint.activate([spinnerView.centerXAnchor.constraint(equalTo: loginButton.centerXAnchor),
+                                     spinnerView.centerYAnchor.constraint(equalTo: loginButton.centerYAnchor),
+                                     spinnerView.heightAnchor.constraint(equalToConstant: 24),
+                                     spinnerView.widthAnchor.constraint(equalToConstant: 24)])
     }
     
     func format(with mask: String, phone: String) -> String {
@@ -139,7 +223,47 @@ private extension LoginViewController {
         }
         return result
     }
+    
+    func clearPhoneNumber(phoneNumber: String) -> String {
+        return phoneNumber.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: " ", with: "")
+    }
+    
+    func validateTextField()  {
+        if loginTextField.isTextFieldEmpty() {
+            loginTextField.incorrectFillingTextField()
+            loginWarningLabel.isHidden = false
+        }
+        
+        if passwordTextField.isTextFieldEmpty() {
+            passwordTextField.incorrectFillingTextField()
+            passwordWarningLabel.isHidden = false
+        }
+        
+        if !(loginTextField.isTextFieldEmpty() && passwordTextField.isTextFieldEmpty()) {
+            loginTextField.correctFillingTextField()
+            passwordTextField.correctFillingTextField()
+            loginWarningLabel.isHidden = true
+            passwordWarningLabel.isHidden = true
+        }
+    }
+    
+    func startLoading() {
+        spinnerView.startLoading()
+        loginButton.setTitle("", for: .normal)
+    }
+    
+    func stopLoading() {
+        spinnerView.hideLoading()
+        loginButton.setTitle("Войти", for: .normal)
+    }
 }
+
+//MARK: - LoginViewInput
+
+extension LoginViewController: LoginViewInput {
+
+}
+
 
 //MARK: - UITextFieldDelegate
 
@@ -151,6 +275,31 @@ extension LoginViewController: UITextFieldDelegate {
             textField.text = format(with: "+X (XXX) XXX XX XX", phone: newString)
             print(newString)
             return false
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.tag == 1 {
+            guard let isEmpty = textField.text?.isEmpty else {
+                return
+            }
+            if isEmpty {
+                loginTextField.endEditingWithEmptyTextField()
+            }
+        } else if textField.tag == 2 {
+            guard let isEmpty = textField.text?.isEmpty else {
+                return
+            }
+            if isEmpty {
+                passwordTextField.endEditingWithEmptyTextField()
+            }
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.tag == 2 {
+            textField.resignFirstResponder()
         }
         return true
     }

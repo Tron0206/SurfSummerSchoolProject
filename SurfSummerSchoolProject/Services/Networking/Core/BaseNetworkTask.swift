@@ -52,8 +52,8 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
             session.dataTask(with: request) { data, response, error in
                 guard let data = data else {
                     if let error = error {
+                        //Нет интернета
                         onResponseWasReceived(.failure(NetworkError.serverError(error: error)))
-                        
                         return
                     }
                     onResponseWasReceived(.failure(NetworkError.noConnectionError))
@@ -65,6 +65,7 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
                     let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
                     onResponseWasReceived(.success(mappedModel))
                 } catch {
+                    //Неправильные данные
                     onResponseWasReceived(.failure(NetworkError.incorrectDataError))
                 }
                 
@@ -74,7 +75,34 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
         } catch {
             onResponseWasReceived(.failure(error))
         }
+    }
         
+        func performAuth(input: AbstractInput, _ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, AuthError>) -> Void) {
+            do {
+                let request = try getRequest(with: input)
+                session.dataTask(with: request) { data, response, error in
+                    guard let data = data else {
+                        if error != nil {
+                            onResponseWasReceived(.failure(.noConnectionError))
+                            return
+                        }
+                        return
+                    }
+
+                    do {
+                        let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
+                        onResponseWasReceived(.success(mappedModel))
+                    } catch {
+                        onResponseWasReceived(.failure(.incorrectDataError))
+                    }
+
+
+
+            }.resume()
+        } catch {
+            onResponseWasReceived(.failure(.serverError(error: error)))
+        }
+
     }
 }
 

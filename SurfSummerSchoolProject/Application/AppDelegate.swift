@@ -26,21 +26,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         runLaunchScreen()
         
         if let tokenContainer = try? tokenStorage.getToken(), !tokenContainer.isExpired {
-            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
-//            runMainFlow()
+            runMainFlow()
         } else {
-//            TODO: - Create login view
-            let tempCredential = AuthRequestModel(phone: "+71234567890", password: "qwerty")
-            AuthService().performLoginRequestAndSaveToken(credentials: tempCredential) { result in
-                switch result {
-                case .success(let json):
-                    print(json)
-                    self.runMainFlow()
-                case .failure:
-                    //TODO: - Handle error
-                    break
-                }
-            }
+////            TODO: - Create login view
+//            let tempCredential = AuthRequestModel(phone: "+71234567890", password: "qwerty")
+//            AuthService().performLoginRequestAndSaveToken(credentials: tempCredential) { result in
+//                switch result {
+//                case .success(let json):
+//                    print(json)
+//                    self.runMainFlow()
+//                case .failure:
+//                    //TODO: - Handle error
+//                    break
+//                }
+//            }
+            window?.rootViewController = UINavigationController(rootViewController: LoginModuleConfigurator().configure())
         }
     }
     

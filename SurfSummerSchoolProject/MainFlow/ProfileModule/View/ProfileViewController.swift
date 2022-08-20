@@ -21,7 +21,6 @@ final class ProfileViewController: UIViewController, ModuleTransitionable {
     
     private lazy var spinnerView: SpinnerView = {
         let spinnerView = SpinnerView()
-        spinnerView.translatesAutoresizingMaskIntoConstraints = false
         spinnerView.isHidden = true
         return spinnerView
     }()
