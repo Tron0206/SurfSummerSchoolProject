@@ -9,5 +9,5 @@ import Foundation
 
 
 protocol LoginViewOutput: AnyObject {
-    func performLogin(phone: String, password: String, _ completion: @escaping (AuthError?) -> Void)
+    func performLogin(phone: String, password: String)
 }

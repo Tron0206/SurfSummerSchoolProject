@@ -20,6 +20,10 @@ final class ProfilePresenter: ProfileViewOutput {
     func showAlertController() {
         router?.showAlertModule(output: self)
     }
+    
+    func getProfile() -> AuthResponseModel? {
+        return ProfileService().getProfile()
+    }
 }
 
 //MARK: - ActionLogoutAcceptModuleOutput

@@ -105,6 +105,8 @@
 		8FBD342A28B0C28E00A534B6 /* LoginModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBD342928B0C28E00A534B6 /* LoginModuleConfigurator.swift */; };
 		8FBD342C28B0D15000A534B6 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBD342B28B0D15000A534B6 /* AuthError.swift */; };
 		8FBD342F28B0D4AB00A534B6 /* WarningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBD342E28B0D4AB00A534B6 /* WarningView.swift */; };
+		8FBD343228B1059F00A534B6 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBD343128B1059F00A534B6 /* ProfileService.swift */; };
+		8FBD343428B112DF00A534B6 /* PhoneMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBD343328B112DF00A534B6 /* PhoneMask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -208,6 +210,8 @@
 		8FBD342928B0C28E00A534B6 /* LoginModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModuleConfigurator.swift; sourceTree = "<group>"; };
 		8FBD342B28B0D15000A534B6 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		8FBD342E28B0D4AB00A534B6 /* WarningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningView.swift; sourceTree = "<group>"; };
+		8FBD343128B1059F00A534B6 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		8FBD343328B112DF00A534B6 /* PhoneMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneMask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -578,6 +582,7 @@
 		8FB6DC35289FFA5900CB5219 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8FBD343528B1138D00A534B6 /* PhoneMask */,
 				8FBD342D28B0D49800A534B6 /* WarningView */,
 				8FBD341E28AFFA4700A534B6 /* CustomTextField */,
 				8F8E327928AF782200BF771F /* SpinnerView */,
@@ -662,9 +667,10 @@
 		8FB6DC5928A102E000CB5219 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8F8E323C28A7AE3800BF771F /* FavoriteService */,
+				8FBD343028B1056C00A534B6 /* ProfileService */,
 				8FB6DCA828A2E6C500CB5219 /* Storage */,
 				8FB6DC5A28A102EF00CB5219 /* Networking */,
-				8F8E323C28A7AE3800BF771F /* FavoriteService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -847,6 +853,22 @@
 			path = WarningView;
 			sourceTree = "<group>";
 		};
+		8FBD343028B1056C00A534B6 /* ProfileService */ = {
+			isa = PBXGroup;
+			children = (
+				8FBD343128B1059F00A534B6 /* ProfileService.swift */,
+			);
+			path = ProfileService;
+			sourceTree = "<group>";
+		};
+		8FBD343528B1138D00A534B6 /* PhoneMask */ = {
+			isa = PBXGroup;
+			children = (
+				8FBD343328B112DF00A534B6 /* PhoneMask.swift */,
+			);
+			path = PhoneMask;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -964,6 +986,7 @@
 				8F8E327B28AF784500BF771F /* SpinnerView.swift in Sources */,
 				8F8E324828AACBC700BF771F /* ActionWithPictureAlertController.swift in Sources */,
 				8F8E324B28AACC1A00BF771F /* ActionWithPictureModuleOutput.swift in Sources */,
+				8FBD343428B112DF00A534B6 /* PhoneMask.swift in Sources */,
 				8FB6DC5828A06A5500CB5219 /* DetailViewOutput.swift in Sources */,
 				8FA51B5228A596F200768EA3 /* SearchViewInput.swift in Sources */,
 				8FB6DC8528A2426A00CB5219 /* FavoriteCell.swift in Sources */,
@@ -971,6 +994,7 @@
 				8FB6DC37289FFA6F00CB5219 /* ModuleTransitionable.swift in Sources */,
 				8F8E326D28AEEB8B00BF771F /* ProfileRouter.swift in Sources */,
 				8F8E326F28AEEBAA00BF771F /* ProfileRouterInput.swift in Sources */,
+				8FBD343228B1059F00A534B6 /* ProfileService.swift in Sources */,
 				8F5FE28F28995CF00005C3E0 /* AppDelegate.swift in Sources */,
 				8F8E326A28AEEAD700BF771F /* ProfileViewOutput.swift in Sources */,
 				8FBD342628B0C1EA00A534B6 /* LoginViewInput.swift in Sources */,

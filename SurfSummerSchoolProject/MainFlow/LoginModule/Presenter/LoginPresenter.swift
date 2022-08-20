@@ -17,16 +17,22 @@ class LoginPresenter: LoginViewOutput {
     
     //MARK: - LoginViewOutput
     
-    func performLogin(phone: String, password: String, _ completion: @escaping (AuthError?) -> Void) {
+    func performLogin(phone: String, password: String) {
         let credentials = AuthRequestModel(phone: phone, password: password)
-        AuthService().performLoginRequestAndSaveToken(credentials: credentials) { result in
+        view?.startLoading()
+        AuthService().performLoginRequestAndSaveToken(credentials: credentials) { [weak self] result in
             switch result {
             case .success(let response):
-                print("success")
-                completion(nil)
+                ProfileService().saveProfile(response)
+                DispatchQueue.main.async { [weak self] in
+                    self?.view?.stopLoading()
+                    self?.view?.showMainFlow()
+                }
             case .failure(let error):
-                print(error.errorDescription)
-                completion(error)
+                DispatchQueue.main.async { [weak self] in
+                    self?.view?.showWarning(errorDescription: error.errorDescription)
+                    self?.view?.stopLoading()
+                }
             }
         }
     }

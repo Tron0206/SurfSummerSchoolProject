@@ -1,0 +1,52 @@
+//
+//  ProfileService.swift
+//  SurfSummerSchoolProject
+//
+//  Created by Zhasur Sidamatov on 20/08/22.
+//
+
+import Foundation
+
+
+struct ProfileService {
+    
+    private enum KeyForUserDefaults {
+        static let profile = "profile"
+    }
+    
+    private let storage = UserDefaults.standard
+        
+    func saveProfile(_ profile: AuthResponseModel) {
+        saveToUserDefaults(profile: profile)
+    }
+    
+    func getProfile() -> AuthResponseModel? {
+        getDataFromUserDefaults()
+    }
+    
+    func remove() {
+        removeDataInUserDefaults()
+    }
+}
+
+//MARK: - Private methods
+
+private extension ProfileService {
+    
+    func saveToUserDefaults(profile: AuthResponseModel) {
+        let data = try? JSONEncoder().encode(profile)
+        storage.set(data, forKey: KeyForUserDefaults.profile)
+    }
+    
+    func getDataFromUserDefaults() -> AuthResponseModel? {
+        guard let dataFromUserDefaults = storage.object(forKey: KeyForUserDefaults.profile) as? Data,
+              let profile = try? JSONDecoder().decode(AuthResponseModel.self, from: dataFromUserDefaults) else {
+            return nil
+        }
+        return profile
+    }
+    
+    func removeDataInUserDefaults() {
+        storage.removeObject(forKey: KeyForUserDefaults.profile)
+    }
+}

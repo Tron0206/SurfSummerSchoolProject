@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct AuthResponseModel: Decodable {
+struct AuthResponseModel: Codable {
     let token: String
     let userInfo: UserInfo
     

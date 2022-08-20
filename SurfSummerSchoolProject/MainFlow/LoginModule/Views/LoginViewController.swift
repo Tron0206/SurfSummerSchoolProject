@@ -81,6 +81,12 @@ final class LoginViewController: UIViewController {
         return spinnerView
     }()
     
+    private let backgroundImageView: UIImageView = {
+        let iv = UIImageView(image: Icon.backgroundLogo)
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -103,6 +109,7 @@ private extension LoginViewController {
         configureLoginButtonConstraint()
         configureWarningViewConstraint()
         configureSpinnerViewConstraint()
+        configureBackgroundImageView()
     }
     
     func showWarningView(errorDescription: String? = nil) {
@@ -120,24 +127,10 @@ private extension LoginViewController {
             return
         }
         if loginWarningLabel.isHidden && passwordWarningLabel.isHidden {
-            let clearPhoneNumber = clearPhoneNumber(phoneNumber: phone)
+            let clearPhoneNumber = PhoneMask().clearPhoneNumber(phoneNumber: phone)
             startLoading()
-            presenter?.performLogin(phone: clearPhoneNumber, password: password) { [weak self] error in
-                guard let self = self else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    if error != nil {
-                        self.showWarningView(errorDescription: error?.errorDescription)
-                    } else {
-                        print("Login")
-                    }
-                    self.stopLoading()
-                }
-            }
+            presenter?.performLogin(phone: clearPhoneNumber, password: password)
         }
-        
-        
     }
     
     @objc func endEditingTextField() {
@@ -206,26 +199,12 @@ private extension LoginViewController {
                                      spinnerView.widthAnchor.constraint(equalToConstant: 24)])
     }
     
-    func format(with mask: String, phone: String) -> String {
-        let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
-        var result = ""
-        var index = numbers.startIndex
-        
-        for ch in mask where index < numbers.endIndex {
-            if ch == "X" {
-                result.append(numbers[index])
-                
-                index = numbers.index(after: index)
-                
-            } else {
-                result.append(ch)
-            }
-        }
-        return result
-    }
-    
-    func clearPhoneNumber(phoneNumber: String) -> String {
-        return phoneNumber.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: " ", with: "")
+    func configureBackgroundImageView() {
+        view.addSubview(backgroundImageView)
+        NSLayoutConstraint.activate([backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                                     backgroundImageView.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10),
+                                     backgroundImageView.widthAnchor.constraint(equalToConstant: 180),
+                                     backgroundImageView.heightAnchor.constraint(equalToConstant: 240)])
     }
     
     func validateTextField()  {
@@ -246,6 +225,18 @@ private extension LoginViewController {
             passwordWarningLabel.isHidden = true
         }
     }
+}
+
+//MARK: - LoginViewInput
+
+extension LoginViewController: LoginViewInput {
+    func showMainFlow() {
+        (UIApplication.shared.delegate as? AppDelegate)?.runMainFlow()
+    }
+    
+    func showWarning(errorDescription: String?) {
+        showWarningView(errorDescription: errorDescription)
+    }
     
     func startLoading() {
         spinnerView.startLoading()
@@ -256,11 +247,6 @@ private extension LoginViewController {
         spinnerView.hideLoading()
         loginButton.setTitle("Войти", for: .normal)
     }
-}
-
-//MARK: - LoginViewInput
-
-extension LoginViewController: LoginViewInput {
 
 }
 
@@ -272,8 +258,7 @@ extension LoginViewController: UITextFieldDelegate {
         if textField.tag == 1 {
             guard let text = textField.text else { return false }
             let newString = (text as NSString).replacingCharacters(in: range, with: string)
-            textField.text = format(with: "+X (XXX) XXX XX XX", phone: newString)
-            print(newString)
+            textField.text = PhoneMask().format(with: "+X (XXX) XXX XX XX", phone: newString)
             return false
         }
         return true

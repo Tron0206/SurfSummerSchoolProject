@@ -81,23 +81,27 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let userInfo = presenter?.getProfile()?.userInfo else {
+            return UITableViewCell()
+        }
         switch indexPath.row {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(HeaderTableViewCell.self)", for: indexPath) as? HeaderTableViewCell else {
                 return UITableViewCell()
             }
+            cell.configure(imageURL: userInfo.avatar, name: "\(userInfo.firstName)\n\(userInfo.lastName)", status: userInfo.about)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(UITableViewCell.self)", for: indexPath)
-            cell.configure(title: "Город", data: "Cанкт-Петербург")
+            cell.configure(title: "Город", data: userInfo.city)
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(UITableViewCell.self)", for: indexPath)
-            cell.configure(title: "Телефон", data: "+ 7 (961) 187 17 44")
+            cell.configure(title: "Телефон", data: PhoneMask().format(with: "+X (XXX) XXX XX XX", phone: userInfo.phone))
             return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(UITableViewCell.self)", for: indexPath)
-            cell.configure(title: "Почта", data: "alexandra@surfstudio.ru")
+            cell.configure(title: "Почта", data: userInfo.email)
             return cell
         default:
             return UITableViewCell()

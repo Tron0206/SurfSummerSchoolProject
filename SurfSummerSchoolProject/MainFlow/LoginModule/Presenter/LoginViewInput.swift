@@ -9,5 +9,8 @@ import Foundation
 
 
 protocol LoginViewInput: AnyObject {
-
+    func showWarning(errorDescription: String?)
+    func showMainFlow()
+    func startLoading()
+    func stopLoading()
 }

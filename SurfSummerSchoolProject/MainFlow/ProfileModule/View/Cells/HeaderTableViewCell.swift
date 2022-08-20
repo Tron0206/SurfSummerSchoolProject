@@ -20,6 +20,12 @@ final class HeaderTableViewCell: UITableViewCell {
         configureAppearance()
     }
     
+    func configure(imageURL: String, name: String, status: String) {
+        profileImageView.loadImage(from: imageURL)
+        nameLabel.text = name
+        statusLabel.text = status
+    }
+    
 }
 
 //MARK: - Private methods
@@ -36,7 +42,7 @@ private extension HeaderTableViewCell {
     func configureProfileImageView() {
         profileImageView.layer.cornerRadius = 12
         profileImageView.clipsToBounds = true
-        profileImageView.backgroundColor = .blue
+        profileImageView.contentMode = .scaleAspectFill
     }
     
     func configureNameLabel() {
