@@ -9,6 +9,9 @@ import Foundation
 
 
 protocol ProfileViewInput: AnyObject {
+    var isWarningViewHidden: Bool { get }
     func startLoading()
     func stopLoading()
+    func showWarningView(errorDescription: String)
+    func hideWarningView()
 }

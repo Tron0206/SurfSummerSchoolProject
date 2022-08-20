@@ -70,7 +70,6 @@ final class LoginViewController: UIViewController {
     
     private lazy var warningView: WarningView = {
         let view = WarningView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = 0
         return view
     }()
@@ -117,11 +116,19 @@ private extension LoginViewController {
             self.warningView.alpha = 1
         }
         warningView.configure(errorDescription: errorDescription)
-        title = ""
+        navigationItem.titleView = UIView()
+    }
+    
+    func hideWarningView() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn) {
+            self.warningView.alpha = 0
+        }
+        navigationItem.titleView = nil
     }
     
     @objc func tappedLoginButton() {
-        validateTextField()
+        self.validateTextField()
+        
         guard let phone = loginTextField.text,
               let password = passwordTextField.text else {
             return
@@ -217,11 +224,14 @@ private extension LoginViewController {
             passwordTextField.incorrectFillingTextField()
             passwordWarningLabel.isHidden = false
         }
-        
-        if !(loginTextField.isTextFieldEmpty() && passwordTextField.isTextFieldEmpty()) {
+
+        if !(loginTextField.isTextFieldEmpty()) {
             loginTextField.correctFillingTextField()
-            passwordTextField.correctFillingTextField()
             loginWarningLabel.isHidden = true
+        }
+        
+        if !(passwordTextField.isTextFieldEmpty()) {
+            passwordTextField.correctFillingTextField()
             passwordWarningLabel.isHidden = true
         }
     }
@@ -236,6 +246,10 @@ extension LoginViewController: LoginViewInput {
     
     func showWarning(errorDescription: String?) {
         showWarningView(errorDescription: errorDescription)
+    }
+    
+    func hideWarning() {
+        hideWarningView()
     }
     
     func startLoading() {

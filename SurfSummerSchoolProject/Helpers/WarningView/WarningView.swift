@@ -26,6 +26,7 @@ class WarningView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        translatesAutoresizingMaskIntoConstraints = false
         configureAppearance()
     }
     

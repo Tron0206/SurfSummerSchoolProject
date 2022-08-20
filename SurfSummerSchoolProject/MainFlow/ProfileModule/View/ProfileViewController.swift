@@ -25,6 +25,12 @@ final class ProfileViewController: UIViewController, ModuleTransitionable {
         return spinnerView
     }()
     
+    private lazy var warningView: WarningView = {
+        let view = WarningView()
+        view.alpha = 0
+        return view
+    }()
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -33,7 +39,6 @@ final class ProfileViewController: UIViewController, ModuleTransitionable {
     }
     
     //MARK: - Actions
-    
     
     @IBAction func tappedLogoutButton(_ sender: Any) {
         presenter?.showAlertController()
@@ -47,6 +52,7 @@ private extension ProfileViewController {
         configureTableView()
         configureLogoutButton()
         configureSpinnerView()
+        configureWarningViewConstraint()
     }
     
     func configureTableView() {
@@ -70,6 +76,18 @@ private extension ProfileViewController {
                                      spinnerView.centerYAnchor.constraint(equalTo: logoutButton.centerYAnchor),
                                      spinnerView.heightAnchor.constraint(equalToConstant: 24),
                                      spinnerView.widthAnchor.constraint(equalToConstant: 24)])
+    }
+    
+    func configureWarningViewConstraint() {
+        view.addSubview(warningView)
+        NSLayoutConstraint.activate([warningView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                                     warningView.topAnchor.constraint(equalTo: view.topAnchor),
+                                     warningView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                                     warningView.heightAnchor.constraint(equalToConstant: 93)])
+    }
+    
+    func statusBarEnterDarkBackground() {
+        self.navigationController?.navigationBar.barStyle = .black
     }
 }
 
@@ -113,6 +131,9 @@ extension ProfileViewController: UITableViewDataSource {
 
 extension ProfileViewController: ProfileViewInput {
 
+    var isWarningViewHidden: Bool {
+        return warningView.alpha == 0 ? true : false
+    }
     
     func startLoading() {
         spinnerView.startLoading()
@@ -122,5 +143,20 @@ extension ProfileViewController: ProfileViewInput {
     func stopLoading() {
         spinnerView.hideLoading()
         logoutButton.titleLabel?.isHidden = false
+    }
+    
+    func showWarningView(errorDescription: String) {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn) {
+            self.warningView.alpha = 1
+        }
+        warningView.configure(errorDescription: errorDescription)
+        navigationItem.titleView = UIView()
+    }
+    
+    func hideWarningView() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn) {
+            self.warningView.alpha = 0
+        }
+        navigationItem.titleView = nil
     }
 }

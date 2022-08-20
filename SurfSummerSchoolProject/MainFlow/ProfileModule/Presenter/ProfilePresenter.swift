@@ -14,6 +14,7 @@ final class ProfilePresenter: ProfileViewOutput {
     
     weak var view: ProfileViewInput?
     var router: ProfileRouterInput?
+    var logoutService: LogoutService = .init()
     
     //MARK: - ProfileViewOutput
     
@@ -31,10 +32,19 @@ final class ProfilePresenter: ProfileViewOutput {
 extension ProfilePresenter: ActionLogoutAcceptModuleOutput {
     func logout() {
         view?.startLoading()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            print("Logout")
-            self?.view?.stopLoading()
-        }
-        
+        logoutService.performLogoutRequestAndRemoveToken({ result in
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case .success(_):
+                    print("Hello")
+                    self?.view?.hideWarningView()
+                    self?.view?.stopLoading()
+                    
+                case .failure(let error):
+                    self?.view?.showWarningView(errorDescription: error.localizedDescription)
+                    self?.view?.stopLoading()
+                }
+            }
+        })
     }
 }

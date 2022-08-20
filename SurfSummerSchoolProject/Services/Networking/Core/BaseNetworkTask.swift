@@ -102,13 +102,43 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
         } catch {
             onResponseWasReceived(.failure(.serverError(error: error)))
         }
-
+    }
+    
+    func performLogoutRequest(input: AbstractInput, _ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, LogoutError>) -> Void) {
+        do {
+            let request = try getRequest(with: input)
+            session.dataTask(with: request) { data, response, error in
+                guard let data = data else {
+                    if error != nil {
+                        onResponseWasReceived(.failure(.notLogout))
+                        return
+                    }
+                    return
+                }
+                
+                do {
+                    let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
+                    onResponseWasReceived(.success(mappedModel))
+                } catch {
+                    onResponseWasReceived(.failure(.serverError(error: error)))
+                }
+                
+                
+                
+            }.resume()
+        } catch {
+            onResponseWasReceived(.failure(.serverError(error: error)))
+        }
     }
 }
 
 extension BaseNetworkTask where Input == EmptyModel {
     func performRequest(_ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, Error>) -> Void) {
         performRequest(input: EmptyModel(), onResponseWasReceived)
+    }
+    
+    func performLogout(_ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, LogoutError>) -> Void) {
+        performLogoutRequest(input: EmptyModel(), onResponseWasReceived)
     }
 }
 

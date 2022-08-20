@@ -107,6 +107,8 @@
 		8FBD343228B1059F00A534B6 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBD343128B1059F00A534B6 /* ProfileService.swift */; };
 		8FBD343428B112DF00A534B6 /* PhoneMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBD343328B112DF00A534B6 /* PhoneMask.swift */; };
 		8FBD343728B127AD00A534B6 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8FBD343628B127AD00A534B6 /* .gitignore */; };
+		8FBD343A28B1294A00A534B6 /* LogoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBD343928B1294A00A534B6 /* LogoutService.swift */; };
+		8FBD343C28B141DE00A534B6 /* LogoutError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBD343B28B141DE00A534B6 /* LogoutError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -212,6 +214,8 @@
 		8FBD343128B1059F00A534B6 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		8FBD343328B112DF00A534B6 /* PhoneMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneMask.swift; sourceTree = "<group>"; };
 		8FBD343628B127AD00A534B6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8FBD343928B1294A00A534B6 /* LogoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutService.swift; sourceTree = "<group>"; };
+		8FBD343B28B141DE00A534B6 /* LogoutError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -503,6 +507,7 @@
 			children = (
 				8FA51B4B28A433E600768EA3 /* NetworkError.swift */,
 				8FBD342B28B0D15000A534B6 /* AuthError.swift */,
+				8FBD343B28B141DE00A534B6 /* LogoutError.swift */,
 			);
 			path = NetworkError;
 			sourceTree = "<group>";
@@ -678,6 +683,7 @@
 		8FB6DC5A28A102EF00CB5219 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				8FBD343828B1291D00A534B6 /* LogoutService */,
 				8FA51B4A28A433D800768EA3 /* NetworkError */,
 				8FB6DC9F28A2E39C00CB5219 /* PicturesService */,
 				8FB6DC9828A2D50D00CB5219 /* AuthService */,
@@ -869,6 +875,14 @@
 			path = PhoneMask;
 			sourceTree = "<group>";
 		};
+		8FBD343828B1291D00A534B6 /* LogoutService */ = {
+			isa = PBXGroup;
+			children = (
+				8FBD343928B1294A00A534B6 /* LogoutService.swift */,
+			);
+			path = LogoutService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1000,6 +1014,7 @@
 				8FBD342628B0C1EA00A534B6 /* LoginViewInput.swift in Sources */,
 				8FB6DCAA28A2E6D700CB5219 /* TokenStorage.swift in Sources */,
 				8F8E327828AEFE6D00BF771F /* ActionLogoutAcceptModuleOutput.swift in Sources */,
+				8FBD343C28B141DE00A534B6 /* LogoutError.swift in Sources */,
 				8FB6DCAE28A2E74200CB5219 /* BaseTokenStorage.swift in Sources */,
 				8FB6DC5D28A1030A00CB5219 /* NetworkTask.swift in Sources */,
 				8FB6DC27289FEC4500CB5219 /* MainPresenter.swift in Sources */,
@@ -1023,6 +1038,7 @@
 				8F5FE2B6289A72D50005C3E0 /* TabBarModel.swift in Sources */,
 				8FB6DC7E28A2413500CB5219 /* FavoriteViewController.swift in Sources */,
 				8F8E323828A6E4F500BF771F /* ItemStorage.swift in Sources */,
+				8FBD343A28B1294A00A534B6 /* LogoutService.swift in Sources */,
 				8FB6DC7428A165B100CB5219 /* UITableView+Extension.swift in Sources */,
 				8FB6DCA328A2E3DC00CB5219 /* EmptyModel.swift in Sources */,
 				8FBD341928AFC56700A534B6 /* LoginViewController.swift in Sources */,

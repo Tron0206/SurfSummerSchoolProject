@@ -10,6 +10,7 @@ import Foundation
 
 protocol LoginViewInput: AnyObject {
     func showWarning(errorDescription: String?)
+    func hideWarning()
     func showMainFlow()
     func startLoading()
     func stopLoading()
