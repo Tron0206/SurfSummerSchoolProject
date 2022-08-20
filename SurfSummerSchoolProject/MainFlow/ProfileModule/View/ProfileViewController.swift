@@ -16,7 +16,9 @@ final class ProfileViewController: UIViewController, ModuleTransitionable {
     //MARK: - Views
     
     @IBOutlet weak private var tableView: UITableView!
+    
     @IBOutlet weak var logoutButton: UIButton!
+    
     private lazy var spinnerView: SpinnerView = {
         let spinnerView = SpinnerView()
         spinnerView.translatesAutoresizingMaskIntoConstraints = false

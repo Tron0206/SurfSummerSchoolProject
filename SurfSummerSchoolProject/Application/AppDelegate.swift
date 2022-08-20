@@ -26,9 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         runLaunchScreen()
         
         if let tokenContainer = try? tokenStorage.getToken(), !tokenContainer.isExpired {
-            runMainFlow()
+            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+//            runMainFlow()
         } else {
-            //TODO: - Create login view
+//            TODO: - Create login view
             let tempCredential = AuthRequestModel(phone: "+71234567890", password: "qwerty")
             AuthService().performLoginRequestAndSaveToken(credentials: tempCredential) { result in
                 switch result {

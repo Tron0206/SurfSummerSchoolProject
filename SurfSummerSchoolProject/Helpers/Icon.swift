@@ -14,4 +14,6 @@ enum Icon {
     static let noResult = UIImage(named: "noResult")?.withRenderingMode(.alwaysTemplate)
     static let backArrow = UIImage(named: "BackImage")
     static let loader = UIImage(named: "loader")
+    static let securityMode = UIImage(named: "eye-off-line")?.withRenderingMode(.alwaysTemplate)
+    static let noSecurityMode = UIImage(named: "eye-line")?.withRenderingMode(.alwaysTemplate)
 }
