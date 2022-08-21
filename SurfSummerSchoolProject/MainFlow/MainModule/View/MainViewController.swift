@@ -81,15 +81,11 @@ final class MainViewController: UIViewController, ModuleTransitionable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        collectionView.alpha = 0
         presenter?.loadPosts()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.collectionView.alpha = 1
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        collectionView.alpha = 0
     }
 }
 
