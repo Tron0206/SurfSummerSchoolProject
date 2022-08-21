@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class SpinnerView: UIView {
+final class SpinnerView: UIView {
     
     //MARK: - Views
     

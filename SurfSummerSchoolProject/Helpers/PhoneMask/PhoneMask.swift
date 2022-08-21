@@ -9,6 +9,7 @@ import Foundation
 
 
 struct PhoneMask {
+    
     func format(with mask: String, phone: String) -> String {
         let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         var result = ""

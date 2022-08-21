@@ -18,4 +18,7 @@ enum Icon {
     static let noSecurityMode = UIImage(named: "eye-line")?.withRenderingMode(.alwaysTemplate)
     static let backgroundLogo = UIImage(named: "backgroundLogo")?.withRenderingMode(.alwaysTemplate)
     static let search = UIImage(named: "SearchIcon")
+    static let main = UIImage(named: "MainTab")
+    static let favorite = UIImage(named: "FavoriteTab")
+    static let profile = UIImage(named: "ProfileTab")
 }

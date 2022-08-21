@@ -91,42 +91,6 @@ private extension ProfileViewController {
     }
 }
 
-//MARK: - UITableViewDataSource
-
-extension ProfileViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let userInfo = presenter?.getProfile()?.userInfo else {
-            return UITableViewCell()
-        }
-        switch indexPath.row {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(HeaderTableViewCell.self)", for: indexPath) as? HeaderTableViewCell else {
-                return UITableViewCell()
-            }
-            cell.configure(imageURL: userInfo.avatar, name: "\(userInfo.firstName)\n\(userInfo.lastName)", status: userInfo.about)
-            return cell
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "\(UITableViewCell.self)", for: indexPath)
-            cell.configure(title: "Город", data: userInfo.city)
-            return cell
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "\(UITableViewCell.self)", for: indexPath)
-            cell.configure(title: "Телефон", data: PhoneMask().format(with: "+X (XXX) XXX XX XX", phone: userInfo.phone))
-            return cell
-        case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "\(UITableViewCell.self)", for: indexPath)
-            cell.configure(title: "Почта", data: userInfo.email)
-            return cell
-        default:
-            return UITableViewCell()
-        }
-    }
-}
-
 //MARK: - ProfileViewInput
 
 extension ProfileViewController: ProfileViewInput {
@@ -162,5 +126,41 @@ extension ProfileViewController: ProfileViewInput {
     
     func showLoginFlow() {
         (UIApplication.shared.delegate as? AppDelegate)?.runLoginFlow()
+    }
+}
+
+//MARK: - UITableViewDataSource
+
+extension ProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let userInfo = presenter?.getProfile()?.userInfo else {
+            return UITableViewCell()
+        }
+        switch indexPath.row {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(HeaderTableViewCell.self)", for: indexPath) as? HeaderTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configure(imageURL: userInfo.avatar, name: "\(userInfo.firstName)\n\(userInfo.lastName)", status: userInfo.about)
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(UITableViewCell.self)", for: indexPath)
+            cell.configure(title: "Город", data: userInfo.city)
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(UITableViewCell.self)", for: indexPath)
+            cell.configure(title: "Телефон", data: PhoneMask().format(with: "+X (XXX) XXX XX XX", phone: userInfo.phone))
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(UITableViewCell.self)", for: indexPath)
+            cell.configure(title: "Почта", data: userInfo.email)
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
 }

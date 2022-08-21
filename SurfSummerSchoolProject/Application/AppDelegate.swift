@@ -39,7 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func runLoginFlow() {
-        window?.rootViewController = UINavigationController(rootViewController: LoginModuleConfigurator().configure())
+        DispatchQueue.main.async {
+            self.window?.rootViewController = UINavigationController(rootViewController: LoginModuleConfigurator().configure())
+        }
     }
     
     func runLaunchScreen() {

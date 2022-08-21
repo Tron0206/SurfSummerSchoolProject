@@ -8,7 +8,7 @@
 import Foundation
 
 
-class LoginPresenter: LoginViewOutput {
+final class LoginPresenter: LoginViewOutput {
     
     //MARK: - Properties
     

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class WarningView: UIView {
+final class WarningView: UIView {
     
     //MARK: - Views
     

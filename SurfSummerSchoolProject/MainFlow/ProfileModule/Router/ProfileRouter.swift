@@ -9,8 +9,12 @@ import Foundation
 
 
 final class ProfileRouter: ProfileRouterInput {
-        
+    
+    //MARK: - Properties
+    
     weak var view: ModuleTransitionable?
+    
+    //MARK: - ProfileRouterInput
     
     func showAlertModule(output: ActionLogoutAcceptModuleOutput) {
         let alertController = ActionLogoutAcceptAlertController(title: "Внимание", message: "Вы точно хотите\nвыйти из приложения?", preferredStyle: .alert)

@@ -15,10 +15,14 @@ final class HeaderTableViewCell: UITableViewCell {
     @IBOutlet weak private var nameLabel: UILabel!
     @IBOutlet weak private var statusLabel: UILabel!
     
+    //MARK: - Initialization
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configureAppearance()
     }
+    
+    //MARK: - Internal methods
     
     func configure(imageURL: String, name: String, status: String) {
         profileImageView.loadImage(from: imageURL)
@@ -47,12 +51,10 @@ private extension HeaderTableViewCell {
     
     func configureNameLabel() {
         nameLabel.font = .systemFont(ofSize: 18, weight: .medium)
-        nameLabel.text = "Александра\nНовикова"
     }
     
     func configureStatusLabel() {
         statusLabel.font = .systemFont(ofSize: 12)
         statusLabel.textColor = .gray
-        statusLabel.text = "«Светлое будущее живет в вечности»"
     }
 }
