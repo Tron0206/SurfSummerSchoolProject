@@ -36,7 +36,7 @@ private extension DetailDescriptionCell {
     }
     
     func configureDescriptionLabel() {
-        descriptionLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        descriptionLabel.font = .systemFont(ofSize: 12, weight: .light)
         descriptionLabel.numberOfLines = 0
     }
 }
