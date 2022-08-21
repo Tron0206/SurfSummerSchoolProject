@@ -99,7 +99,7 @@ private extension FavoriteCell {
     }
     
     func configureDescriptionLabel() {
-        descriptionLabel.font = .systemFont(ofSize: 12)
+        descriptionLabel.font = .systemFont(ofSize: 12, weight: .light)
         descriptionLabel.numberOfLines = 1
     }
 }
