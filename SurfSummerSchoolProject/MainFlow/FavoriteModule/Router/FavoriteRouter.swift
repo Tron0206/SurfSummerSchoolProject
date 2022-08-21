@@ -9,7 +9,12 @@ import Foundation
 
 
 final class FavoriteRouter: FavoriteRouterInput {
+    
+    //MARK: - Properties
+    
     weak var view: ModuleTransitionable?
+    
+    //MARK: - FavoriteRouterInput
     
     func showAlerModule(output: ActionWithPictureModuleOutput, item: ItemModel) {
         let alertController = ActionWithPictureAlertController(title: "Внимание",

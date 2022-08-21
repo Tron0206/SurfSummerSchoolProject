@@ -9,11 +9,13 @@ import UIKit
 
 final class MainItemCell: UICollectionViewCell {
     
-    //MARK: - Constants
+    //MARK: - Properties
     
-    private enum Constants {
-        static let heartImage = UIImage(named: "favorite")
-        static let filledHeartImage = UIImage(named: "favorite-fill")
+    var isFavorite: Bool = false {
+        didSet {
+            let image = isFavorite ? Constants.filledHeartImage : Constants.heartImage
+            favoriteButton.setImage(image, for: .normal)
+        }
     }
     
     //MARK: - Events
@@ -25,27 +27,12 @@ final class MainItemCell: UICollectionViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var favoriteButton: UIButton!
-    
-    //MARK: - Properties
-    
-    var isFavorite: Bool = false {
-        didSet {
-            let image = isFavorite ? Constants.filledHeartImage : Constants.heartImage
-            favoriteButton.setImage(image, for: .normal)
-        }
-    }
         
     //MARK: - UICollectionViewCell
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configureAppearance()
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        titleLabel.text = nil
-        imageView.image = nil
     }
     
     override var isHighlighted: Bool {
@@ -74,6 +61,7 @@ final class MainItemCell: UICollectionViewCell {
         isFavorite = item.isFavorite
         self.completionHandler = completionHandler
     }
+
 }
 
 //MARK: - Private methods
@@ -100,3 +88,11 @@ private extension MainItemCell {
     }
 }
 
+//MARK: - Private enum
+
+private extension MainItemCell {
+    enum Constants {
+        static let heartImage = UIImage(named: "favorite")
+        static let filledHeartImage = UIImage(named: "favorite-fill")
+    }
+}

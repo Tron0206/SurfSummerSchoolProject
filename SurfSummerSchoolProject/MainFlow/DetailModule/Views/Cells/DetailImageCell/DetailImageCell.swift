@@ -9,17 +9,21 @@ import UIKit
 
 final class DetailImageCell: UITableViewCell {
 
-    @IBOutlet weak var itemImageView: UIImageView!
+    //MARK: - Views
     
-    var image: String = "" {
-        didSet {
-            itemImageView.loadImage(from: image)
-        }
-    }
+    @IBOutlet weak var itemImageView: UIImageView!
+
+    //MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configureAppearance()
+    }
+    
+    //MARK: - Internal methods
+    
+    func configure(imageStringURL: String) {
+        itemImageView.loadImage(from: imageStringURL)
     }
 }
 

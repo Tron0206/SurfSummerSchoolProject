@@ -15,7 +15,7 @@ struct TabBarConfigurator {
     
     private var allTab: [TabBarModel] = [.main, .favorite, .profile]
     
-    //MARK: - Internal func
+    //MARK: - Internal methods
     
     func configure() -> UITabBarController {
         return getTabBarController()

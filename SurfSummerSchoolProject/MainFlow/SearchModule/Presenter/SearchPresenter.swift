@@ -18,6 +18,8 @@ final class SearchPresenter: SearchViewOutput {
     var itemStorage = ItemStorage.shared
     var filteredItems = [ItemModel]()
     
+    //MARK: - SearchViewOutput
+    
     func searchPictures(_ searchText: String) {
         filteredItems = []
         filteredItems = itemStorage.items.filter{ $0.title.lowercased().contains(searchText.lowercased())}
@@ -46,5 +48,8 @@ final class SearchPresenter: SearchViewOutput {
         let currentItem = filteredItems[indexPath.item]
         favoriteService.changeStatus(id: currentItem.id, isFavorite: isFavorite)
     }
-
+    
+    func getItem(for indexPath: IndexPath) -> ItemModel {
+        return filteredItems[indexPath.item]
+    }
 }

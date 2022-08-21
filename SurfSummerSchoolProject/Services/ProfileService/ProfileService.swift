@@ -10,12 +10,19 @@ import Foundation
 
 struct ProfileService {
     
-    private enum KeyForUserDefaults {
-        static let profile = "profile"
-    }
+    //MARK: - Properties
     
     private let storage = UserDefaults.standard
-        
+    
+    //MARK: - Internal methods
+    
+    func getIDProfile() -> String? {
+        guard let profile = getProfile() else {
+            return nil
+        }
+        return profile.userInfo.id
+    }
+    
     func saveProfile(_ profile: AuthResponseModel) {
         saveToUserDefaults(profile: profile)
     }
@@ -48,5 +55,13 @@ private extension ProfileService {
     
     func removeDataInUserDefaults() {
         storage.removeObject(forKey: KeyForUserDefaults.profile)
+    }
+}
+
+//MARK: - Private enum
+
+private extension ProfileService {
+    enum KeyForUserDefaults {
+        static let profile = "profile"
     }
 }

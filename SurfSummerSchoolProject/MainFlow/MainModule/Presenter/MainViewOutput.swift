@@ -14,7 +14,9 @@ protocol MainViewOutput: AnyObject {
     var favoriteService: FavoriteService { get }
     func showDetailViewController(for indexPath: IndexPath)
     func showSearchViewController()
-    func loadPosts(_ competion: @escaping () -> Void)
+    func loadPosts()
+    func refreshPosts(_ completion: @escaping () -> Void)
     func changeFavoriteStatus(for indexPath: IndexPath, isFavorite: Bool)
     func reloadCollectionView()
+    func getItem(for indexPath: IndexPath) -> ItemModel
 }

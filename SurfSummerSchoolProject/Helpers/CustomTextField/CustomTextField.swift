@@ -11,6 +11,8 @@ import UIKit
 
 final class CustomTextField: UIView {
     
+    //MARK: - Properties
+    
     var text: String? {
         return textField.text
     }
@@ -22,7 +24,6 @@ final class CustomTextField: UIView {
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.font = .systemFont(ofSize: 16, weight: .medium)
         tf.isHidden = true
-        
         return tf
     }()
     
@@ -32,7 +33,6 @@ final class CustomTextField: UIView {
         label.font = .systemFont(ofSize: 12, weight: .regular)
         label.textColor = Color.titleForTextField
         label.isHidden = true
-        
         return label
     }()
     
@@ -40,7 +40,6 @@ final class CustomTextField: UIView {
         let line = UIView()
         line.translatesAutoresizingMaskIntoConstraints = false
         line.backgroundColor = Color.bottomLine
-        
         return line
     }()
     
@@ -53,7 +52,6 @@ final class CustomTextField: UIView {
         button.contentHorizontalAlignment = .left
         button.contentVerticalAlignment = .center
         button.insetsLayoutMarginsFromSafeArea = true
-        
         return button
     }()
     
@@ -137,7 +135,7 @@ private extension CustomTextField {
     func configureView() {
         layer.cornerRadius = 10
         layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        backgroundColor = UIColor(red: 251 / 255, green: 251 / 255, blue: 251 / 255, alpha: 1)
+        backgroundColor = Color.textFieldBackground
     }
     
     func configureTextField() {

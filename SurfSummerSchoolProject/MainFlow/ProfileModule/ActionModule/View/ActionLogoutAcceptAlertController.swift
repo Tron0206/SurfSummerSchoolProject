@@ -15,7 +15,7 @@ final class ActionLogoutAcceptAlertController: UIAlertController {
     
     private var output: ActionLogoutAcceptModuleOutput!
     
-    //MARK: - UIAlertController
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

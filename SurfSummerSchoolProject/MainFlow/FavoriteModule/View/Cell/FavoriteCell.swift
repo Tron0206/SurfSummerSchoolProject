@@ -95,7 +95,7 @@ private extension FavoriteCell {
     
     func configureDateLabel() {
         dateLabel.font = .systemFont(ofSize: 10)
-        dateLabel.textColor = UIColor(red: 179 / 255, green: 179 / 255, blue: 179 / 255, alpha: 1)
+        dateLabel.textColor = Color.date
     }
     
     func configureDescriptionLabel() {

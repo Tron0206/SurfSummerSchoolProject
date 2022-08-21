@@ -8,7 +8,7 @@
 import Foundation
 
 
-final class MainPresenter {
+final class MainPresenter: MainViewOutput {
     
     //MARK: - Properties
     
@@ -17,12 +17,8 @@ final class MainPresenter {
     let pictureService: PicturesService = .init()
     let favoriteService = FavoriteService.shared
     var itemStorage = ItemStorage.shared
-    var errorDescription: String?    
-}
-
-//MARK: - MainViewOutput
-
-extension MainPresenter: MainViewOutput {
+    
+    //MARK: - MainViewOutput
     
     func reloadCollectionView() {
         view?.reload()
@@ -32,8 +28,12 @@ extension MainPresenter: MainViewOutput {
         router?.showDetailModule(item: itemStorage.items[indexPath.item])
     }
     
-    func loadPosts(_ completion: @escaping () -> Void) {
-        getPictures(completion)
+    func loadPosts() {
+        getPictures()
+    }
+    
+    func refreshPosts(_ completion: @escaping () -> Void) {
+        pullToRefresh(completion)
     }
     
     func showSearchViewController() {
@@ -45,13 +45,18 @@ extension MainPresenter: MainViewOutput {
         itemStorage.items[indexPath.item].isFavorite = isFavorite
         favoriteService.changeStatus(id: currentItem.id, isFavorite: isFavorite)
     }
+    
+    func getItem(for indexPath: IndexPath) -> ItemModel {
+        return itemStorage.items[indexPath.item]
+    }
 }
 
 //MARK: - Private methods
 
 private extension MainPresenter {
-
-    func getPictures(_ completionHandler: @escaping () -> Void) {
+    
+    func getPictures() {
+        view?.startLoadAnimating()
         pictureService.loadPictures { [weak self] result in
             guard let self = self else {
                 return
@@ -62,13 +67,37 @@ private extension MainPresenter {
                     self.itemStorage.items = pictures.map({ picture in
                         return ItemModel(pictureResponse: picture, isFavorite: self.favoriteService.isFavoriteItem(id: picture.id))
                     })
-                    completionHandler()
+                    if self.itemStorage.items.isEmpty {
+                        self.view?.showHelperView()
+                        self.view?.stopLoadAnimating()
+                        self.view?.reload()
+                    } else {
+                        self.view?.hideHelperView()
+                        self.reloadCollectionView()
+                        self.view?.stopLoadAnimating()
+                    }
                 }
-                
             case .failure(let error):
-                self.errorDescription = error.localizedDescription
-                DispatchQueue.main.async {
+                self.view?.showWarning(error: error.localizedDescription)
+                self.view?.stopLoadAnimating()
+            }
+        }
+    }
+    
+    func pullToRefresh(_ completionHandler: @escaping () -> Void) {
+        pictureService.pullToRefresh { result in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                switch result {
+                case .success(let pictures):
+                    self.itemStorage.items = pictures.map({ picture in
+                        return ItemModel(pictureResponse: picture, isFavorite: self.favoriteService.isFavoriteItem(id: picture.id))
+                    })
                     completionHandler()
+                case .failure(let error):
+                    self.view?.showWarning(error: error.errorDescription)
                 }
             }
         }

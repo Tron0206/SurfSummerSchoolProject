@@ -9,17 +9,6 @@ import UIKit
 
 final class SearchViewController: UIViewController, ModuleTransitionable {
     
-    //MARK: - Constants
-    
-    private enum Constants {
-        static let itemsPerRow: CGFloat = 2
-        static let horizontalInset: CGFloat = 16
-        static let verticalInset: CGFloat = 8
-        static let minimumLineSpacing: CGFloat = 16
-        static let minimumInteritemSpacing: CGFloat = 7
-        static let heightToWidthRatio: CGFloat = 1.4642
-    }
-    
     //MARK: - Properties
     
     var presenter: SearchViewOutput?
@@ -141,9 +130,9 @@ extension SearchViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainItemCell.self)", for: indexPath) as? MainItemCell else {
-            fatalError("Cell not found")
+            return UICollectionViewCell()
         }
-        cell.configure(item: presenter?.filteredItems[indexPath.item]) { [weak self] isFavorite in
+        cell.configure(item: presenter?.getItem(for: indexPath)) { [weak self] isFavorite in
             guard let self = self else {
                 return
             }
@@ -204,5 +193,18 @@ extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchBar.endEditing(true)
         return true
+    }
+}
+
+//MARK: - Private enum
+
+private extension SearchViewController {
+    private enum Constants {
+        static let itemsPerRow: CGFloat = 2
+        static let horizontalInset: CGFloat = 16
+        static let verticalInset: CGFloat = 8
+        static let minimumLineSpacing: CGFloat = 16
+        static let minimumInteritemSpacing: CGFloat = 7
+        static let heightToWidthRatio: CGFloat = 1.4642
     }
 }

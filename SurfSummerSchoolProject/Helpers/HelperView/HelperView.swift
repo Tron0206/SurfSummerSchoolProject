@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class HelperView: UIView {
+final class HelperView: UIView {
     
     //MARK: - Views
     
@@ -30,7 +30,7 @@ class HelperView: UIView {
         return label
     }()
     
-    //MARK: - Init
+    //MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)

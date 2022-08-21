@@ -15,6 +15,8 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
     typealias Input = AbstractInput
     typealias Output = AbstractOutput
     
+    //MARK: - Properties
+    
     var baseURL: URL? {
         return URL(string: "https://pictures.chronicker.fun/api")
     }
@@ -25,7 +27,6 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
     var urlCache: URLCache {
         return URLCache.shared
     }
-    
     var tokenStorage: TokenStorage {
         return BaseTokenStorage()
     }
@@ -38,7 +39,7 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
         self.method = method
     }
     
-    //MARK: - NetworkTask
+    //MARK: - Internal methods
 
     func performRequest(input: AbstractInput, _ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, Error>) -> Void) {
         do {
@@ -48,67 +49,109 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
                 onResponseWasReceived(.success(mappedModel))
                 return
             }
-            
             session.dataTask(with: request) { data, response, error in
                 guard let data = data else {
                     if let error = error {
-                        //Нет интернета
                         onResponseWasReceived(.failure(NetworkError.serverError(error: error)))
                         return
                     }
                     onResponseWasReceived(.failure(NetworkError.noConnectionError))
                     return
                 }
-                
                 do {
-                    
                     let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
                     onResponseWasReceived(.success(mappedModel))
                 } catch {
-                    //Неправильные данные
                     onResponseWasReceived(.failure(NetworkError.incorrectDataError))
                 }
-                
-
-                
             }.resume()
         } catch {
             onResponseWasReceived(.failure(error))
         }
     }
         
-        func performAuth(input: AbstractInput, _ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, AuthError>) -> Void) {
-            do {
-                let request = try getRequest(with: input)
-                session.dataTask(with: request) { data, response, error in
-                    guard let data = data else {
-                        if error != nil {
-                            onResponseWasReceived(.failure(.noConnectionError))
-                            return
-                        }
+    func performAuth(input: AbstractInput, _ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, AuthError>) -> Void) {
+        do {
+            let request = try getRequest(with: input)
+            session.dataTask(with: request) { data, response, error in
+                guard let data = data else {
+                    if error != nil {
+                        onResponseWasReceived(.failure(.noConnectionError))
                         return
                     }
-
-                    do {
-                        let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
-                        onResponseWasReceived(.success(mappedModel))
-                    } catch {
-                        onResponseWasReceived(.failure(.incorrectDataError))
-                    }
-
-
-
+                    return
+                }
+                do {
+                    let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
+                    onResponseWasReceived(.success(mappedModel))
+                } catch {
+                    onResponseWasReceived(.failure(.incorrectDataError))
+                }
+  
             }.resume()
         } catch {
             onResponseWasReceived(.failure(.serverError(error: error)))
         }
-
+    }
+    
+    func performLogoutRequest(input: AbstractInput, _ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, LogoutError>) -> Void) {
+        do {
+            let request = try getRequest(with: input)
+            session.dataTask(with: request) { data, response, error in
+                guard let data = data else {
+                    if error != nil {
+                        onResponseWasReceived(.failure(.notLogout))
+                        return
+                    }
+                    return
+                }
+                do {
+                    let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
+                    onResponseWasReceived(.success(mappedModel))
+                } catch {
+                    onResponseWasReceived(.failure(.serverError(error: error)))
+                }
+            }.resume()
+        } catch {
+            onResponseWasReceived(.failure(.serverError(error: error)))
+        }
+    }
+    
+    func performPullToRefreshRequest(input: AbstractInput, _ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, RefreshError>) -> Void) {
+        do {
+            let request = try getRequest(with: input)
+            session.dataTask(with: request) { data, response, error in
+                guard let data = data else {
+                    if error != nil {
+                        onResponseWasReceived(.failure(.noInternetConnection))
+                        return
+                    }
+                    return
+                }
+                do {
+                    let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
+                    onResponseWasReceived(.success(mappedModel))
+                } catch {
+                    onResponseWasReceived(.failure(.serverError(error: error)))
+                }
+            }.resume()
+        } catch {
+            onResponseWasReceived(.failure(.serverError(error: error)))
+        }
     }
 }
 
 extension BaseNetworkTask where Input == EmptyModel {
     func performRequest(_ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, Error>) -> Void) {
         performRequest(input: EmptyModel(), onResponseWasReceived)
+    }
+    
+    func performLogout(_ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, LogoutError>) -> Void) {
+        performLogoutRequest(input: EmptyModel(), onResponseWasReceived)
+    }
+    
+    func performRefresh(_ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, RefreshError>) -> Void) {
+        performPullToRefreshRequest(input: EmptyModel(), onResponseWasReceived)
     }
 }
 

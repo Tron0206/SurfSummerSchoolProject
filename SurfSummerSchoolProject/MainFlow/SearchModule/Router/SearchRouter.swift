@@ -10,7 +10,11 @@ import Foundation
 
 final class SearchRouter: SearchRouterInput {
     
+    //MARK: - Properties
+    
     weak var view: ModuleTransitionable?
+    
+    //MARK: - SearchRouterInput
     
     func showDetailModule(item: ItemModel) {
         view?.push(module: DetailModuleConfigurator().configure(item: item), animated: true)

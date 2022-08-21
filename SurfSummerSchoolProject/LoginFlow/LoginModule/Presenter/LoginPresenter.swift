@@ -8,7 +8,7 @@
 import Foundation
 
 
-class LoginPresenter: LoginViewOutput {
+final class LoginPresenter: LoginViewOutput {
     
     //MARK: - Properties
     
@@ -26,6 +26,7 @@ class LoginPresenter: LoginViewOutput {
                 ProfileService().saveProfile(response)
                 DispatchQueue.main.async { [weak self] in
                     self?.view?.stopLoading()
+                    self?.view?.hideWarning()
                     self?.view?.showMainFlow()
                 }
             case .failure(let error):

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class WarningView: UIView {
+final class WarningView: UIView {
     
     //MARK: - Views
     
@@ -17,6 +17,8 @@ class WarningView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
+        label.numberOfLines = 0
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.text = "Логин или пароль введены неверно"
         return label
@@ -26,6 +28,7 @@ class WarningView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        translatesAutoresizingMaskIntoConstraints = false
         configureAppearance()
     }
     

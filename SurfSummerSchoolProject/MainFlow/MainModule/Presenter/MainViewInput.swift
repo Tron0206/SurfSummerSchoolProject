@@ -10,4 +10,9 @@ import Foundation
 
 protocol MainViewInput: AnyObject {
     func reload()
+    func showWarning(error: String)
+    func showHelperView()
+    func hideHelperView()
+    func startLoadAnimating()
+    func stopLoadAnimating()
 }
