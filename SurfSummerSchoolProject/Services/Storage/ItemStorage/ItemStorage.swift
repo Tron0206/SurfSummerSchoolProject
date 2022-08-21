@@ -8,9 +8,14 @@
 import Foundation
 
 
-class ItemStorage {
+final class ItemStorage {
+    
+    //MARK: - Properties
+    
     var items: [ItemModel] = []
     static let shared = ItemStorage()
-    private init() {}
     
+    //MARK: - Initialization
+    
+    private init() {}
 }

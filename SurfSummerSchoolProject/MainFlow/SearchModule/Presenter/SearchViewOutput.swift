@@ -15,5 +15,5 @@ protocol SearchViewOutput: AnyObject {
     func showCollectionView()
     func showDetailViewController(for indexPath: IndexPath)
     func changeFavoriteStatus(for indexPath: IndexPath, isFavorite: Bool)
-    func getItem(for indexPath: IndexPath)
+    func getItem(for indexPath: IndexPath) -> ItemModel
 }

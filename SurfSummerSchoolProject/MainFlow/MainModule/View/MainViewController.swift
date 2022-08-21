@@ -67,6 +67,7 @@ final class MainViewController: UIViewController, ModuleTransitionable {
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         button.setTitle("Обновить", for: .normal)
         button.isHidden = true
+        button.addTarget(self, action: #selector(refresh), for: .touchUpInside)
         return button
     }()
     
@@ -186,6 +187,10 @@ private extension MainViewController {
             self.collectionView.alpha = 1
             self.refreshControl.endRefreshing()
         }
+    }
+    
+    @objc func refresh() {
+        refreshPosts()
     }
     
     func refreshPosts() {

@@ -15,6 +15,8 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
     typealias Input = AbstractInput
     typealias Output = AbstractOutput
     
+    //MARK: - Properties
+    
     var baseURL: URL? {
         return URL(string: "https://pictures.chronicker.fun/api")
     }
@@ -25,7 +27,6 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
     var urlCache: URLCache {
         return URLCache.shared
     }
-    
     var tokenStorage: TokenStorage {
         return BaseTokenStorage()
     }
@@ -38,7 +39,7 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
         self.method = method
     }
     
-    //MARK: - NetworkTask
+    //MARK: - Internal methods
 
     func performRequest(input: AbstractInput, _ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, Error>) -> Void) {
         do {
@@ -48,29 +49,21 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
                 onResponseWasReceived(.success(mappedModel))
                 return
             }
-            
             session.dataTask(with: request) { data, response, error in
                 guard let data = data else {
                     if let error = error {
-                        //Нет интернета
                         onResponseWasReceived(.failure(NetworkError.serverError(error: error)))
                         return
                     }
                     onResponseWasReceived(.failure(NetworkError.noConnectionError))
                     return
                 }
-                
                 do {
-                    
                     let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
                     onResponseWasReceived(.success(mappedModel))
                 } catch {
-                    //Неправильные данные
                     onResponseWasReceived(.failure(NetworkError.incorrectDataError))
                 }
-                
-
-                
             }.resume()
         } catch {
             onResponseWasReceived(.failure(error))

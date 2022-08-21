@@ -8,29 +8,30 @@
 import Foundation
 
 
-class FavoriteService {
+final class FavoriteService {
 
+    //MARK: - properties
+    
     private var keyFavoriteItem: String {
         return "favorite"
     }
-    
     private let storage = UserDefaults.standard
     static let shared = FavoriteService()
+    private var savedItems: [String] = []
+    
+    //MARK: - Initialization
     
     private init() {
         getDataFromUserDefaults()
-        print(savedItems)
     }
     
-    private var savedItems: [String] = []
+    //MARK: - Internal methods
     
     func changeStatus(id: String, isFavorite: Bool) {
         if isFavorite {
             saveFavoriteItem(id)
-            print(savedItems)
         } else {
             removeFavoriteItem(id)
-            print(savedItems)
         }
     }
     

@@ -9,10 +9,8 @@ import Foundation
 
 
 enum HTTPNetworkMethod: String {
-     
      case get
      case post
-     
  }
 
 extension HTTPNetworkMethod: NetworkMethod {

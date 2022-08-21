@@ -130,15 +130,15 @@ extension SearchViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MainItemCell.self)", for: indexPath) as? MainItemCell else {
-            fatalError("Cell not found")
+            return UICollectionViewCell()
         }
-//        cell.configure(item: presenter?.getItem(for: indexPath)) { [weak self] isFavorite in
-//            guard let self = self else {
-//                return
-//            }
-//            self.presenter?.itemStorage.items[indexPath.item].isFavorite = isFavorite
-//            self.presenter?.changeFavoriteStatus(for: indexPath, isFavorite: isFavorite)
-//        }
+        cell.configure(item: presenter?.getItem(for: indexPath)) { [weak self] isFavorite in
+            guard let self = self else {
+                return
+            }
+            self.presenter?.filteredItems[indexPath.item].isFavorite = isFavorite
+            self.presenter?.changeFavoriteStatus(for: indexPath, isFavorite: isFavorite)
+        }
         return cell
     }
 }
