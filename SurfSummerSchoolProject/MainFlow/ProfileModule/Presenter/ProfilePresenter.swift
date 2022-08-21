@@ -36,9 +36,9 @@ extension ProfilePresenter: ActionLogoutAcceptModuleOutput {
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success(_):
-                    print("Hello")
                     self?.view?.hideWarningView()
                     self?.view?.stopLoading()
+                    self?.view?.showLoginFlow()
                     
                 case .failure(let error):
                     self?.view?.showWarningView(errorDescription: error.localizedDescription)

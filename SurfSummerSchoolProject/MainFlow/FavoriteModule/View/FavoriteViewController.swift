@@ -10,20 +10,15 @@ import UIKit
 final class FavoriteViewController: UIViewController, ModuleTransitionable {
     
     //MARK: - Properties
-    var presenter: FavoriteViewOutput?
     
-    private enum Constants {
-        static let horizontalInset: CGFloat = 16
-        static let verticalInset: CGFloat = 8
-        static let hightToWidthRatio: CGFloat = 1.1603
-    }
+    var presenter: FavoriteViewOutput?
     
     //MARK: - Views
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     private lazy var searchButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(named: "SearchIcon"),
+        let button = UIBarButtonItem(image: Icon.search,
                                      style: .done,
                                      target: self,
                                      action: #selector(tappedSearchButton))
@@ -82,7 +77,22 @@ private extension FavoriteViewController {
                                      helperView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
                                      helperView.topAnchor.constraint(equalTo: view.topAnchor, constant: 250)])
     }
+}
 
+//MARK: - FavoriteViewInput
+
+extension FavoriteViewController: FavoriteViewInput {
+    func reload() {
+        collectionView.reloadData()
+    }
+    
+    func showHelperView() {
+        helperView.isHidden = false
+    }
+    
+    func hideHelperView() {
+        helperView.isHidden = true
+    }
 }
 
 //MARK: - UICollectionViewDataSource
@@ -94,7 +104,7 @@ extension FavoriteViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FavoriteCell.self)", for: indexPath) as? FavoriteCell else {
-            fatalError()
+            return UICollectionViewCell()
         }
         cell.configure(item: presenter?.favoriteItems[indexPath.item]) { [weak self] in
             guard let self = self else {
@@ -115,19 +125,13 @@ extension FavoriteViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-//MARK: - FavoriteViewInput
+//MARK: - Private enum
 
-extension FavoriteViewController: FavoriteViewInput {
-    func reload() {
-        collectionView.reloadData()
-    }
-    
-    func showHelperView() {
-        helperView.isHidden = false
-    }
-    
-    func hideHelperView() {
-        helperView.isHidden = true
+private extension FavoriteViewController {
+    private enum Constants {
+        static let horizontalInset: CGFloat = 16
+        static let verticalInset: CGFloat = 8
+        static let hightToWidthRatio: CGFloat = 1.1603
     }
 }
 

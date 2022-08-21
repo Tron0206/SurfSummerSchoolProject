@@ -10,7 +10,11 @@ import Foundation
 
 final class MainRouter: MainRouterInput {
     
+    //MARK: - Properties
+    
     weak var view: ModuleTransitionable?
+    
+    //MARK: - MainRouterInput
     
     func showDetailModule(item: ItemModel) {
         view?.push(module: DetailModuleConfigurator().configure(item: item), animated: true, hideTabBar: true)

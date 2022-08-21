@@ -12,4 +12,5 @@ class ItemStorage {
     var items: [ItemModel] = []
     static let shared = ItemStorage()
     private init() {}
+    
 }

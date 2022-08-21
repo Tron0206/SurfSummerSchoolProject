@@ -18,6 +18,9 @@ struct LogoutService {
             case .success(let emptyModel):
                 try? dataTask.tokenStorage.removeTokenFromContainer()
                 ProfileService().remove()
+                URLCache.shared.removeAllCachedResponses()
+                FavoriteService.shared.removeFavoriteItems()
+                ItemStorage.shared.items = []
                 onResponseWasReceived(.success(emptyModel))
             case .failure(let error):
                 onResponseWasReceived(.failure(error))

@@ -9,27 +9,24 @@ import UIKit
 
 final class DetailTitleCell: UITableViewCell {
 
+    //MARK: - Views
+    
     @IBOutlet weak private var itemTitleLabel: UILabel!
     @IBOutlet weak private var itemDateLabel: UILabel!
     
-    var itemTitle: String? {
-        didSet {
-            itemTitleLabel.text = itemTitle
-        }
-    }
-    
-    var itemData: String? {
-        didSet {
-            itemDateLabel.text = itemData
-        }
-    }
+    //MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         configureAppearance()
     }
     
+    //MARK: - Internal methods
     
+    func configure(itemTitle: String?, itemDate: String?) {
+        itemTitleLabel.text = itemTitle
+        itemDateLabel.text = itemDate
+    }
 }
 
 //MARK: - Private Methods
@@ -47,6 +44,6 @@ private extension DetailTitleCell {
     
     func configureDateLabel() {
         itemDateLabel.font = .systemFont(ofSize: 10, weight: .medium)
-        itemDateLabel.textColor = UIColor(red: 179 / 255, green: 179 / 255, blue: 179 / 255, alpha: 1)
+        itemDateLabel.textColor = Color.date
     }
 }

@@ -8,7 +8,6 @@
 import Foundation
 
 
-
 protocol ActionWithPictureModuleOutput {
     func remove(item: ItemModel)
 }

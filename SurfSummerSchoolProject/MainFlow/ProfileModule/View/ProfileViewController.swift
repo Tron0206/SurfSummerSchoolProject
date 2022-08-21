@@ -159,4 +159,8 @@ extension ProfileViewController: ProfileViewInput {
         }
         navigationItem.titleView = nil
     }
+    
+    func showLoginFlow() {
+        (UIApplication.shared.delegate as? AppDelegate)?.runLoginFlow()
+    }
 }

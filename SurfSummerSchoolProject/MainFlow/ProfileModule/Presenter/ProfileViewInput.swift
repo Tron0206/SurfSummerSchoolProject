@@ -14,4 +14,5 @@ protocol ProfileViewInput: AnyObject {
     func stopLoading()
     func showWarningView(errorDescription: String)
     func hideWarningView()
+    func showLoginFlow()
 }

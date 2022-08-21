@@ -77,27 +77,24 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
         }
     }
         
-        func performAuth(input: AbstractInput, _ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, AuthError>) -> Void) {
-            do {
-                let request = try getRequest(with: input)
-                session.dataTask(with: request) { data, response, error in
-                    guard let data = data else {
-                        if error != nil {
-                            onResponseWasReceived(.failure(.noConnectionError))
-                            return
-                        }
+    func performAuth(input: AbstractInput, _ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, AuthError>) -> Void) {
+        do {
+            let request = try getRequest(with: input)
+            session.dataTask(with: request) { data, response, error in
+                guard let data = data else {
+                    if error != nil {
+                        onResponseWasReceived(.failure(.noConnectionError))
                         return
                     }
-
-                    do {
-                        let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
-                        onResponseWasReceived(.success(mappedModel))
-                    } catch {
-                        onResponseWasReceived(.failure(.incorrectDataError))
-                    }
-
-
-
+                    return
+                }
+                do {
+                    let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
+                    onResponseWasReceived(.success(mappedModel))
+                } catch {
+                    onResponseWasReceived(.failure(.incorrectDataError))
+                }
+  
             }.resume()
         } catch {
             onResponseWasReceived(.failure(.serverError(error: error)))
@@ -115,16 +112,35 @@ struct BaseNetworkTask<AbstractInput: Encodable, AbstractOutput: Decodable>: Net
                     }
                     return
                 }
-                
                 do {
                     let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
                     onResponseWasReceived(.success(mappedModel))
                 } catch {
                     onResponseWasReceived(.failure(.serverError(error: error)))
                 }
-                
-                
-                
+            }.resume()
+        } catch {
+            onResponseWasReceived(.failure(.serverError(error: error)))
+        }
+    }
+    
+    func performPullToRefreshRequest(input: AbstractInput, _ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, RefreshError>) -> Void) {
+        do {
+            let request = try getRequest(with: input)
+            session.dataTask(with: request) { data, response, error in
+                guard let data = data else {
+                    if error != nil {
+                        onResponseWasReceived(.failure(.noInternetConnection))
+                        return
+                    }
+                    return
+                }
+                do {
+                    let mappedModel = try JSONDecoder().decode(AbstractOutput.self, from: data)
+                    onResponseWasReceived(.success(mappedModel))
+                } catch {
+                    onResponseWasReceived(.failure(.serverError(error: error)))
+                }
             }.resume()
         } catch {
             onResponseWasReceived(.failure(.serverError(error: error)))
@@ -139,6 +155,10 @@ extension BaseNetworkTask where Input == EmptyModel {
     
     func performLogout(_ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, LogoutError>) -> Void) {
         performLogoutRequest(input: EmptyModel(), onResponseWasReceived)
+    }
+    
+    func performRefresh(_ onResponseWasReceived: @escaping (_ result: Result<AbstractOutput, RefreshError>) -> Void) {
+        performPullToRefreshRequest(input: EmptyModel(), onResponseWasReceived)
     }
 }
 

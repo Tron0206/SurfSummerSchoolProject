@@ -38,6 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func runLoginFlow() {
+        window?.rootViewController = UINavigationController(rootViewController: LoginModuleConfigurator().configure())
+    }
+    
     func runLaunchScreen() {
         let launchScreenViewController = UIStoryboard(name: "LaunchScreen", bundle: .main).instantiateInitialViewController()
         window?.rootViewController = launchScreenViewController

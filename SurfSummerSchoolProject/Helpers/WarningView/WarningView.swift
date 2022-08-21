@@ -17,6 +17,8 @@ class WarningView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
+        label.numberOfLines = 0
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.text = "Логин или пароль введены неверно"
         return label

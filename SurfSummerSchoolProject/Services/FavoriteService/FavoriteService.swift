@@ -9,8 +9,9 @@ import Foundation
 
 
 class FavoriteService {
-    private enum KeyForUserDefaults {
-        static let favorite = "favorite"
+
+    private var keyFavoriteItem: String {
+        return "favorite"
     }
     
     private let storage = UserDefaults.standard
@@ -34,7 +35,14 @@ class FavoriteService {
     }
     
     func isFavoriteItem(id: String) -> Bool {
-        return savedItems.contains(id) ? true : false
+        guard let items = getFavoriteItems() else {
+            return false
+        }
+        return items.contains(id) ? true : false
+    }
+    
+    func removeFavoriteItems() {
+        storage.removeObject(forKey: keyFavoriteItem)
     }
     
 }
@@ -55,14 +63,22 @@ private extension FavoriteService {
 
     func saveToUserDefaults() {
         let dataForUserDefaults = try? JSONEncoder().encode(savedItems)
-        storage.set(dataForUserDefaults, forKey: KeyForUserDefaults.favorite)
+        storage.set(dataForUserDefaults, forKey: keyFavoriteItem)
     }
     
     func getDataFromUserDefaults() {
-        guard let dataFromUserDefaults = storage.value(forKey: KeyForUserDefaults.favorite) as? Data,
+        guard let dataFromUserDefaults = storage.value(forKey: keyFavoriteItem) as? Data,
               let items = try? JSONDecoder().decode([String].self, from: dataFromUserDefaults) else {
             return
         }
         savedItems = items
+    }
+    
+    func getFavoriteItems() -> [String]? {
+        guard let dataFromUserDefaults = storage.value(forKey: keyFavoriteItem) as? Data,
+              let items = try? JSONDecoder().decode([String].self, from: dataFromUserDefaults) else {
+            return nil
+        }
+        return items
     }
 }

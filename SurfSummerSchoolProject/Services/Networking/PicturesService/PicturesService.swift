@@ -13,6 +13,10 @@ struct PicturesService {
     let dataTask = BaseNetworkTask<EmptyModel, [PictureResponseModel]>(isNeedInjectToken: true, method: .get, path: "picture/")
     
     func loadPictures(_ onResponseWasReceived: @escaping (_ result: Result<[PictureResponseModel], Error>) -> Void) {
-            dataTask.performRequest(onResponseWasReceived)
-        }
+        dataTask.performRequest(onResponseWasReceived)
+    }
+    
+    func pullToRefresh(_ onResponseWasReceived: @escaping (_ result: Result<[PictureResponseModel], RefreshError>) -> Void) {
+        dataTask.performRefresh(onResponseWasReceived)
+    }
 }

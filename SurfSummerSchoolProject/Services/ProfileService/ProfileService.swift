@@ -15,7 +15,14 @@ struct ProfileService {
     }
     
     private let storage = UserDefaults.standard
-        
+    
+    func getIDProfile() -> String? {
+        guard let profile = getProfile() else {
+            return nil
+        }
+        return profile.userInfo.id
+    }
+    
     func saveProfile(_ profile: AuthResponseModel) {
         saveToUserDefaults(profile: profile)
     }

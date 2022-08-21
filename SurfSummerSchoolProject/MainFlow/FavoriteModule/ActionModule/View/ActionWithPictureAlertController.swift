@@ -9,14 +9,14 @@ import Foundation
 import UIKit
 
 
-class ActionWithPictureAlertController: UIAlertController {
+final class ActionWithPictureAlertController: UIAlertController {
     
     //MARK: - Properties
     
     private var output: ActionWithPictureModuleOutput!
     private var item: ItemModel!
     
-    //MARK: - UIAlertController
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()

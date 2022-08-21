@@ -11,7 +11,7 @@ final class DetailDescriptionCell: UITableViewCell {
 
     //MARK: - Views
     
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak private var descriptionLabel: UILabel!
     
     //MARK: - Lifecycle
     
@@ -20,10 +20,10 @@ final class DetailDescriptionCell: UITableViewCell {
         configureAppearance()
     }
     
-    var descriptionText: String? {
-        didSet {
-            descriptionLabel.text = descriptionText
-        }
+    //MARK: - Internal methods
+    
+    func configure(description: String?) {
+        descriptionLabel.text = description
     }
 }
 
